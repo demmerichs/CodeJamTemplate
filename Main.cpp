@@ -21,6 +21,16 @@ typedef long double ld;
 typedef string str;
 
 template <typename T>
+ostream& operator<<(ostream& os, deque<T> vector){
+	if(vector.size()==0)
+		return os;
+	os << vector[0];
+	for(ll i=1;i<vector.size();++i)
+		os << " " << vector[i];
+	return os;
+}
+
+template <typename T>
 bool next_selection(T* begin, T* end, T** selectBegin, T** selectEnd){
 	if(*(selectEnd-1)<end-1){
 		(*(selectEnd-1))++;
@@ -52,10 +62,10 @@ ld facld(ll n){
 #define mp make_pair
 #define x first
 #define y second
-#define pub push_back
-#define puf push_front
-#define pob pop_back
-#define pof pop_front
+#define pb push_back
+#define pf push_front
+#define popb pop_back
+#define popf pop_front
 #define hash unordered_map
 #define sz size()
 
@@ -71,6 +81,7 @@ ld facld(ll n){
 
 #define inf 9000000000000000000L
 #define eps 1e-15
+#define pi 3.14159265358979323846264338328L
 
 void init(){
 }
@@ -81,6 +92,7 @@ otype calcFunction() {
 	return result;
 }
 
+//#define IFSTRUCT	//remove comment on this line, to activate if-structure
 int main() {
 	init();
 	ofstream outfile("output.txt");
@@ -92,20 +104,21 @@ int main() {
 		otype result=calcFunction();
 		outfile << "Case #" << test << ": ";
 		cout << "Case #" << test << ": ";
-		// /*	remove comment on this line, to activate if-structure
+#ifndef IFSTRUCT
 		outfile << result << endl;
 		cout << result << endl;
-		continue;
-		// */
+#endif /*IFSTRUCT*/
+#ifdef IFSTRUCT
 		if(result>=0){
 			outfile << result << endl;
 			cout << result << endl;
 		}
-		else if(result<0){
+		else{
 			str errorWord = "FALSE";
 			outfile << errorWord << endl;
 			cout << errorWord << endl;
 		}
+#endif /*IFSTRUCT*/
 	}
 	outfile.close();
 	return 0;
