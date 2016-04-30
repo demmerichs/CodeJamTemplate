@@ -85,7 +85,7 @@ std::deque<T> getSelection(std::deque<T> elements, unsigned long long binaryRepr
 	return result;
 }
 
-//calculating faculty of n
+//calculating faculty of n, only valid for n<=20
 unsigned long long facll(unsigned long long n){
 	if(n)
 		return n*facll(n-1);
@@ -146,7 +146,7 @@ otype calcFunction() {
 	return result;
 }
 
-//#define IFSTRUCT	//remove comment on this line, to activate if-structure
+//#define IFSTRUCT	//remove comment on this line, to activate if-structure for default value trigger
 int main() {
 	init();
 	ofstream outfile("output.txt");
