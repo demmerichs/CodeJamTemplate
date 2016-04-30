@@ -1,85 +1,117 @@
+//input and output
 #include <iostream>
-#include <cassert>
 #include <fstream>
+//working with strings
+#include <cstring>
 #include <sstream>
-#include <cstdlib>
-#include <cmath>
-#include <vector>
+//debugging with assert
+#include <cassert>
+//datastructures
 #include <deque>
 #include <list>
 #include <set>
 #include <bitset>
 #include <unordered_map>
 #include <unordered_set>
-#include <cstring>
+//math operations and pairs, rand, atoi, atof and standard stuff
+#include <cstdlib>
+#include <cmath>
+//for sorting and other stuff
 #include <algorithm>
 
-using namespace std;
-
-typedef long long ll;
-typedef long double ld;
-typedef string str;
-
 template <typename T>
-ostream& operator<<(ostream& os, deque<T> vector){
+std::ostream& operator<<(std::ostream& os, std::deque<T> vector){
 	if(vector.size()==0)
 		return os;
 	os << vector[0];
-	for(ll i=1;i<vector.size();++i)
+	for(unsigned long long i=1;i<vector.size();++i)
 		os << " " << vector[i];
 	return os;
 }
 
-//goes through the selection possibilites of k elements of the array between begin and end,
-//where between selectBegin aand selectEnd pointers to the currently selected elements are
+//goes through the selection possibilites of k elements of the vector
+//use: ++si for next selection and *si for a vector of the currently selected elements
+//use: for(SelectionIterator<T> si(vector,k);!si.final();++si){something with *si}
 template <typename T>
-bool next_selection(T* begin, T* end, T** selectBegin, T** selectEnd){
-	if(*(selectEnd-1)<end-1){
-		(*(selectEnd-1))++;
-		return true;
+class SelectionIterator{
+private:
+	unsigned long long k;
+	unsigned long long n;
+	std::deque<T> vector;
+	std::deque<T> selection;
+	std::deque<unsigned long long> selectionNumbers;
+	bool finalState;
+public:
+	SelectionIterator<T>(std::deque<T> vector, unsigned long long k):k(k), n(vector.size()), vector(vector), finalState(false){
+		for(unsigned long long i=0;i<k;++i){
+			selection.push_back(vector[i]);
+			selectionNumbers.push_back(i);
+		}
 	}
-	else if(selectBegin+1==selectEnd){
-		*selectBegin=begin;
-		return false;
-	}
-	else{
-		bool result=next_selection(begin,end-1,selectBegin,selectEnd-1);
-		*(selectEnd-1)=1+*(selectEnd-2);
-		return result;
-	}
-}
 
-//select from elements, indicatet by the ones "1" in the binary representation
+	void operator++(){
+		for(unsigned long long i=k-1;i<k;--i){
+			if(selectionNumbers[i]==n+i-k)
+				continue;
+			else{
+				++selectionNumbers[i];
+				selection[i]=vector[selectionNumbers[i]];
+				for(unsigned long long j=i+1;j<k;++j){
+					selectionNumbers[j]=selectionNumbers[i]+j-i;
+					selection[j]=vector[selectionNumbers[j]];
+				}
+				return;
+			}
+		}
+		finalState=true;
+	}
+
+	std::deque<T> operator*(){
+		return selection;
+	}
+
+	bool final(){
+		return finalState;
+	}
+};
+
+//select from elements, indicated by the ones "1" in the binary representation
 template <typename T>
-deque<T> getSelection(deque<T> elements, ll binaryRepresentationOfSelection){
-	deque<T> result;
-	for(ll i=0;i<elements.size();++i)
+std::deque<T> getSelection(std::deque<T> elements, unsigned long long binaryRepresentationOfSelection){
+	std::deque<T> result;
+	for(unsigned long long i=0;i<elements.size();++i)
 		if( (binaryRepresentationOfSelection>>i)%2 )
 			result.push_back(elements[i]);
 	return result;
 }
 
 //calculating faculty of n
-ll facll(ll n){
+unsigned long long facll(unsigned long long n){
 	if(n)
 		return n*facll(n-1);
 	return 1;
 }
 
 //calculating faculty of n, floating point calulations
-ld facld(ll n){
+long double facld(unsigned long long n){
 	if(n)
-		return (ld)n * facld(n-1);
+		return (long double)n * facld(n-1);
 	return 1.;
 }
 
 //calculating the power of base to the exp
-ll powll(ll base, ll exp){
-	ll result=1;
-	for(ll i=0;i<exp;++i)
+long long powll(long long base, unsigned long long exp){
+	long long result=1;
+	for(unsigned long long i=0;i<exp;++i)
 		result*=base;
 	return result;
 }
+
+using namespace std;
+
+typedef long long ll;
+typedef long double ld;
+typedef string str;
 
 #define mp make_pair
 #define x first
