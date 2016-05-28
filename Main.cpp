@@ -17,6 +17,7 @@
 //math operations and pairs, rand, atoi, atof and standard stuff
 #include <cstdlib>
 #include <cmath>
+#include <numeric>
 //for sorting and other stuff
 #include <algorithm>
 
@@ -123,8 +124,11 @@ typedef string str;
 #define popf pop_front
 #define hash unordered_map
 #define sz size()
+#define bn begin()
+#define ed end()
 
 #define v(type) deque<type >
+#define p(type1,type2) pair<type1, type2 >
 #define it(container) typeof((container).begin())
 #define all(x) (x).begin(), (x).end()
 #define select(x,i) (x).begin()+(i), (x).begin()+(i)+1
