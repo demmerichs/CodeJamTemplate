@@ -1,5 +1,6 @@
 //input and output
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 //working with strings
 #include <cstring>
@@ -150,14 +151,16 @@ otype calcFunction() {
 int main() {
 	init();
 	ofstream outfile("output.txt");
+	cout << setprecision(10);
+	outfile << setprecision(10);
 	ll tests = 0;
 	cin >> tests;
 	fore(test, 1, tests){
 		//read input
 
-		//write output
-
+		//calc result
 		otype result=calcFunction();
+		//write output
 		outfile << "Case #" << test << ": ";
 		cout << "Case #" << test << ": ";
 #ifndef IFSTRUCT
@@ -170,7 +173,7 @@ int main() {
 			cout << result << endl;
 		}
 		else{
-			str errorWord = "FALSE";
+			str errorWord = "IMPOSSIBLE";
 			outfile << errorWord << endl;
 			cout << errorWord << endl;
 		}
