@@ -25,35 +25,54 @@ cp Main.cpp E/Main.cpp
 cp sample.txt E/sample.txt
 
 file="$1"
-lastLetter="$2"
+let1="$2"
+let2="$3"
+let3="$4"
+let4="$5"
+let5="$6"
 
-if [[ $file = "" || $lastLetter = "" ]]
+if [[ $file = "" ]]
 then
-    echo You must provide 2 arguments:
+    echo You must provide 1 argument and optional folder arguments:
     echo "  First: file location"
-    echo "  Second: letter of the last problem!"
+    echo "  Optional: letter of problem folder to create!"
     exit
 fi
 
 mkdir "$file"
-cp -r A "$file"
-if [ $lastLetter = "A" ]
+echo "  The following folders get created in "$file
+
+if [[ $let1 = "" ]]
 then
     exit
 fi
-cp -r B "$file"
-if [ $lastLetter = "B" ]
+echo "    "$let1
+cp -r $let1 "$file"
+
+if [[ $let2 = "" ]]
 then
     exit
 fi
-cp -r C "$file"
-if [ $lastLetter = "C" ]
+echo "    "$let2
+cp -r $let2 "$file"
+
+if [[ $let3 = "" ]]
 then
     exit
 fi
-cp -r D "$file"
-if [ $lastLetter = "D" ]
+echo "    "$let3
+cp -r $let3 "$file"
+
+if [[ $let4 = "" ]]
 then
     exit
 fi
-cp -r E "$file"
+echo "    "$let4
+cp -r $let4 "$file"
+
+if [[ $let5 = "" ]]
+then
+    exit
+fi
+echo "    "$let5
+cp -r $let5 "$file"
