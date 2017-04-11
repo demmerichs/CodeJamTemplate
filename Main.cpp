@@ -76,6 +76,7 @@ public:
 		return finalState;
 	}
 };
+#define seliter SelectionIterator
 
 //select from elements, indicated by the ones "1" in the binary representation
 template <typename T>
@@ -86,6 +87,7 @@ std::deque<T> getSelection(std::deque<T> elements, unsigned long long binaryRepr
 			result.push_back(elements[i]);
 	return result;
 }
+#define gsel getSelection
 
 //calculating faculty of n, only valid for n<=20
 unsigned long long facll(unsigned long long n){
@@ -107,6 +109,14 @@ long long powll(long long base, unsigned long long exp){
 	for(unsigned long long i=0;i<exp;++i)
 		result*=base;
 	return result;
+}
+
+//calculating the binary log of n
+unsigned long long log2ll(unsigned long long n){
+	assert(n>0);
+	if(n==1)
+		return 0;
+	return 1+log2ll(n>>1);
 }
 
 using namespace std;
