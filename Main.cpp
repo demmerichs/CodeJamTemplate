@@ -33,13 +33,13 @@ std::ostream& operator<<(std::ostream& os, std::deque<T> vector){
 		return os;
 	os << vector[0];
 	for(unsigned long long i=1;i<vector.size();++i)
-		os << std::endl << vector[i];
+		os << ' ' << vector[i];
 	return os;
 }
 
 template <typename S, typename T>
 std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa){
-	os << pa.first << " " << pa.second;
+	os << pa.first << ' ' << pa.second;
 	return os;
 }
 
