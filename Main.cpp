@@ -156,7 +156,7 @@ typedef string str;
 #define all(x) (x).begin(), (x).end()
 #define select(x,i) (x).begin()+(i), (x).begin()+(i)+1
 #define foreach(cit,container) for(typeof((container).begin()) cit = (container).begin(); cit != (container).end(); cit++)
-#define foreachc(c,cit,container) ll c=0;for(typeof((container).begin()) cit = (container).begin(); cit != (container).end(); c++, cit++)
+#define foreachc(c,cit,container) ll c=0;for(decltype((container).begin()) cit = (container).begin(); cit != (container).end(); c++, cit++)
 #define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
 #define fornn(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)
 #define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
