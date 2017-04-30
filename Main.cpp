@@ -10,6 +10,7 @@
 //datastructures
 #include <deque>
 #include <list>
+#include <map>
 #include <set>
 #include <bitset>
 #include <unordered_map>
