@@ -46,7 +46,7 @@ std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa){
 
 //goes through the selection possibilites of k elements of the vector
 //use: ++si for next selection and *si for a vector of the currently selected elements
-//use: for(SelectionIterator<T> si(vector,k);!si.final();++si){something with *si}
+//use: for(seliter<T> si(vector,k);!si.final();++si){something with *si}
 template <typename T>
 class SelectionIterator{
 private:
@@ -58,6 +58,10 @@ private:
 	bool finalState;
 public:
 	SelectionIterator<T>(std::deque<T> vector, unsigned long long k):k(k), n(vector.size()), vector(vector), finalState(false){
+		if(k>n){
+			finalState = true;
+			return;
+		}
 		for(unsigned long long i=0;i<k;++i){
 			selection.push_back(vector[i]);
 			selectionNumbers.push_back(i);
@@ -83,6 +87,19 @@ public:
 
 	std::deque<T> operator*(){
 		return selection;
+	}
+
+	std::deque<T> getNotSelected(){
+		std::deque<T> notSelected;
+		unsigned long long cur = 0;
+		for(unsigned long long i=0; i<k; ++i){
+			for(unsigned long long j=cur; j<selectionNumbers[i]; ++j)
+				notSelected.push_back(vector[j]);
+			cur = selectionNumbers[i] + 1;
+		}
+		for(unsigned long long j=cur; j<n; ++j)
+			notSelected.push_back(vector[j]);
+		return notSelected;
 	}
 
 	bool final(){
@@ -154,8 +171,9 @@ typedef string str;
 #define p(type1,type2) pair<type1, type2 >
 #define it(container) typeof((container).begin())
 #define all(x) (x).begin(), (x).end()
-#define select(x,i) (x).begin()+(i), (x).begin()+(i)+1
-#define foreach(cit,container) for(typeof((container).begin()) cit = (container).begin(); cit != (container).end(); cit++)
+#define ssel(x,i) (x).begin()+(i), (x).begin()+(i)+1
+#define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
+#define foreach(cit,container) for(decltype((container).begin()) cit = (container).begin(); cit != (container).end(); cit++)
 #define foreachc(c,cit,container) ll c=0;for(decltype((container).begin()) cit = (container).begin(); cit != (container).end(); c++, cit++)
 #define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
 #define fornn(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)
@@ -178,7 +196,7 @@ otype calcFunction() {
 int main() {
 	init();
 	ofstream outfile("output.txt");
-	cout << setprecision(10);
+	cout << setprecision(4);
 	outfile << setprecision(10);
 	ll tests = 0;
 	cin >> tests;
