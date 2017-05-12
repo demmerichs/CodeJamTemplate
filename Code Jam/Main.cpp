@@ -1,26 +1,11 @@
-//input and output
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-//working with strings
-#include <cstring>
-#include <sstream>
-//debugging with assert
-#include <cassert>
-//datastructures
-#include <deque>
-#include <list>
-#include <map>
-#include <set>
-#include <bitset>
-#include <unordered_map>
-#include <unordered_set>
-//math operations and pairs, rand, atoi, atof and standard stuff
-#include <cstdlib>
-#include <cmath>
-#include <numeric>
-//for sorting and other stuff
-#include <algorithm>
+//#define DEFAULT_VAL	//remove comment on this line, to activate default value trigger
+#define OUT_TYPE ll
+
+
+
+/*** START OF TEMPLATE CODE ***/
+
+#include <bits/stdc++.h>
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, std::deque<T> vector);
@@ -150,49 +135,19 @@ unsigned long long log2ll(unsigned long long n){
 }
 
 using namespace std;
-
 typedef long long ll;
 typedef long double ld;
+typedef complex<double> pnt;
 typedef string str;
-
-#define mp make_pair
-#define x first
-#define y second
-#define pb push_back
-#define pf push_front
-#define popb pop_back
-#define popf pop_front
 #define hash unordered_map
-#define sz size()
-#define bn begin()
-#define ed end()
-
 #define v(type) deque<type >
 #define p(type1,type2) pair<type1, type2 >
-#define it(container) typeof((container).begin())
-#define all(x) (x).begin(), (x).end()
-#define ssel(x,i) (x).begin()+(i), (x).begin()+(i)+1
-#define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
-#define foreach(cit,container) for(decltype((container).begin()) cit = (container).begin(); cit != (container).end(); cit++)
-#define foreachc(c,cit,container) ll c=0;for(decltype((container).begin()) cit = (container).begin(); cit != (container).end(); c++, cit++)
-#define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
-#define fornn(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)
-#define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
 
-#define inf 9000000000000000000L
-#define eps 1e-15
-#define pi 3.14159265358979323846264338328L
+void init();
+void readInput();
+void calcFunction();
 
-void init(){
-}
-
-typedef ll otype;
-otype calcFunction() {
-	otype result=0;
-	return result;
-}
-
-//#define IFSTRUCT	//remove comment on this line, to activate if-structure for default value trigger
+OUT_TYPE result;
 int main() {
 	init();
 	ofstream outfile("output.txt");
@@ -200,19 +155,19 @@ int main() {
 	outfile << setprecision(10);
 	ll tests = 0;
 	cin >> tests;
-	fore(test, 1, tests){
+	for(ll test=1; test<=tests; ++test){
 		//read input
-
+		readInput();
 		//calc result
-		otype result=calcFunction();
+		calcFunction();
 		//write output
 		outfile << "Case #" << test << ": ";
 		cout << "Case #" << test << ": ";
-#ifndef IFSTRUCT
+#ifndef DEFAULT_VAL
 		outfile << result << endl;
 		cout << result << endl;
-#endif /*IFSTRUCT*/
-#ifdef IFSTRUCT
+#endif /*DEFAULT_VAL*/
+#ifdef DEFAULT_VAL
 		if(result>=0){
 			outfile << result << endl;
 			cout << result << endl;
@@ -222,8 +177,47 @@ int main() {
 			outfile << errorWord << endl;
 			cout << errorWord << endl;
 		}
-#endif /*IFSTRUCT*/
+#endif /*DEFAULT_VAL*/
 	}
 	outfile.close();
 	return 0;
 }
+
+#define mp make_pair
+#define x first
+#define y second
+#define pb push_back
+#define pf push_front
+#define popb pop_back
+#define popf pop_front
+#define sz size()
+#define bn begin()
+#define ed end()
+
+#define all(x) (x).begin(), (x).end()
+#define ssel(x,i) (x).begin()+(i), (x).begin()+(i)+1
+#define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
+#define foreach(cit,container) for(auto cit = (container).begin(); cit != (container).end(); cit++)
+#define foreachc(c,cit,container) ll c=0;for(auto cit = (container).begin(); cit != (container).end(); c++, cit++)
+#define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
+#define fornn(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)
+#define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
+
+#define INF 9000000000000000000L
+#define EPS 1e-15
+#define PI 3.14159265358979323846264338328L
+#define MOD 1000000007
+
+namespace task {
+
+void init(){
+}
+
+void readInput(){
+}
+
+// write to OUT_TYPE result
+void calcFunction() {
+}
+
+} // namespace task
