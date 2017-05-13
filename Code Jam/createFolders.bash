@@ -1,5 +1,6 @@
 #/bin/bash!
 
+IFS=$'\n'
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )"
 
 rm -rf $DIR/A
@@ -44,6 +45,7 @@ then
 fi
 
 mkdir "$TARGET_DIR"
+mkdir "$TARGET_DIR/Inputs"
 echo "  The following folders get created in "$TARGET_DIR
 
 if [[ $LETTER_1 = "" ]]
