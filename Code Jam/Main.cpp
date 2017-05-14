@@ -173,10 +173,11 @@ using namespace selectionTools;
 /* mathTools
  *
  *  declares faculty (facll, facmod and facld)  IMPORTANT: facll works only for n<=20
- *  declares choose (choosell, choosemod and chooseld)  IMPORTANT: choosell works only for n<=TODO
+ *  declares choose (choosell, choosemod and chooseld)  IMPORTANT: choosell works only for n<=62
  *  declares power on integers (powll and powmod)
  *  declares log2 on integers (log2ll)
  *  declares vmin (returns v[i]=min(a[i] , b[i]) )
+ *  declares ceill(p,q)/floorll (returns ceil(p/q)/floorll(p/q) for integers)
  */
 //#region mathTools
 namespace mathTools{
@@ -281,6 +282,22 @@ std::deque<long long> vmin(std::deque<long long> a, std::deque<long long> b)
     for (unsigned i = 0; i < a.size(); ++i)
         out.push_back(std::min(a[i], b[i]));
     return out;
+}
+
+long long ceill(long long p, long long q){
+    if (q<0)
+        return ceill(-p,-q);
+    if (p<0)
+        return p/q;
+    return (p+q-1)/q;
+}
+
+long long floorll(long long p, long long q){
+    if (q<0)
+        return floorll(-p,-q);
+    if (p<0)
+        return (p-q+1)/q;
+    return p/q;
 }
 } // namespace mathTools
 using namespace mathTools;
