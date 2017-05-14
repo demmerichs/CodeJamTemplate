@@ -1,5 +1,6 @@
 #/bin/bash!
 
+IFS=$'\n'
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )"
 
 rm -rf $DIR/A

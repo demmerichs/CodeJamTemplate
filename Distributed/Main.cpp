@@ -1,18 +1,67 @@
-#include "encoded_sum.h"
+#include "TODO.h"
+#define OUT_TYPE ll
 
-/*** START OF TEMPLATE CODE ***/
+//#region template code
+#include <message.h>
+#include <bits/stdc++.h>
 
+//#region abbr
+
+//#region types
+typedef long long ll;
+typedef long double ld;
+typedef std::complex<long long> cell;
+typedef std::complex<long double> pnt;
+typedef std::string str;
+#define hash unordered_map
+#define v(type) std::deque<type >
+#define p(type1,type2) std::pair<type1, type2 >
+#define c(type) std::complex<type >
+//#endregion types
+//#region members and functions
+#define mp make_pair
+#define st first
+#define nd second
+#define x real()
+#define y imag()
+#define bk back()
+#define ft front()
+#define pb push_back
+#define pf push_front
+#define popb pop_back()
+#define popf pop_front()
+#define sz size()
+//#endregion members and functions
+//#region iterators
+#define bn begin()
+#define ed end()
+#define all(x) (x).begin(), (x).end()
+#define ssel(x,i) (x).begin()+(i), (x).begin()+(i)+1
+#define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
+#define foreach(cit,container) for(auto cit = (container).begin(); cit != (container).end(); cit++)
+#define foreachc(c,cit,container) ll c=0;for(auto cit = (container).begin(); cit != (container).end(); c++, cit++)
+//#endregion iterators
+//#region for-loops
+#define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
+#define fornn(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)
+#define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
+//#endregion for-loops
+//#region constants: INF, EPS, PI, MOD, M
 #define INF 9000000000000000000L
 #define EPS 1e-15
 #define PI 3.14159265358979323846264338328L
 #define MOD 1000000007
 #define M 0
+//#endregion constants
 
-#include <message.h>
-#include <bits/stdc++.h>
+//#endregion abbr
 
-//#region printTools
-namespace printTools {
+/* printerTools
+ *
+ *  declares <<-operator for deque and pair class
+ */
+//#region printerTools
+namespace printerTools{
 template <typename T>
 std::ostream& operator<<(std::ostream& os, std::deque<T> vector);
 
@@ -21,136 +70,197 @@ std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa);
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, std::deque<T> vector){
-	if(vector.size()==0)
-		return os;
-	os << vector[0];
-	for(unsigned long long i=1;i<vector.size();++i)
-		os << ' ' << vector[i];
-	return os;
+    if(vector.size()==0)
+        return os;
+    os << vector[0];
+    for(unsigned long long i=1;i<vector.size();++i)
+        os << ' ' << vector[i];
+    return os;
 }
 
 template <typename S, typename T>
 std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa){
-	os << pa.first << ' ' << pa.second;
-	return os;
+    os << pa.first << ' ' << pa.second;
+    return os;
 }
-}
-//#endregion
+} // namespace printerTools
+using namespace printerTools;
+//#endregion printerTools
 
+/* selectionTools
+ *
+ *  declares a SelectionIterator class (abbr seliter)
+ *          iterates over every possible selection of k elements out of the vector
+ *      use as following:
+ *          for(seliter<T> si(vector,k); !si.final(); ++si) { something with *si }
+ *          si.getNotSelected() returns a vector of the n-k not selected elements
+ *  declares a getSelection-Function (abbr. gsel)
+ *          select from elements, indicated by the ones "1" in the binary representation
+ *      use as following:
+ *          gsel(vector,binaryRepresentationOfSelection) returns vector
+ */
 //#region selectionTools
-namespace selectionTools {
-//goes through the selection possibilites of k elements of the vector
-//use: ++si for next selection and *si for a vector of the currently selected elements
-//use: for(seliter<T> si(vector,k);!si.final();++si){something with *si}
+namespace selectionTools{
 template <typename T>
 class SelectionIterator{
 private:
-	unsigned long long k;
-	unsigned long long n;
-	std::deque<T> vector;
-	std::deque<T> selection;
-	std::deque<unsigned long long> selectionNumbers;
-	bool finalState;
+    unsigned long long k;
+    unsigned long long n;
+    std::deque<T> vector;
+    std::deque<T> selection;
+    std::deque<unsigned long long> selectionNumbers;
+    bool finalState;
 public:
-	SelectionIterator<T>(std::deque<T> vector, unsigned long long k):k(k), n(vector.size()), vector(vector), finalState(false){
-		if(k>n){
-			finalState = true;
-			return;
-		}
-		for(unsigned long long i=0;i<k;++i){
-			selection.push_back(vector[i]);
-			selectionNumbers.push_back(i);
-		}
-	}
+    SelectionIterator<T>(std::deque<T> vector, unsigned long long k):k(k), n(vector.size()), vector(vector), finalState(false){
+        if(k>n){
+            finalState = true;
+            return;
+        }
+        for(unsigned long long i=0;i<k;++i){
+            selection.push_back(vector[i]);
+            selectionNumbers.push_back(i);
+        }
+    }
 
-	void operator++(){
-		for(unsigned long long i=k-1;i<k;--i){
-			if(selectionNumbers[i]==n+i-k)
-				continue;
-			else{
-				++selectionNumbers[i];
-				selection[i]=vector[selectionNumbers[i]];
-				for(unsigned long long j=i+1;j<k;++j){
-					selectionNumbers[j]=selectionNumbers[i]+j-i;
-					selection[j]=vector[selectionNumbers[j]];
-				}
-				return;
-			}
-		}
-		finalState=true;
-	}
+    void operator++(){
+        for(unsigned long long i=k-1;i<k;--i){
+            if(selectionNumbers[i]==n+i-k)
+                continue;
+            else{
+                ++selectionNumbers[i];
+                selection[i]=vector[selectionNumbers[i]];
+                for(unsigned long long j=i+1;j<k;++j){
+                    selectionNumbers[j]=selectionNumbers[i]+j-i;
+                    selection[j]=vector[selectionNumbers[j]];
+                }
+                return;
+            }
+        }
+        finalState=true;
+    }
 
-	std::deque<T> operator*(){
-		return selection;
-	}
+    std::deque<T> operator*(){
+        return selection;
+    }
 
-	std::deque<T> getNotSelected(){
-		std::deque<T> notSelected;
-		unsigned long long cur = 0;
-		for(unsigned long long i=0; i<k; ++i){
-			for(unsigned long long j=cur; j<selectionNumbers[i]; ++j)
-				notSelected.push_back(vector[j]);
-			cur = selectionNumbers[i] + 1;
-		}
-		for(unsigned long long j=cur; j<n; ++j)
-			notSelected.push_back(vector[j]);
-		return notSelected;
-	}
+    std::deque<T> getNotSelected(){
+        std::deque<T> notSelected;
+        unsigned long long cur = 0;
+        for(unsigned long long i=0; i<k; ++i){
+            for(unsigned long long j=cur; j<selectionNumbers[i]; ++j)
+                notSelected.push_back(vector[j]);
+            cur = selectionNumbers[i] + 1;
+        }
+        for(unsigned long long j=cur; j<n; ++j)
+            notSelected.push_back(vector[j]);
+        return notSelected;
+    }
 
-	bool final(){
-		return finalState;
-	}
+    bool final(){
+        return finalState;
+    }
 };
 #define seliter SelectionIterator
 
-//select from elements, indicated by the ones "1" in the binary representation
 template <typename T>
 std::deque<T> getSelection(std::deque<T> elements, unsigned long long binaryRepresentationOfSelection){
-	std::deque<T> result;
-	for(unsigned long long i=0;i<elements.size();++i)
-		if( (binaryRepresentationOfSelection>>i)%2 )
-			result.push_back(elements[i]);
-	return result;
+    std::deque<T> result;
+    for(unsigned long long i=0;i<elements.size();++i)
+        if( (binaryRepresentationOfSelection>>i)%2 )
+            result.push_back(elements[i]);
+    return result;
 }
 #define gsel getSelection
-}
-//#endregion
+} // namespace selectionTools
+using namespace selectionTools;
+//#endregion selectionTools
 
+/* mathTools
+ *
+ *  declares faculty (facll, facmod and facld)  IMPORTANT: facll works only for n<=20
+ *  declares choose (choosell, choosemod and chooseld)  IMPORTANT: choosell works only for n<=62
+ *  declares power on integers (powll and powmod)
+ *  declares log2 on integers (log2ll)
+ *  declares vmin (returns v[i]=min(a[i] , b[i]) )
+ *  declares ceill(p,q)/floorll (returns ceil(p/q)/floorll(p/q) for integers)
+ *  declares an <-operator for std::complex
+ */
 //#region mathTools
-namespace mathTools {
-//calculating faculty of n, only valid for n<=20
+namespace mathTools{
 unsigned long long facll(unsigned long long n){
-	if(n)
-		return n*facll(n-1);
-	return 1;
+    if (n)
+        return n * facll(n - 1);
+    return 1;
 }
 
-//calculating faculty of n, floating point calulations
+unsigned long long facmod(unsigned long long n){
+    if (n)
+        return (n * facmod(n - 1)) % MOD;
+    return 1;
+}
+
 long double facld(unsigned long long n){
-	if(n)
-		return (long double)n * facld(n-1);
-	return 1.;
+    if(n)
+        return (long double)n * facld(n-1);
+    return 1.;
 }
 
-//calculating the power of base to the exp
+unsigned long long choosell(unsigned long long n, unsigned long long k){
+    if (k > n)
+        return 0;
+    if ( n-k < k)
+        return choosell(n, n-k);
+    unsigned long long result = 1;
+    for(unsigned long long i = 0; i < k; ++i){
+        result *= n - i;
+        result /= i + 1;
+    }
+    return result;
+}
+
+unsigned long long choosemod(unsigned long long n, unsigned long long k){
+    static std::vector<std::vector<unsigned long long> > memorize;
+    if (k > n)
+        return 0;
+    if (memorize.size() > n){
+        if (memorize[n].size() > k){
+            return memorize[n][k];
+        } else{
+            choosemod(n, k-1);
+            memorize[n].push_back((choosemod(n-1,k-1) + choosemod(n-1,k)) % MOD);
+            return memorize[n][k];
+        }
+    } else{
+        while (memorize.size() <= n){
+            memorize.push_back(std::vector<unsigned long long>());
+            memorize.back().push_back(1LL);
+        }
+        return choosemod(n,k);
+    }
+}
+
+long double chooseld(unsigned long long n, unsigned long long k){
+    if (k > n)
+        return 0;
+    if ( n-k < k)
+        return chooseld(n, n-k);
+    long double result = 1;
+    for(unsigned long long i = 0; i < k; ++i){
+        result *= n - i;
+        result /= i + 1;
+    }
+    return result;
+}
+
 long long powll(long long base, unsigned long long exp){
     if (exp == 0)
         return 1;
     else if (exp & 1)
         return powll(base, exp - 1) * base;
-    else
-    {
+    else{
         long long t = powll(base, exp / 2);
         return t * t;
     }
-}
-
-//calculating the binary log of n
-unsigned long long log2ll(unsigned long long n){
-	assert(n>0);
-	if(n==1)
-		return 0;
-	return 1+log2ll(n>>1);
 }
 
 long long powmod(long long base, long long exp)
@@ -159,11 +269,17 @@ long long powmod(long long base, long long exp)
         return 1;
     else if (exp & 1)
         return powmod(base, exp - 1) * base % MOD;
-    else
-    {
+    else{
         long long t = powmod(base, exp / 2);
         return t * t % MOD;
     }
+}
+
+unsigned long long log2ll(unsigned long long n){
+    assert(n > 0);
+    if (n == 1)
+        return 0;
+    return 1 + log2ll(n >> 1);
 }
 
 std::deque<long long> vmin(std::deque<long long> a, std::deque<long long> b)
@@ -173,11 +289,48 @@ std::deque<long long> vmin(std::deque<long long> a, std::deque<long long> b)
         out.push_back(std::min(a[i], b[i]));
     return out;
 }
-}
-//#endregion
 
+long long ceill(long long p, long long q){
+    if (q<0)
+        return ceill(-p,-q);
+    if (p<0)
+        return p/q;
+    return (p+q-1)/q;
+}
+
+long long floorll(long long p, long long q){
+    if (q<0)
+        return floorll(-p,-q);
+    if (p<0)
+        return (p-q+1)/q;
+    return p/q;
+}
+
+template <typename T>
+bool operator<(const std::complex<T> &lhs, const std::complex<T> &rhs){
+    if(lhs.real() < rhs.real())
+        return true;
+    if(rhs.real() < lhs.real())
+        return false;
+    if(lhs.imag() < rhs.imag())
+        return true;
+    if(rhs.imag() < lhs.imag())
+        return false;
+    return false;
+}
+} // namespace mathTools
+using namespace mathTools;
+//#endregion mathTools
+
+/* parallelTools
+ *
+ *  declares partition_work(items, rank, nodes, start, end)
+ *      input: items, rank, nodes
+ *      output: if the rank node gets work (true or false)
+ *          values: if it gets work, nodes is the total number of nodes that get work, and start inclusive, end exclusive is the range the current node needs to work on
+ */
 //#region parallelTools
-namespace parallelTools {
+namespace parallelTools{
 template<typename T>
 bool partition_work(long long items, int rank, int &nodes, T &start, T &end)
 {
@@ -187,12 +340,16 @@ bool partition_work(long long items, int rank, int &nodes, T &start, T &end)
     end = items * (rank + 1) / nodes;
     return rank < nodes;
 }
-}
-//#endregion
+} // namespace parallelTools
+using namespace parallelTools;
+//#endregion parallelTools
 
-//#region msg
-namespace msg
-{
+/* messageTools
+ *
+ *  TODO insert documentation
+ */
+//#region messageTools
+namespace msg{
 
 /*
     This template provides get(source) and put(target,value) for the types:
@@ -364,7 +521,7 @@ public:
         detail::serialize_tuple<int(sizeof...(Args)) - 1, Args...>::put(target, value);
     }
 };
-//#endregion
+//#endregion serialize
 
 /*
     simple get and put functions:
@@ -430,7 +587,7 @@ static void send(int target, const T &value, const Rest&... rest)
     put<T>(target, value, rest...);
     Send(target);
 }
-//#endregion
+//#endregion communication
 
 /*
     This class provides advanced communication tools
@@ -447,7 +604,7 @@ static void send(int target, const T &value, const Rest&... rest)
         T suffix_sum(&value, op = plus, identity = 0)
         T suffix_sum_arrays(vector<T> &values, op = plus, identity = 0)
 */
-//#region range_comm
+//#region range communication
 class range_comm
 {
 private:
@@ -670,36 +827,27 @@ public:
         return total;
     }
 };
-//#endregion
+//#endregion range communication
 
 } // namespace msg
-//#endregion
+//#endregion messageTools
 
-using namespace printTools;
-using namespace selectionTools;
-using namespace mathTools;
-using namespace parallelTools;
-using namespace std;
-
-//#region redirecting main to task::main
+//#region main
 namespace task{
-void init();
+OUT_TYPE result;
+bool init();
 void run_node();
-
 msg::range_comm world(NumberOfNodes());
 int rank, nodes;
-ll result;
 
-int main()
-{
+int main(){
     rank = MyNodeId();
     nodes = NumberOfNodes();
-    init();
-
+    if(!init())
+        return 0;
     run_node();
-
     if (rank == M){
-        cout << result << endl;
+        std::cout << result << std::endl;
     }
     return 0;
 }
@@ -708,50 +856,25 @@ int main()
 int main(){
     return task::main();
 }
-//#endregion
+//#endregion main
 
-typedef long long ll;
-typedef long double ld;
-typedef complex<ld> pnt;
-typedef string str;
-#define hash unordered_map
-#define v(type) deque<type >
-#define p(type1,type2) pair<type1, type2 >
+using namespace std;
 
-#define mp make_pair
-#define x first
-#define y second
-#define pb push_back
-#define pf push_front
-#define popb pop_back
-#define popf pop_front
-#define sz size()
-#define bn begin()
-#define ed end()
-
-#define all(x) (x).begin(), (x).end()
-#define ssel(x,i) (x).begin()+(i), (x).begin()+(i)+1
-#define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
-#define foreach(cit,container) for(auto cit = (container).begin(); cit != (container).end(); cit++)
-#define foreachc(c,cit,container) ll c=0;for(auto cit = (container).begin(); cit != (container).end(); c++, cit++)
-#define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
-#define fornn(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)
-#define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
-
-/*** END OF TEMPLATE CODE ***/
+//#endregion template code
 
 namespace task{
 
 ll N, start, end;
-void init(){
-    N = GetLength();
+bool init(){
+    N = GetN();
     if (!partition_work(N, rank, nodes, start, end))
-        return 0;
+        return false;
     world.setRange(0, nodes);
+    return true;
 }
 
+// write to OUT_TYPE result
 void run_node(){
-    result;
 }
 
 } // namespace task
