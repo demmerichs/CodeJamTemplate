@@ -11,23 +11,18 @@ rm -rf $DIR/E
 
 mkdir $DIR/A
 cp $DIR/Main.cpp $DIR/A/Main.cpp
-cp $DIR/dcj-runner.bash $DIR/A/dcj-runner.bash
 
 mkdir $DIR/B
 cp $DIR/Main.cpp $DIR/B/Main.cpp
-cp $DIR/dcj-runner.bash $DIR/B/dcj-runner.bash
 
 mkdir $DIR/C
 cp $DIR/Main.cpp $DIR/C/Main.cpp
-cp $DIR/dcj-runner.bash $DIR/C/dcj-runner.bash
 
 mkdir $DIR/D
 cp $DIR/Main.cpp $DIR/D/Main.cpp
-cp $DIR/dcj-runner.bash $DIR/D/dcj-runner.bash
 
 mkdir $DIR/E
 cp $DIR/Main.cpp $DIR/E/Main.cpp
-cp $DIR/dcj-runner.bash $DIR/E/dcj-runner.bash
 
 TARGET_DIR="$1"
 LETTER_1="$2"
@@ -46,6 +41,7 @@ fi
 
 mkdir "$TARGET_DIR"
 mkdir "$TARGET_DIR/Inputs"
+cp $DIR/dcj-runner.bash "$TARGET_DIR"/dcj-runner.bash
 echo "  The following folders get created in "$TARGET_DIR
 
 if [[ $LETTER_1 = "" ]]

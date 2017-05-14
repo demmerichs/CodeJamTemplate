@@ -1,4 +1,6 @@
 #include "TODO.h"
+//#define DEFAULT_VAL    //remove comment on this line, to activate default value trigger
+#define ERROR_WORD "IMPOSSIBLE"
 #define OUT_TYPE ll
 
 //#region template code
@@ -305,21 +307,15 @@ long long floorll(long long p, long long q){
         return (p-q+1)/q;
     return p/q;
 }
-
-template <typename T>
-bool operator<(const std::complex<T> &lhs, const std::complex<T> &rhs){
-    if(lhs.real() < rhs.real())
-        return true;
-    if(rhs.real() < lhs.real())
-        return false;
-    if(lhs.imag() < rhs.imag())
-        return true;
-    if(rhs.imag() < lhs.imag())
-        return false;
-    return false;
-}
 } // namespace mathTools
 using namespace mathTools;
+
+namespace std{
+template <typename T>
+bool operator<(const std::complex<T> &lhs, const std::complex<T> &rhs){
+    return lhs.real() == rhs.real() ? lhs.imag() < rhs.imag() : lhs.real() < rhs.real();
+}
+} // namespace std
 //#endregion mathTools
 
 /* parallelTools
@@ -346,7 +342,21 @@ using namespace parallelTools;
 
 /* messageTools
  *
- *  TODO insert documentation
+ *  TODO format and edit documentation
+     This class provides advanced communication tools
+     using msg::range_comm world(#Number of Nodes):
+         T reduce(root, value, op = plus)
+         T broadcast(root, value)
+         T allreduce(value, op = plus)
+         vector<T> gather(root, value)
+         vector<T> join(root, vector<T> values)
+         vector<T> alljoin(vector<T> values)
+         T scatter(root, vector<T> values)
+         T prefix_sum(&value, op = plus, identity = 0)
+         T prefix_sum_arrays(vector<T> &values, op = plus, identity = 0)
+         T suffix_sum(&value, op = plus, identity = 0)
+         T suffix_sum_arrays(vector<T> &values, op = plus, identity = 0)
+
  */
 //#region messageTools
 namespace msg{
@@ -461,9 +471,9 @@ class serialize<std::complex<T> >
 public:
     static std::complex<T> get(int source)
     {
-        T x = serialize<T>::get(source);
-        T y = serialize<T>::get(source);
-        return std::complex<T>(x, y);
+        T real = serialize<T>::get(source);
+        T imag = serialize<T>::get(source);
+        return std::complex<T>(real, imag);
     }
 
     static void put(int target, const std::complex<T> &value)
@@ -847,7 +857,16 @@ int main(){
         return 0;
     run_node();
     if (rank == M){
+#ifndef DEFAULT_VAL
         std::cout << result << std::endl;
+#endif /*DEFAULT_VAL*/
+#ifdef DEFAULT_VAL
+        if(result>=0){
+            std::cout << result << std::endl;
+        } else{
+            std::cout << ERROR_WORD << std::endl;
+        }
+#endif /*DEFAULT_VAL*/
     }
     return 0;
 }
