@@ -15,11 +15,14 @@ typedef std::string str;
 #define hash unordered_map
 #define v(type) std::deque<type >
 #define p(type1,type2) std::pair<type1, type2 >
+#define c(type) std::complex<type >
 //#endregion types
 //#region members and functions
 #define mp make_pair
-#define x first
-#define y second
+#define st first
+#define nd second
+#define x real()
+#define y imag()
 #define bk back()
 #define ft front()
 #define pb push_back
@@ -178,6 +181,7 @@ using namespace selectionTools;
  *  declares log2 on integers (log2ll)
  *  declares vmin (returns v[i]=min(a[i] , b[i]) )
  *  declares ceill(p,q)/floorll (returns ceil(p/q)/floorll(p/q) for integers)
+ *  declares an <-operator for std::complex
  */
 //#region mathTools
 namespace mathTools{
@@ -298,6 +302,19 @@ long long floorll(long long p, long long q){
     if (p<0)
         return (p-q+1)/q;
     return p/q;
+}
+
+template <typename T>
+bool operator<(const std::complex<T> &lhs, const std::complex<T> &rhs){
+    if(lhs.real() < rhs.real())
+        return true;
+    if(rhs.real() < lhs.real())
+        return false;
+    if(lhs.imag() < rhs.imag())
+        return true;
+    if(rhs.imag() < lhs.imag())
+        return false;
+    return false;
 }
 } // namespace mathTools
 using namespace mathTools;
