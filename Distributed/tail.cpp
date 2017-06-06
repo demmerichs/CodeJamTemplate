@@ -3,8 +3,8 @@ namespace task{
 OUT_TYPE result;
 bool init();
 void run_node();
-msg::range_comm world(NumberOfNodes());
-int rank, nodes, M = 0;
+messageTools::range_comm w(NumberOfNodes());
+int rank, nodes;
 
 int main(){
     rank = MyNodeId();
@@ -12,7 +12,7 @@ int main(){
     if(!init())
         return 0;
     run_node();
-    if (rank == M){
+    if (w.isMaster()){
 #ifndef DEFAULT_VAL
         std::cout << result << std::endl;
 #endif /*DEFAULT_VAL*/
@@ -44,7 +44,7 @@ bool init(){
     N = GetN();
     if (!partition_work(N, rank, nodes, start, end))
         return false;
-    world.setRange(0, nodes);
+    w.setRange(0, nodes);
     return true;
 }
 

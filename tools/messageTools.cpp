@@ -2,7 +2,7 @@
  *
  *  TODO format and edit documentation
      This class provides advanced communication tools
-     using msg::range_comm world(#Number of Nodes):
+     using range_comm world(#Number of Nodes):
          T reduce(root, value, op = plus)
          T broadcast(root, value)
          T allreduce(value, op = plus)
@@ -17,7 +17,7 @@
 
  */
 //#region messageTools
-namespace msg{
+namespace messageTools{
 
 /*
     This template provides get(source) and put(target,value) for the types:
@@ -257,9 +257,9 @@ static void send(int target, const T &value, const Rest&... rest)
 }
 //#endregion communication
 
-/*
+/*      TODO work on this
     This class provides advanced communication tools
-    using msg::range_comm world(#Number of Nodes):
+    using range_comm world(#Number of Nodes):
         T reduce(root, value, op = plus)
         T broadcast(root, value)
         T allreduce(value, op = plus)
@@ -273,152 +273,177 @@ static void send(int target, const T &value, const Rest&... rest)
         T suffix_sum_arrays(vector<T> &values, op = plus, identity = 0)
 */
 //#region range communication
-class range_comm
-{
+class range_comm{
 private:
     int first;
     int last;
+    int master;
 
 public:
-    explicit range_comm(int last) : first(0), last(last) {}
-    range_comm(int first, int last) : first(first), last(last) {}
+    explicit range_comm(int last) : first(0), last(last), master(last-1) {}
+    range_comm(int first, int last) : first(first), last(last), master(last-1) {}
 
     void setRange(int p_first, int p_last){
         first = p_first;
         last = p_last;
+        master = last - 1;
     }
 
-    template<typename T, typename Op = std::plus<T> >
-    T reduce(int root, const T &value, const Op &op = Op()) const
-    {
-        if (MyNodeId() == root)
-        {
+    void setMaster(int p_master){
+        master = p_master;
+    }
+
+    bool isMaster() const{
+        return MyNodeId() == master;
+    }
+
+    int getMaster() const{
+        return master;
+    }
+
+    template<typename T>
+    T reduce(int root, const T &value, const std::function<T (T, T)> &op = std::plus<T>()) const{
+        if (MyNodeId() == root){
             T ans = value;
             for (int i = first; i < last; i++)
                 if (i != root)
                     ans = op(ans, receive<T>(i));
             return ans;
-        }
-        else
-        {
+        } else {
             send(root, value);
             return T();
         }
     }
 
     template<typename T>
-    T broadcast(int root, const T &value) const
-    {
-        if (MyNodeId() == root)
-        {
-            for (int i = first; i < last; i++)
-            {
+    T reduce(const T &value, const std::function<T (T, T)> &op = std::plus<T>()) const{
+        return reduce(master, value, op);
+    }
+
+    template<typename T>
+    T broadcast(int root, const T &value) const{
+        if (MyNodeId() == root){
+            for (int i = first; i < last; i++){
                 if (i != root)
                     send(i, value);
             }
             return value;
-        }
-        else
+        } else
             return receive<T>(root);
     }
 
-    template<typename T, typename Op = std::plus<T> >
-    T allreduce(const T &value, const Op &op = Op()) const
-    {
-        T mid = reduce(first, value, op);
-        return broadcast(first, mid);
+    template<typename T>
+    T broadcast(const T &value) const{
+        return broadcast(master, value);
     }
 
     template<typename T>
-    std::deque<T> gather(int root, const T &value)
-    {
+    T allreduce(const T &value, const std::function<T (T, T)> &op = std::plus<T>()) const{
+        T mid = reduce(value, op);
+        return broadcast(mid);
+    }
+
+    template<typename T>
+    std::deque<T> gather(int root, const T &value){
         std::deque<T> ans;
-        if (MyNodeId() == root)
-        {
+        if (MyNodeId() == root){
             for (int i = first; i < last; i++)
                 if (i == root)
                     ans.push_back(value);
                 else
                     ans.push_back(receive<T>(i));
-        }
-        else
+        } else
             send(root, value);
         return ans;
     }
 
     template<typename T>
-    std::deque<T> join(int root, const std::deque<T> &value)
-    {
+    std::deque<T> gather(const T &value){
+        return gather(master, value);
+    }
+
+    template<typename T>
+    std::deque<T> allgather(const T &value){
         std::deque<T> ans;
-        if (MyNodeId() == root)
-        {
-            for (int i = first; i < last; i++)
-            {
+        for (int i = first; i < last; i++){
+            if (i != MyNodeId())
+                send(i, value);
+        }
+        for (int i = first; i < last; i++){
+            if (i != MyNodeId()){
+                ans.push_back(receive<T>(i));
+            } else
+                ans.push_back(value);
+        }
+        return ans;
+    }
+
+    template<typename T>
+    std::deque<T> join(int root, const std::deque<T> &value){
+        std::deque<T> ans;
+        if (MyNodeId() == root){
+            for (int i = first; i < last; i++){
                 if (i == root)
                     ans.insert(ans.end(), value.begin(), value.end());
-                else
-                {
+                else {
                     std::deque<T> in;
                     receive(i, in);
                     ans.insert(ans.end(), in.begin(), in.end());
                 }
             }
-        }
-        else
+        } else
             send(root, value);
         return ans;
     }
 
     template<typename T>
-    std::deque<T> alljoin(const std::deque<T> &value)
-    {
+    std::deque<T> join(const std::deque<T> &value){
+        return join(master, value);
+    }
+
+    template<typename T>
+    std::deque<T> alljoin(const std::deque<T> &value){
         std::deque<T> ans;
-        for (int i = first; i < last; i++)
-        {
+        for (int i = first; i < last; i++){
             if (i != MyNodeId())
                 send(i, value);
         }
-        for (int i = first; i < last; i++)
-        {
-            if (i != MyNodeId())
-            {
+        for (int i = first; i < last; i++){
+            if (i != MyNodeId()){
                 std::deque<T> in;
                 receive(i, in);
                 ans.insert(ans.end(), in.begin(), in.end());
-            }
-            else
+            } else
                 ans.insert(ans.end(), value.begin(), value.end());
         }
         return ans;
     }
 
     template<typename T>
-    T scatter(int root, const std::deque<T> &values)
-    {
-        if (MyNodeId() == root)
-        {
+    T scatter(int root, const std::deque<T> &values){
+        if (MyNodeId() == root){
             assert(values.size() == size_t(last - first));
             for (int i = first; i < last; i++)
                 if (i != root)
                     send(i, values[i - first]);
             return values[root];
-        }
-        else
-        {
+        } else {
             return receive<T>(root);
         }
     }
 
+    template<typename T>
+    T scatter(const std::deque<T> &values){
+        return scatter(master, values);
+    }
+
     // Exclusive in-place prefix sum, returning the overall total
-    template<typename T, typename Op = std::plus<T> >
-    T prefix_sum(T &value, const Op &op = Op(), const T &identity = T())
-    {
+    template<typename T>
+    T prefix_reduce(T &value, const std::function<T (T, T)> &op = std::plus<T>(), const T &identity = T()){
         std::deque<T> all = gather(first, value);
-        if (MyNodeId() == first)
-        {
+        if (MyNodeId() == first){
             T sum = identity;
-            for (T &t : all)
-            {
+            for (T &t : all){
                 T next = t;
                 t = sum;
                 sum = op(sum, next);
@@ -427,9 +452,7 @@ public:
                 send(i, all[i - first], sum);
             value = identity;
             return sum;
-        }
-        else
-        {
+        } else {
             T sum;
             receive(first, value, sum);
             return sum;
@@ -437,8 +460,8 @@ public:
     }
 
     // Exclusive, in-place prefix sum, with each rank contributing a vector
-    template<typename T, typename Op = std::plus<T> >
-    T prefix_sum_arrays(std::deque<T> &values, const Op &op = Op(), const T &identity = T())
+    template<typename T>
+    T prefix_reduce_arrays(std::deque<T> &values, const std::function<T (T, T)> &op = std::plus<T>(), const T &identity = T())
     {
         T my_total = accumulate(values.begin(), values.end(), identity, op);
         T total = prefix_sum(my_total, op, identity);
@@ -452,8 +475,8 @@ public:
     }
 
     // Exclusive in-place suffix sum, returning the overall total
-    template<typename T, typename Op = std::plus<T> >
-    T suffix_sum(T &value, const Op &op = Op(), const T &identity = T())
+    template<typename T>
+    T suffix_reduce(T &value, const std::function<T (T, T)> &op = std::plus<T>(), const T &identity = T())
     {
         std::deque<T> all = gather(first, value);
         if (MyNodeId() == first)
@@ -480,8 +503,8 @@ public:
     }
 
     // Exclusive, in-place prefix sum, with each rank contributing a vector
-    template<typename T, typename Op = std::plus<T> >
-    T suffix_sum_arrays(std::deque<T> &values, const Op &op = Op(), const T &identity = T())
+    template<typename T>
+    T suffix_reduce_arrays(std::deque<T> &values, const std::function<T (T, T)> &op = std::plus<T>(), const T &identity = T())
     {
         T my_total = accumulate(values.rbegin(), values.rend(), identity, op);
         T total = suffix_sum(my_total, op, identity);
@@ -497,5 +520,6 @@ public:
 };
 //#endregion range communication
 
-} // namespace msg
+} // namespace messageTools
+using namespace messageTools;
 //#endregion messageTools

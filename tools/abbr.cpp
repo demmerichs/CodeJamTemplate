@@ -2,6 +2,7 @@
 
 //#region types
 typedef long long ll;
+typedef unsigned long long ull;
 typedef long double ld;
 typedef std::complex<long long> cell;
 typedef std::complex<long double> pnt;
@@ -13,6 +14,7 @@ typedef std::string str;
 //#endregion types
 //#region members and functions
 #define mp make_pair
+#define mt make_tuple
 #define st first
 #define nd second
 #define x real()
@@ -24,6 +26,8 @@ typedef std::string str;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
+#define M w.getMaster()
+#define isM w.isMaster()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -40,10 +44,10 @@ typedef std::string str;
 #define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
 //#endregion for-loops
 //#region constants: INF, EPS, PI, MOD
-#define INF 9000000000000000000L
-#define EPS 1e-15
+#define INF std::numeric_limits<long long>::max()
+#define EPS 1e-15L
 #define PI 3.14159265358979323846264338328L
-#define MOD 1000000007
+#define MOD 1000000007L
 //#endregion constants
 
 //#endregion abbr

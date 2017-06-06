@@ -7,13 +7,18 @@
  */
 //#region parallelTools
 namespace parallelTools{
-template<typename T>
-bool partition_work(long long items, int rank, int &nodes, T &start, T &end)
+bool partition_work(long long items, int rank, int &nodes, long long &start, long long &end)
 {
-    if (nodes > items)
-        nodes = items;
-    start = items * rank / nodes;
-    end = items * (rank + 1) / nodes;
+    if (items == 0){
+        nodes = 1;
+        start = 0;
+        end = 0;
+    } else {
+        if (nodes > items)
+            nodes = items;
+        start = items * rank / nodes;
+        end = items * (rank + 1) / nodes;
+    }
     return rank < nodes;
 }
 } // namespace parallelTools

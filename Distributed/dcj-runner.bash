@@ -16,7 +16,13 @@ IFS=$'\n'
 HEAD=$(head -n 1 $SOURCE)
 [[ $HEAD =~ ^.*\ \"([^.]*) ]] && TASK_NAME=${BASH_REMATCH[1]}
 
-DCJ='/Users/David/Documents/Wettbewerbe/Code Jam/dcj_mac_os/dcj.sh'
+if [[ $TASK_NAME == 'TODO' ]]
+then
+    echo 'Specify task name instead of TODO!'
+    exit
+fi
+
+DCJ='/Users/David/Google Drive/Wettbewerbe/Code Jam/dcj_mac_os/dcj.sh'
 INPUT_DIR='../Inputs/'
 NODES=10
 
