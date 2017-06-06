@@ -9,6 +9,8 @@ rm -rf $DIR/C
 rm -rf $DIR/D
 rm -rf $DIR/E
 
+bash $DIR/mainCreation.bash
+
 mkdir $DIR/A
 cp $DIR/Main.cpp $DIR/A/Main.cpp
 cp $DIR/sample.txt $DIR/A/sample.txt
