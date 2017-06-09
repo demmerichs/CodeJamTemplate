@@ -1,9 +1,8 @@
-/* printerTools
- *
- *  declares <<-operator for deque and pair class
- */
 //#region printerTools
+/*  <<-operator for deque and pair class
+ */
 namespace printerTools{
+
 template <typename T>
 std::ostream& operator<<(std::ostream& os, std::deque<T> vector);
 
@@ -25,6 +24,7 @@ std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa){
     os << pa.first << ' ' << pa.second;
     return os;
 }
+
 } // namespace printerTools
 using namespace printerTools;
 //#endregion printerTools

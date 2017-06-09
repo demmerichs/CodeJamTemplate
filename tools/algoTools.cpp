@@ -1,7 +1,6 @@
-/* algoTools
- * TODO write doc
- */
 //#region algoTools
+/* TODO write doc
+ */
 namespace algoTools{
 
 // returns the average of 2 values without generating overflow and always rounding down

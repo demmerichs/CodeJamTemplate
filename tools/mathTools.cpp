@@ -1,15 +1,14 @@
-/* mathTools
- *          TODO complete doc
- *  declares faculty (facll, facmod and facld)  IMPORTANT: facll works only for n<=20
- *  declares choose (choosell, choosemod and chooseld)  IMPORTANT: choosell works only for n<=62
- *  declares power on integers (powll and powmod)
- *  declares log2 on integers (log2ll)
- *  declares vmin (returns v[i]=min(a[i] , b[i]) )
- *  declares ceill(p,q)/floorll (returns ceil(p/q)/floorll(p/q) for integers)
- *  declares an <-operator for std::complex
- */
 //#region mathTools
+/*  TODO add documentation for operators and euclideanAlgo
+ *  faculty (facll, facmod and facld)  IMPORTANT: facll works only for n<=20
+ *  choose (choosell, choosemod and chooseld)  IMPORTANT: choosell works only for n<=62
+ *  power on integers (powll and powmod)
+ *  log2 on integers (log2ll)
+ *  ceill(p,q)/floorll (returns ceil(p/q)/floorll(p/q) for integers)
+ *  <-operator for std::complex
+ */
 namespace mathTools{
+
 unsigned long long facll(unsigned long long n){
     if (n)
         return n * facll(n - 1);
@@ -196,13 +195,16 @@ long long floorll(long long p, long long q){
         return (p-q+1)/q;
     return p/q;
 }
+
 } // namespace mathTools
 using namespace mathTools;
 
 namespace std{
+
 template <typename T>
 bool operator<(const std::complex<T> &lhs, const std::complex<T> &rhs){
     return lhs.real() == rhs.real() ? lhs.imag() < rhs.imag() : lhs.real() < rhs.real();
 }
+
 } // namespace std
 //#endregion mathTools

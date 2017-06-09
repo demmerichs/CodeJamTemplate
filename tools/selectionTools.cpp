@@ -1,17 +1,16 @@
-/* selectionTools
- *
- *  declares a SelectionIterator class (abbr seliter)
+//#region selectionTools
+/*  SelectionIterator class (abbr. seliter)
  *          iterates over every possible selection of k elements out of the vector
  *      use as following:
  *          for(seliter<T> si(vector,k); !si.final(); ++si) { something with *si }
  *          si.getNotSelected() returns a vector of the n-k not selected elements
- *  declares a getSelection-Function (abbr. gsel)
+ *  getSelection-Function (abbr. gsel)
  *          select from elements, indicated by the ones "1" in the binary representation
  *      use as following:
  *          gsel(vector,binaryRepresentationOfSelection) returns vector
  */
-//#region selectionTools
 namespace selectionTools{
+
 template <typename T>
 class SelectionIterator{
 private:
@@ -82,6 +81,7 @@ std::deque<T> getSelection(std::deque<T> elements, unsigned long long binaryRepr
     return result;
 }
 #define gsel getSelection
+
 } // namespace selectionTools
 using namespace selectionTools;
 //#endregion selectionTools

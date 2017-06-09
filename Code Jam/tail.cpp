@@ -31,7 +31,7 @@ int main() {
             std::cout << result << std::endl;
         }
         else{
-            std::string errorWord = "IMPOSSIBLE";
+            std::string errorWord = ERROR_WORD;
             outfile << errorWord << std::endl;
             std::cout << errorWord << std::endl;
         }
@@ -43,7 +43,6 @@ int main() {
 //#endregion main
 
 using namespace std;
-
 //#endregion template code
 
 namespace task {
