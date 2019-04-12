@@ -3,14 +3,35 @@ namespace task{
 void init();
 void readInput();
 void calcFunction();
+#ifdef IA_MODE
+COMM_TYPE in(){
+    COMM_TYPE in_value;
+    std::cin >> in_value;
+    if(in_value == IA_ERROR_CODE){
+        exit(0);
+    }
+    log("reading value:\t", in_value);
+    return in_value;
+}
+template<typename T>
+void out(T t){
+    log("sending output:\t", t);
+    std::cout << t << std::endl;
+}
+template<typename T, typename... Args>
+void out(T t, Args... args){
+    log("sending output:\t", t);
+    std::cout << t << std::endl;
+    out(args...);
+}
+#endif /*IA_MODE*/
 }
 
-OUT_TYPE result;
+COMM_TYPE result;
 int main() {
     task::init();
-    std::ofstream outfile("output.txt");
-    std::cout << std::setprecision(4);
-    outfile << std::setprecision(10);
+    std::cerr << std::setprecision(4);
+    std::cout << std::setprecision(10);
     long long unsigned tests = 0;
     std::cin >> tests;
     for(long long unsigned test=1; test<=tests; ++test){
@@ -18,26 +39,27 @@ int main() {
         task::readInput();
         //calc result
         task::calcFunction();
+#ifndef IA_MODE
         //write output
-        outfile << "Case #" << test << ": ";
         std::cout << "Case #" << test << ": ";
+        std::cerr << "Case #" << test << ": ";
 #ifndef DEFAULT_VAL
-        outfile << result << std::endl;
         std::cout << result << std::endl;
+        std::cerr << result << std::endl;
 #endif /*DEFAULT_VAL*/
 #ifdef DEFAULT_VAL
         if(result>=0){
-            outfile << result << std::endl;
             std::cout << result << std::endl;
+            std::cerr << result << std::endl;
         }
         else{
             std::string errorWord = ERROR_WORD;
-            outfile << errorWord << std::endl;
             std::cout << errorWord << std::endl;
+            std::cerr << errorWord << std::endl;
         }
 #endif /*DEFAULT_VAL*/
+#endif /*IA_MODE*/
     }
-    outfile.close();
     return 0;
 }
 //#endregion main
@@ -53,7 +75,7 @@ void init(){
 void readInput(){
 }
 
-// write to OUT_TYPE result
+// write to COMM_TYPE result
 void calcFunction() {
 }
 

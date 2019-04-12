@@ -25,6 +25,23 @@ std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa){
     return os;
 }
 
+template<typename T>
+void log(T t){
+#ifndef SUBMIT
+    std::cerr << t << std::endl;
+#endif /*SUBMIT*/
+    return;
+}
+
+template<typename T, typename... Args>
+void log(T t, Args... args){
+#ifndef SUBMIT
+    std::cerr << t;
+    log(args...);
+#endif /*SUBMIT*/
+    return;
+}
+
 } // namespace printerTools
 using namespace printerTools;
 //#endregion printerTools

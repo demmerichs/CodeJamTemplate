@@ -3,6 +3,20 @@
  */
 namespace algoTools{
 
+// does an argsort (increasing values) over the provided vector
+template <typename T>
+std::deque<long long int> argsort(const std::deque<T> &v) {
+    // initialize original index locations
+    std::deque<long long int> idxs(v.size());
+    std::iota(idxs.begin(), idxs.end(), 0);
+
+    // sort indexes based on comparing values in v
+    std::sort(idxs.begin(), idxs.end(),
+              [&v](long long int i1, long long int i2) {return v[i1] < v[i2];});
+
+    return idxs;
+}
+
 // returns the average of 2 values without generating overflow and always rounding down
 template <typename T>
 T middle(T l, T u){

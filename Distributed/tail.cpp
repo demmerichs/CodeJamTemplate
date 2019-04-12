@@ -1,6 +1,6 @@
 //#region main
 namespace task{
-OUT_TYPE result;
+COMM_TYPE result;
 bool init();
 void run_node();
 messageTools::range_comm w(NumberOfNodes());
@@ -48,7 +48,7 @@ bool init(){
     return true;
 }
 
-// write to OUT_TYPE result
+// write to COMM_TYPE result
 void run_node(){
 }
 

@@ -14,22 +14,32 @@ bash $DIR/mainCreation.bash
 mkdir $DIR/A
 cp $DIR/Main.cpp $DIR/A/Main.cpp
 cp $DIR/sample.txt $DIR/A/sample.txt
+cp $DIR/interactive_runner.py $DIR/A/interactive_runner.py
+cp $DIR/execute.bash $DIR/A/execute.bash
 
 mkdir $DIR/B
 cp $DIR/Main.cpp $DIR/B/Main.cpp
 cp $DIR/sample.txt $DIR/B/sample.txt
+cp $DIR/interactive_runner.py $DIR/B/interactive_runner.py
+cp $DIR/execute.bash $DIR/B/execute.bash
 
 mkdir $DIR/C
 cp $DIR/Main.cpp $DIR/C/Main.cpp
 cp $DIR/sample.txt $DIR/C/sample.txt
+cp $DIR/interactive_runner.py $DIR/C/interactive_runner.py
+cp $DIR/execute.bash $DIR/C/execute.bash
 
 mkdir $DIR/D
 cp $DIR/Main.cpp $DIR/D/Main.cpp
 cp $DIR/sample.txt $DIR/D/sample.txt
+cp $DIR/interactive_runner.py $DIR/D/interactive_runner.py
+cp $DIR/execute.bash $DIR/D/execute.bash
 
 mkdir $DIR/E
 cp $DIR/Main.cpp $DIR/E/Main.cpp
 cp $DIR/sample.txt $DIR/E/sample.txt
+cp $DIR/interactive_runner.py $DIR/E/interactive_runner.py
+cp $DIR/execute.bash $DIR/E/execute.bash
 
 TARGET_DIR="$1"
 LETTER_1="$2"
