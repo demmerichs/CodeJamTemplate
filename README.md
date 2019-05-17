@@ -6,7 +6,9 @@ Code Jam Template (but most of it I wrote by my own anyway), but the Distributed
 # Usage
 ## Before Contest
 You need to create the contest folder. This can simply be done via:
+
 `/path/to/template/Code\ Jam/createFolders.bash /path/to/contest-folder/eg/2019/Round2 A B C D E`
+
 Relative paths (should) work! You can leave out any of the last letters to get only a subset of folders corresponding to the tasks 1 to 3 for example. Watch out, this script overwrites existing files with the same name, if you provide an existing path (see Todos).
 
 Of course, you should also setup your favorite IDE in advance(see during the contest below). And also do a test run on one of the past problems just to make sure everything runs smoothly on your machine.
@@ -19,12 +21,16 @@ The two supported languages by this template. Choose wisely depending on the tas
 
 ### Non-interactive/Traditional problem
 In this case implement your solution in the `Main.cpp` or the `Solution.py` (see the example implementations). The task usually provides a simple example input and the corresponding output. Copy and paste the example input into the `sample.txt` file. Of course you can modify this (helpful for debugging), e.g. by adding more test cases (don't forget to increase the first number T). To test your code on this sample, just execute:
+
 `/path/to/contest-task-folder/eg/A/execute.bash /path/to/contest-task-folder/eg/A/sample.txt`
+
 Again, relative paths work. The output on the terminal should be exactly what is shown on the problem page.
 
 ### Interactive problem
 Again, work in the corresponding solution file. At the top of the file, set the switch/flag correspondingly, so that the template is aware, that this is an interactive problem. Instead of a sample you can download a file usually called `testing_tool.py` from the problem page. Put this script in your task folder. Then again, you can test your code by executing:
+
 `/path/to/contest-task-folder/eg/A/execute.bash /path/to/contest-task-folder/eg/A/sample.txt`
+
 You could also leave out the last argument, in this case the `execute.bash` detects the existence of `testing_tool.py` and ignores the argument provided.
 
 ### General advice
