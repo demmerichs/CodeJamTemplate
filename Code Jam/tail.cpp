@@ -29,11 +29,11 @@ void out(T t, Args... args){
 
 COMM_TYPE result;
 int main() {
-    task::init();
     std::cerr << std::setprecision(4);
     std::cout << std::setprecision(10);
     long long unsigned tests = 0;
     std::cin >> tests;
+    task::init();
     for(long long unsigned test=1; test<=tests; ++test){
         //read input
         task::readInput();

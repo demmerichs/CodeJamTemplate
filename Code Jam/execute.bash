@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 if [[ ! -z $(diff Solution.py ../Solution.py) ]]
 then
     if [ -f testing_tool.py ]
