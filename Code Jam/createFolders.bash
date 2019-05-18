@@ -1,4 +1,4 @@
-#/bin/bash!
+#!/usr/bin/env bash
 
 IFS=$'\n'
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )"
