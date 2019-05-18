@@ -7,10 +7,10 @@ void calcFunction();
 COMM_TYPE in(){
     COMM_TYPE in_value;
     std::cin >> in_value;
-    if(in_value == IA_ERROR_CODE){
-        exit(0);
-    }
     log("reading value:\t", in_value);
+    if(in_value == IA_ERROR_CODE){
+        exit(-1);
+    }
     return in_value;
 }
 template<typename T>

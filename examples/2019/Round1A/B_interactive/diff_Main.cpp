@@ -4,23 +4,28 @@
 ---
 > #define IA_MODE        //remove comment on this line, to activate interactive problem mode
 > #define SUBMIT         //remove comment on this line, when submitting solution
-541a542,543
+579a580,581
 > ll N, m;
 > 
-542a545
+580a583
 >     cin >> N >> m;
-549a553,566
->     // This solves only the small test case!
->     v(ll) q(18,18);
->     result = 0;
->     forn(i, N){
->         out(q);
->         ll sum=0;
->         forn(j, 18){
->             ll asdf = in();
->             sum += asdf;
->         }
->         result = max(sum, result);
+585a589,598
+> ll ask(ll p){
+>     v(ll) ps(18, p);
+>     out(ps);
+>     ll sum = 0;
+>     forn(i, 18){
+>         sum += in();
 >     }
->     out(result);
+>     return sum % p;
+> }
+> 
+587a601,608
+>     assert(N>=7);
+>     v(ll) p = {17, 16, 13, 11, 9, 7, 5};
+>     v(ll) ans;
+>     forn(i, 7){
+>         ans.pb(ask(p[i]));
+>     }
+>     out(crt(ans, p));
 >     in();

@@ -133,9 +133,11 @@ T mmulOp(T a, T b){
     return (a%MOD * b%MOD)%MOD;
 }
 
-// TODO handle overflow eventually, check what maximal possible return values are?
+// Implementation works in place by returning the values for a, b by reference
+// a_in * a_out + b_in * b_out = gcd(a, b) (> 0, trivial solution =0 excluded)
 template <typename T>
 void euclideanAlgo(T &a, T &b){
+    // only process, a,b >= 0, a<=b transform all other cases to this
     if(a<0){
         a = -a;
         euclideanAlgo(a,b);
@@ -159,9 +161,45 @@ void euclideanAlgo(T &a, T &b){
     }
     T s = b/a;
     T r = b - s*a;
-    euclideanAlgo(a,r);
+    euclideanAlgo(r, a);
     a = a - s*r;
     b = r;
+}
+
+template <typename T>
+T gcd(const T &a, const T &b){
+    T a_ = a;
+    T b_ = b;
+    euclideanAlgo(a_, b_);
+    return a * a_ + b * b_;
+}
+
+// chinese remainder theorem in application
+template <typename T>
+T crt(std::deque<T> remainders, std::deque<T> moduli){
+    assert(remainders.size() == moduli.size());
+    long long int n = remainders.size();
+    for(unsigned int i = 0; i < n - 1; ++i){
+        // solve a*m1 + b*m2 == 1
+        T a = moduli[0];
+        T b = moduli[1];
+        euclideanAlgo(a, b);
+        assert(a * moduli[0] + b * moduli[1] == 1); // make sure, that m1 and m2 are indeed coprime
+        // crt: find x == r1 (m1) and x == r2 (m2)
+        // solved by x = r1 + (r2 - r1) * a * m1 == r2 + (r1 - r2) * b * m2
+        // proof (for first expression): x == r1 (m1) trivial, x == r1 + r2 * (a * m1 (m2)) == r1 + r2 * 1 == r2 (m2)
+        T r = remainders[0] + (remainders[1] - remainders[0]) * a * moduli[0];
+        T m = moduli[0] * moduli[1];
+        r = (r % m + m) % m;
+        remainders.pop_front();
+        remainders.pop_front();
+        moduli.pop_front();
+        moduli.pop_front();
+        remainders.push_back(r);
+        moduli.push_back(m);
+    }
+    assert(remainders.size() == 1);
+    return remainders[0];
 }
 
 template <typename T>
