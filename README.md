@@ -40,6 +40,8 @@ E.g. I use Atom as an text editor with Platformio Ide Terminal as one particular
 
 Especially in C++, you should make heavy use of code shortcuts, to avoid spending time on typing and fixing typos. Take a look at the examples in this repo and in the header of the template file, where the definitions of the abbreviations can be found (also in this repo under `tools/abbr.cpp`).
 
+The template makes heavy use of `//#region` and `//#endregion` comments. Hopefully, you are able to configure your IDE to define these comments as custom fold sections. In Atom this can be done with the custom-folds package. Additionally, if you specify all custom regions to be folded upon opening a file, you will have a clean and short view of your file with only the essentials visible, that need modification by you.
+
 # Todos
 - [x] documentation
 - [x] example

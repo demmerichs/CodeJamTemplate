@@ -38,8 +38,6 @@ typedef std::string str;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
-#define M w.getMaster()
-#define isM w.isMaster()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -506,12 +504,12 @@ long long binSearchDisc(const T &val, const std::function<T (long long)> &f, con
 using namespace algoTools;
 //#endregion algoTools
 
-//#region main
-namespace task{
-void init();
-void readInput();
-void calcFunction();
+//#region interactiveTools
+
+namespace interactiveTools{
+
 #ifdef IA_MODE
+
 COMM_TYPE in(){
     COMM_TYPE in_value;
     std::cin >> in_value;
@@ -521,18 +519,31 @@ COMM_TYPE in(){
     }
     return in_value;
 }
+
 template<typename T>
 void out(T t){
     log("sending output:\t", t);
     std::cout << t << std::endl;
 }
+
 template<typename T, typename... Args>
 void out(T t, Args... args){
     log("sending output:\t", t);
     std::cout << t << std::endl;
     out(args...);
 }
+
 #endif /*IA_MODE*/
+
+} // namespace interactiveTools
+using namespace interactiveTools;
+//#endregion interactiveTools
+
+//#region main
+namespace task{
+void init();
+void readInput();
+void calcFunction();
 }
 
 COMM_TYPE result;

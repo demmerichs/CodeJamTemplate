@@ -26,8 +26,6 @@ typedef std::string str;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
-#define M w.getMaster()
-#define isM w.isMaster()
 //#endregion members and functions
 //#region iterators
 #define bn begin()

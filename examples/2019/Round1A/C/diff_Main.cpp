@@ -2,11 +2,11 @@
 < // #define SUBMIT         //remove comment on this line, when submitting solution
 ---
 > #define SUBMIT         //remove comment on this line, when submitting solution
-582a583,585
+593a594,596
 > ll N;
 > v(str) words;
 > 
-583a587,596
+594a598,607
 >     cin >> N;
 >     words.clear();
 >     forn(i,N){
@@ -17,7 +17,7 @@
 >     }
 >     sort(all(words));
 >     log(words);
-587a601,649
+598a612,660
 >     v(ll) matches;
 >     forn(i, N-1){
 >         ll match = 0;
