@@ -1,9 +1,13 @@
-2,3c2,3
+2c2
 < // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
-< // #define SUBMIT         //remove comment on this line, when submitting solution
 ---
 > #define IA_MODE        //remove comment on this line, to activate interactive problem mode
-> #define SUBMIT         //remove comment on this line, when submitting solution
+4,5c4,5
+< #define COMM_TYPE str
+< #define IA_ERROR_CODE "ERROR"
+---
+> #define COMM_TYPE ll
+> #define IA_ERROR_CODE -1
 590a591,592
 > ll N, m;
 > 

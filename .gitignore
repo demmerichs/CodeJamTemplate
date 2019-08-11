@@ -8,3 +8,7 @@ D/
 E/
 Main.cpp
 Solution.py
+
+!/example/
+!/example/*
+!/example/**/*

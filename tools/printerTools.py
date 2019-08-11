@@ -1,6 +1,6 @@
 # #region printerTools
 def log(*args):
-    if 'SUBMIT' not in FLAGS:
+    if 'LOCAL' in FLAGS:
         cerr(*list(map(str, args)))
 
 

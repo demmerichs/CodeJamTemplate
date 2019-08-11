@@ -1,6 +1,5 @@
 // #define DEFAULT_VAL    //remove comment on this line, to activate default value trigger
 #define IA_MODE        //remove comment on this line, to activate interactive problem mode
-#define SUBMIT         //remove comment on this line, when submitting solution
 #define ERROR_WORD "IMPOSSIBLE"
 #define COMM_TYPE ll
 #define IA_ERROR_CODE -1
@@ -91,18 +90,18 @@ std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa){
 
 template<typename T>
 void log(T t){
-#ifndef SUBMIT
+#ifdef LOCAL
     std::cerr << t << std::endl;
-#endif /*SUBMIT*/
+#endif /*LOCAL*/
     return;
 }
 
 template<typename T, typename... Args>
 void log(T t, Args... args){
-#ifndef SUBMIT
+#ifdef LOCAL
     std::cerr << t;
     log(args...);
-#endif /*SUBMIT*/
+#endif /*LOCAL*/
     return;
 }
 
@@ -474,8 +473,9 @@ T middle(T l, T u){
     return mid + r/2 - 1;
 }
 
-// returns the number of elements which are strict smaller/larger than val if start = 0
-// otherwise returns the smallest index for which f(idx) >/<= val and start+length if this index does not exist
+// for list structures use as function list.operator[] and start = 0
+// returns the number of elements which are strict smaller/larger than val
+// otherwise returns the smallest index for which f(idx) >=/<= val and start+length if this index does not exist
 template <typename T>
 long long binSearchDisc(const T &val, const std::function<T (long long)> &f, const unsigned long long &length, const long long &start = 0, bool increasing = true){
     long long l = start - 1;
@@ -515,7 +515,7 @@ COMM_TYPE in(){
     std::cin >> in_value;
     log("reading value:\t", in_value);
     if(in_value == IA_ERROR_CODE){
-        exit(-1);
+        exit(0);
     }
     return in_value;
 }

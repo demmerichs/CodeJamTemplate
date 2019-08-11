@@ -1,7 +1,7 @@
-3c3
-< // #define SUBMIT         //remove comment on this line, when submitting solution
+4c4
+< #define COMM_TYPE str
 ---
-> #define SUBMIT         //remove comment on this line, when submitting solution
+> #define COMM_TYPE ll
 593a594,596
 > ll N;
 > v(str) words;

@@ -27,18 +27,18 @@ std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa){
 
 template<typename T>
 void log(T t){
-#ifndef SUBMIT
+#ifdef LOCAL
     std::cerr << t << std::endl;
-#endif /*SUBMIT*/
+#endif /*LOCAL*/
     return;
 }
 
 template<typename T, typename... Args>
 void log(T t, Args... args){
-#ifndef SUBMIT
+#ifdef LOCAL
     std::cerr << t;
     log(args...);
-#endif /*SUBMIT*/
+#endif /*LOCAL*/
     return;
 }
 

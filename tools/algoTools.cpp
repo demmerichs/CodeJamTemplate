@@ -25,8 +25,9 @@ T middle(T l, T u){
     return mid + r/2 - 1;
 }
 
-// returns the number of elements which are strict smaller/larger than val if start = 0
-// otherwise returns the smallest index for which f(idx) >/<= val and start+length if this index does not exist
+// for list structures use as function list.operator[] and start = 0
+// returns the number of elements which are strict smaller/larger than val
+// otherwise returns the smallest index for which f(idx) >=/<= val and start+length if this index does not exist
 template <typename T>
 long long binSearchDisc(const T &val, const std::function<T (long long)> &f, const unsigned long long &length, const long long &start = 0, bool increasing = true){
     long long l = start - 1;

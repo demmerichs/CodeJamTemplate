@@ -9,7 +9,7 @@ COMM_TYPE in(){
     std::cin >> in_value;
     log("reading value:\t", in_value);
     if(in_value == IA_ERROR_CODE){
-        exit(-1);
+        exit(0);
     }
     return in_value;
 }
