@@ -1,39 +1,46 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
+
+if [ -z $2 ]
+then
+    color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
+else
+    color()(set -o pipefail;"$@" 2>/dev/null)
+fi
 
 if [[ ! -z $(diff Solution.py ../Solution.py) ]]
 then
     if [ -f testing_tool.py ]
     then
-        ./interactive_runner.py python testing_tool.py 0 -- ./Solution.py LOCAL
-        ./interactive_runner.py python testing_tool.py 1 -- ./Solution.py LOCAL
-        ./interactive_runner.py python testing_tool.py 2 -- ./Solution.py LOCAL
-        ./interactive_runner.py python testing_tool.py 3 -- ./Solution.py LOCAL
-        ./interactive_runner.py python testing_tool.py 4 -- ./Solution.py LOCAL
-        ./interactive_runner.py python testing_tool.py 5 -- ./Solution.py LOCAL
-        ./interactive_runner.py python testing_tool.py 6 -- ./Solution.py LOCAL
-        ./interactive_runner.py python testing_tool.py 7 -- ./Solution.py LOCAL
-        ./interactive_runner.py python testing_tool.py 8 -- ./Solution.py LOCAL
-        ./interactive_runner.py python testing_tool.py 9 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 0 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 1 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 2 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 3 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 4 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 5 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 6 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 7 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 8 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 9 -- ./Solution.py LOCAL
     else
-        ./Solution.py LOCAL < $1 > /dev/null
+        color ./Solution.py LOCAL < $1
     fi
 else
     g++-6 Main.cpp -std=c++14 -pthread -O3 -o Solution -DLOCAL
     if [ -f testing_tool.py ]
     then
-        ./interactive_runner.py python testing_tool.py 0 -- ./Solution
-        ./interactive_runner.py python testing_tool.py 1 -- ./Solution
-        ./interactive_runner.py python testing_tool.py 2 -- ./Solution
-        ./interactive_runner.py python testing_tool.py 3 -- ./Solution
-        ./interactive_runner.py python testing_tool.py 4 -- ./Solution
-        ./interactive_runner.py python testing_tool.py 5 -- ./Solution
-        ./interactive_runner.py python testing_tool.py 6 -- ./Solution
-        ./interactive_runner.py python testing_tool.py 7 -- ./Solution
-        ./interactive_runner.py python testing_tool.py 8 -- ./Solution
-        ./interactive_runner.py python testing_tool.py 9 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 0 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 1 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 2 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 3 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 4 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 5 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 6 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 7 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 8 -- ./Solution
+        color ./interactive_runner.py python testing_tool.py 9 -- ./Solution
     else
-        ./Solution < $1 > /dev/null
+        color ./Solution < $1
     fi
 fi
