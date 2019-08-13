@@ -7,6 +7,7 @@ typedef long double ld;
 typedef std::complex<long long> cell;
 typedef std::complex<long double> pnt;
 typedef std::string str;
+typedef std::stringstream sstr;
 #define hash unordered_map
 #define v(type) std::deque<type >
 #define p(type1,type2) std::pair<type1, type2 >
