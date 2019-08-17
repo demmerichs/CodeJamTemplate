@@ -18,6 +18,7 @@ typedef long double ld;
 typedef std::complex<long long> cell;
 typedef std::complex<long double> pnt;
 typedef std::string str;
+typedef std::stringstream sstr;
 #define hash unordered_map
 #define v(type) std::deque<type >
 #define p(type1,type2) std::pair<type1, type2 >
@@ -88,6 +89,13 @@ std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa){
     return os;
 }
 
+} // namespace printerTools
+using namespace printerTools;
+//#endregion printerTools
+
+//#region debugTools
+namespace debugTools{
+
 template<typename T>
 void log(T t){
 #ifdef LOCAL
@@ -105,9 +113,17 @@ void log(T t, Args... args){
     return;
 }
 
-} // namespace printerTools
-using namespace printerTools;
-//#endregion printerTools
+template<typename T>
+void lassert(T t){
+#ifdef LOCAL
+    assert(t);
+#endif /*LOCAL*/
+    return;
+}
+
+} // namespace debugTools
+using namespace debugTools;
+//#endregion debugTools
 
 //#region selectionTools
 /*  SelectionIterator class (abbr. seliter)
@@ -561,20 +577,16 @@ int main() {
 #ifndef IA_MODE
         //write output
         std::cout << "Case #" << test << ": ";
-        std::cerr << "Case #" << test << ": ";
 #ifndef DEFAULT_VAL
         std::cout << result << std::endl;
-        std::cerr << result << std::endl;
 #endif /*DEFAULT_VAL*/
 #ifdef DEFAULT_VAL
         if(result>=0){
             std::cout << result << std::endl;
-            std::cerr << result << std::endl;
         }
         else{
             std::string errorWord = ERROR_WORD;
             std::cout << errorWord << std::endl;
-            std::cerr << errorWord << std::endl;
         }
 #endif /*DEFAULT_VAL*/
 #endif /*IA_MODE*/

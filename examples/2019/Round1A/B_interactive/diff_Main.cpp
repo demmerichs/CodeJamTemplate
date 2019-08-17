@@ -8,12 +8,12 @@
 ---
 > #define COMM_TYPE ll
 > #define IA_ERROR_CODE -1
-590a591,592
+602a603,604
 > ll N, m;
 > 
-591a594
+603a606
 >     cin >> N >> m;
-596a600,609
+608a612,621
 > ll ask(ll p){
 >     v(ll) ps(18, p);
 >     out(ps);
@@ -24,7 +24,7 @@
 >     return sum % p;
 > }
 > 
-598a612,619
+610a624,631
 >     assert(N>=7);
 >     v(ll) p = {17, 16, 13, 11, 9, 7, 5};
 >     v(ll) ans;

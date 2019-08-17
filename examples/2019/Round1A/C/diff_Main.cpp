@@ -2,11 +2,11 @@
 < #define COMM_TYPE str
 ---
 > #define COMM_TYPE ll
-593a594,596
+605a606,608
 > ll N;
 > v(str) words;
 > 
-594a598,607
+606a610,619
 >     cin >> N;
 >     words.clear();
 >     forn(i,N){
@@ -17,7 +17,7 @@
 >     }
 >     sort(all(words));
 >     log(words);
-598a612,660
+610a624,672
 >     v(ll) matches;
 >     forn(i, N-1){
 >         ll match = 0;
