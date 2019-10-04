@@ -49,3 +49,4 @@ The template makes heavy use of `//#region` and `//#endregion` comments. Hopeful
 - [ ] make the create script more safe so that no present code gets overwritten
 - [x] adapt to new Code Jam Interactive Problem structure
 - [ ] flush buffer for Interactive Problem (usually not a problem, but good to have just to be safe)
+- [ ] add hooks to pre-commit setup
