@@ -24,7 +24,19 @@ then
         color ./interactive_runner.py python testing_tool.py 8 -- ./Solution.py LOCAL
         color ./interactive_runner.py python testing_tool.py 9 -- ./Solution.py LOCAL
     else
-        color ./Solution.py LOCAL < $1
+        if [ -f result.txt ]
+        then
+            if [ -z $(diff <(color ./Solution.py LOCAL < $1) result.txt) ]
+            then
+                exit 0
+            else
+                echo "Did not produce the expected result!"
+                exit 1
+            fi
+        else
+            color ./Solution.py LOCAL < $1
+            exit $?
+        fi
     fi
 else
     g++-6 Main.cpp -std=c++14 -pthread -O3 -o Solution -DLOCAL
@@ -41,6 +53,18 @@ else
         color ./interactive_runner.py python testing_tool.py 8 -- ./Solution
         color ./interactive_runner.py python testing_tool.py 9 -- ./Solution
     else
-        color ./Solution < $1
+        if [ -f result.txt ]
+        then
+            if [ -z $(diff <(color ./Solution < $1) result.txt) ]
+            then
+                exit 0
+            else
+                echo "Did not produce the expected result!"
+                exit 1
+            fi
+        else
+            color ./Solution < $1
+            exit $?
+        fi
     fi
 fi
