@@ -25,6 +25,7 @@ from __future__ import print_function
 import subprocess
 import sys
 import threading
+from time import sleep
 
 
 class SubprocessThread(threading.Thread):
@@ -51,6 +52,21 @@ class SubprocessThread(threading.Thread):
             self.stderr = "The process crashed or produced too much output."
 
 
+def test_judge_args(args):
+    t_judge = SubprocessThread(judge_args)
+    t_judge.start()
+    sleep(0.1)
+    if hasattr(t_judge, "return_code"):
+        print(
+            "Judge is not running on its own. Might indicate a wrong Test Case number!"
+        )
+        return False
+    t_judge.p.kill()
+    sleep(0.1)
+    assert hasattr(t_judge, "return_code")
+    return True
+
+
 assert (
     sys.argv.count("--") == 1
 ), "There should be exactly one instance of '--' in the command line."
@@ -58,6 +74,8 @@ sep_index = sys.argv.index("--")
 judge_args = sys.argv[1:sep_index]
 sol_args = sys.argv[sep_index + 1 :]
 
+if not test_judge_args(judge_args):
+    sys.exit(0)
 t_sol = SubprocessThread(sol_args, stderr_pipe=sys.stderr.fileno())
 t_judge = SubprocessThread(
     judge_args, stdin_pipe=t_sol.p.stdout, stdout_pipe=t_sol.p.stdin
