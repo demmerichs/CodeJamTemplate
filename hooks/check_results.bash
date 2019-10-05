@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 shopt -s globstar
-./Code\ Jam/mainCreation.bash
+./CodeJam/mainCreation.bash
 
 rm -rf test_examples/*
 
@@ -15,7 +15,7 @@ do
     basedir=examples/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}${BASH_REMATCH[3]}
     recreate=test_examples/${BASH_REMATCH[1]}
     mkdir -p $recreate
-    ./Code\ Jam/createFolders.bash $recreate ${BASH_REMATCH[2]}
+    ./CodeJam/createFolders.bash $recreate ${BASH_REMATCH[2]}
     for k in $basedir/{Main.cpp,Solution.py,result.txt,sample.txt,testing_tool.py}
     do
         if [ -f $k ]
@@ -42,6 +42,6 @@ do
     output="$output"$'\n'"$d"
 done
 echo
-echo -n "Following tests were found at succedded:"
+echo -n "Following tests were found and succeeded:"
 echo "$output"
 exit 0

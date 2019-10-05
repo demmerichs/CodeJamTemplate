@@ -7,7 +7,7 @@ Code Jam Template (but most of it I wrote by my own anyway), but the Distributed
 ## Before Contest
 You need to create the contest folder. This can simply be done via:
 
-`/path/to/template/Code\ Jam/createFolders.bash /path/to/contest-folder/eg/2019/Round2 A B C D E`
+`/path/to/template/CodeJam/createFolders.bash /path/to/contest-folder/eg/2019/Round2 A B C D E`
 
 Relative paths (should) work! You can leave out any of the last letters to get only a subset of folders corresponding to the tasks 1 to 3 for example. Watch out, this script overwrites existing files with the same name, if you provide an existing path (see Todos).
 
