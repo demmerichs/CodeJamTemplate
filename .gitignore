@@ -1,14 +1,13 @@
 .DS_Store
 .tags
 
-Code Jam/A/
-Code Jam/B/
-Code Jam/C/
-Code Jam/D/
-Code Jam/E/
-Code Jam/Main.cpp
-Code Jam/Solution.py
+/Code Jam/A/
+/Code Jam/B/
+/Code Jam/C/
+/Code Jam/D/
+/Code Jam/E/
+/Code Jam/Main.cpp
+/Code Jam/Solution.py
 
-!/example/
-!/example/*
-!/example/**/*
+/examples/*/*/*/Solution
+/test_examples

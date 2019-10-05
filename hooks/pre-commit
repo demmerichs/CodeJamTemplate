@@ -1,1 +1,2 @@
 ./.git/hooks/check_diffs.bash
+./.git/hooks/check_results.bash
