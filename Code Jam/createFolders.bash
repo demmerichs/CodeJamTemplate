@@ -61,8 +61,7 @@ then
     exit
 fi
 
-mkdir "$TARGET_DIR"
-# mkdir "$TARGET_DIR/Inputs"
+mkdir -p "$TARGET_DIR"
 cp -r $DIR/A/* "$TARGET_DIR"
 echo "  The following folders get created in "$TARGET_DIR
 
