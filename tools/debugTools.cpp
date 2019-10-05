@@ -1,6 +1,13 @@
 //#region debugTools
 namespace debugTools{
 
+void llog(){
+#ifdef LOCAL
+    std::cerr << std::endl;
+#endif /*LOCAL*/
+    return;
+}
+
 template<typename T>
 void llog(T t){
 #ifdef LOCAL

@@ -1,8 +1,8 @@
-613a614,616
+668a669,671
 > ll N;
 > v(str) words;
 > 
-614a618,627
+669a673,682
 >     cin >> N;
 >     words.clear();
 >     forn(i,N){
@@ -13,7 +13,7 @@
 >     }
 >     sort(all(words));
 >     llog(words);
-618a632,680
+673a687,735
 >     v(ll) matches;
 >     forn(i, N-1){
 >         ll match = 0;

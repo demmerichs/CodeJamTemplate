@@ -6,12 +6,12 @@
 < #define IA_ERROR_CODE "ERROR"
 ---
 > #define IA_ERROR_CODE -1
-610a611,612
+665a666,667
 > ll N, m;
 > 
-611a614
+666a669
 >     cin >> N >> m;
-616a620,629
+671a675,684
 > ll ask(ll p){
 >     v(ll) ps(18, p);
 >     out(ps);
@@ -22,7 +22,7 @@
 >     return sum % p;
 > }
 > 
-618a632,639
+673a687,694
 >     lassert(N>=7, "N was smaller than 7");
 >     v(ll) p = {17, 16, 13, 11, 9, 7, 5};
 >     v(ll) ans;

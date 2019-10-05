@@ -8,7 +8,10 @@ typedef std::complex<long long> cell;
 typedef std::complex<long double> pnt;
 typedef std::string str;
 typedef std::stringstream sstr;
+#define set(type) std::unordered_set<type >
+#define ordered_set(type) std::set<type >
 #define dict(type1, type2) std::unordered_map<type1, type2 >
+#define ordered_dict(type1, type2) std::map<type1, type2 >
 #define v(type) std::vector<type >
 #define p(type1,type2) std::pair<type1, type2 >
 #define c(type) std::complex<type >
