@@ -24,7 +24,7 @@ then
         color ./interactive_runner.py python testing_tool.py 8 -- ./Solution.py LOCAL
         color ./interactive_runner.py python testing_tool.py 9 -- ./Solution.py LOCAL
     else
-        if [ -f result.txt ]
+        if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
             if [ -z $(diff <(color ./Solution.py LOCAL < $1) result.txt) ]
             then
@@ -53,7 +53,7 @@ else
         color ./interactive_runner.py python testing_tool.py 8 -- ./Solution
         color ./interactive_runner.py python testing_tool.py 9 -- ./Solution
     else
-        if [ -f result.txt ]
+        if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
             if [ -z $(diff <(color ./Solution < $1) result.txt) ]
             then

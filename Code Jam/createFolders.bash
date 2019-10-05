@@ -14,35 +14,40 @@ bash $DIR/mainCreation.bash
 mkdir $DIR/A
 cp $DIR/Main.cpp $DIR/A/Main.cpp
 cp $DIR/Solution.py $DIR/A/Solution.py
-cp $DIR/sample.txt $DIR/A/sample.txt
+touch $DIR/A/sample.txt
+touch $DIR/A/result.txt
 cp $DIR/interactive_runner.py $DIR/A/interactive_runner.py
 cp $DIR/execute.bash $DIR/A/execute.bash
 
 mkdir $DIR/B
 cp $DIR/Main.cpp $DIR/B/Main.cpp
 cp $DIR/Solution.py $DIR/B/Solution.py
-cp $DIR/sample.txt $DIR/B/sample.txt
+touch $DIR/B/sample.txt
+touch $DIR/B/result.txt
 cp $DIR/interactive_runner.py $DIR/B/interactive_runner.py
 cp $DIR/execute.bash $DIR/B/execute.bash
 
 mkdir $DIR/C
 cp $DIR/Main.cpp $DIR/C/Main.cpp
 cp $DIR/Solution.py $DIR/C/Solution.py
-cp $DIR/sample.txt $DIR/C/sample.txt
+touch $DIR/C/sample.txt
+touch $DIR/C/result.txt
 cp $DIR/interactive_runner.py $DIR/C/interactive_runner.py
 cp $DIR/execute.bash $DIR/C/execute.bash
 
 mkdir $DIR/D
 cp $DIR/Main.cpp $DIR/D/Main.cpp
 cp $DIR/Solution.py $DIR/D/Solution.py
-cp $DIR/sample.txt $DIR/D/sample.txt
+touch $DIR/D/sample.txt
+touch $DIR/D/result.txt
 cp $DIR/interactive_runner.py $DIR/D/interactive_runner.py
 cp $DIR/execute.bash $DIR/D/execute.bash
 
 mkdir $DIR/E
 cp $DIR/Main.cpp $DIR/E/Main.cpp
 cp $DIR/Solution.py $DIR/E/Solution.py
-cp $DIR/sample.txt $DIR/E/sample.txt
+touch $DIR/E/sample.txt
+touch $DIR/E/result.txt
 cp $DIR/interactive_runner.py $DIR/E/interactive_runner.py
 cp $DIR/execute.bash $DIR/E/execute.bash
 
