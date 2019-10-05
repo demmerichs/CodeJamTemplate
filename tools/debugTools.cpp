@@ -2,7 +2,7 @@
 namespace debugTools{
 
 template<typename T>
-void log(T t){
+void llog(T t){
 #ifdef LOCAL
     std::cerr << t << std::endl;
 #endif /*LOCAL*/
@@ -10,17 +10,19 @@ void log(T t){
 }
 
 template<typename T, typename... Args>
-void log(T t, Args... args){
+void llog(T t, Args... args){
 #ifdef LOCAL
-    std::cerr << t;
-    log(args...);
+    std::cerr << t << "\t";
+    llog(args...);
 #endif /*LOCAL*/
     return;
 }
 
 template<typename T>
-void lassert(T t){
+void lassert(T t, std::string message){
 #ifdef LOCAL
+    if(!t)
+        llog(message);
     assert(t);
 #endif /*LOCAL*/
     return;

@@ -1,5 +1,6 @@
 // #define DEFAULT_VAL    //remove comment on this line, to activate default value trigger
 #define IA_MODE        //remove comment on this line, to activate interactive problem mode
+// #define XY_NOTATION    //remove commment on this line, to activat xy notation on complex numbers
 #define ERROR_WORD "IMPOSSIBLE"
 #define COMM_TYPE ll
 #define IA_ERROR_CODE -1
@@ -19,8 +20,8 @@ typedef std::complex<long long> cell;
 typedef std::complex<long double> pnt;
 typedef std::string str;
 typedef std::stringstream sstr;
-#define hash unordered_map
-#define v(type) std::deque<type >
+#define dict(type1, type2) std::unordered_map<type1, type2 >
+#define v(type) std::vector<type >
 #define p(type1,type2) std::pair<type1, type2 >
 #define c(type) std::complex<type >
 //#endregion types
@@ -29,8 +30,10 @@ typedef std::stringstream sstr;
 #define mt make_tuple
 #define st first
 #define nd second
+#ifdef XY_NOTATION
 #define x real()
 #define y imag()
+#endif /*XY_NOTATION*/
 #define bk back()
 #define ft front()
 #define pb push_back
@@ -68,13 +71,13 @@ typedef std::stringstream sstr;
 namespace printerTools{
 
 template <typename T>
-std::ostream& operator<<(std::ostream& os, std::deque<T> vector);
+std::ostream& operator<<(std::ostream& os, v(T) vector);
 
 template <typename S, typename T>
 std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa);
 
 template <typename T>
-std::ostream& operator<<(std::ostream& os, std::deque<T> vector){
+std::ostream& operator<<(std::ostream& os, v(T) vector){
     if(vector.size()==0)
         return os;
     os << vector[0];
@@ -97,7 +100,7 @@ using namespace printerTools;
 namespace debugTools{
 
 template<typename T>
-void log(T t){
+void llog(T t){
 #ifdef LOCAL
     std::cerr << t << std::endl;
 #endif /*LOCAL*/
@@ -105,17 +108,19 @@ void log(T t){
 }
 
 template<typename T, typename... Args>
-void log(T t, Args... args){
+void llog(T t, Args... args){
 #ifdef LOCAL
-    std::cerr << t;
-    log(args...);
+    std::cerr << t << "\t";
+    llog(args...);
 #endif /*LOCAL*/
     return;
 }
 
 template<typename T>
-void lassert(T t){
+void lassert(T t, std::string message){
 #ifdef LOCAL
+    if(!t)
+        llog(message);
     assert(t);
 #endif /*LOCAL*/
     return;
@@ -143,12 +148,12 @@ class SelectionIterator{
 private:
     unsigned long long k;
     unsigned long long n;
-    std::deque<T> vector;
-    std::deque<T> selection;
-    std::deque<unsigned long long> selectionNumbers;
+    v(T) vector;
+    v(T) selection;
+    v(unsigned long long) selectionNumbers;
     bool finalState;
 public:
-    SelectionIterator<T>(std::deque<T> vector, unsigned long long k):k(k), n(vector.size()), vector(vector), finalState(false){
+    SelectionIterator<T>(v(T) vector, unsigned long long k):k(k), n(vector.size()), vector(vector), finalState(false){
         if(k>n){
             finalState = true;
             return;
@@ -176,12 +181,12 @@ public:
         finalState=true;
     }
 
-    std::deque<T> operator*(){
+    v(T) operator*(){
         return selection;
     }
 
-    std::deque<T> getNotSelected(){
-        std::deque<T> notSelected;
+    v(T) getNotSelected(){
+        v(T) notSelected;
         unsigned long long cur = 0;
         for(unsigned long long i=0; i<k; ++i){
             for(unsigned long long j=cur; j<selectionNumbers[i]; ++j)
@@ -200,8 +205,8 @@ public:
 #define seliter SelectionIterator
 
 template <typename T>
-std::deque<T> getSelection(std::deque<T> elements, unsigned long long binaryRepresentationOfSelection){
-    std::deque<T> result;
+v(T) getSelection(v(T) elements, unsigned long long binaryRepresentationOfSelection){
+    v(T) result;
     for(unsigned long long i=0;i<elements.size();++i)
         if( (binaryRepresentationOfSelection>>i)%2 )
             result.push_back(elements[i]);
@@ -320,9 +325,9 @@ unsigned long long log2ll(unsigned long long n){
 }
 
 template <typename T>
-std::deque<T> vecOp(std::deque<T> a, std::deque<T> b, const std::function<T (T, T)> &op = std::plus<T>()){
+v(T) vecOp(v(T) a, v(T) b, const std::function<T (T, T)> &op = std::plus<T>()){
     assert(a.size() == b.size());
-    std::deque<T> out;
+    v(T) out;
     for (unsigned i = 0; i < a.size(); ++i)
         out.push_back(op(a[i], b[i]));
     return out;
@@ -391,30 +396,33 @@ T gcd(const T &a, const T &b){
 
 // chinese remainder theorem in application
 template <typename T>
-T crt(std::deque<T> remainders, std::deque<T> moduli){
-    assert(remainders.size() == moduli.size());
+T crt(v(T) remainders, v(T) moduli){
+    lassert(remainders.size() == moduli.size(), "Chinese remainder theorem: remainders and moduli must be of same size!");
     long long int n = remainders.size();
+    T m = moduli.back();
+    moduli.pop_back();
+    T r = remainders.back();
+    remainders.pop_back();
     for(unsigned int i = 0; i < n - 1; ++i){
         // solve a*m1 + b*m2 == 1
-        T a = moduli[0];
-        T b = moduli[1];
+        T cur_modulo = moduli.back();
+        moduli.pop_back();
+        T cur_remainder = remainders.back();
+        remainders.pop_back();
+        T a = m;
+        T b = cur_modulo;
         euclideanAlgo(a, b);
-        assert(a * moduli[0] + b * moduli[1] == 1); // make sure, that m1 and m2 are indeed coprime
+        // make sure, that m1 and m2 are indeed coprime
+        lassert(a * m + b * cur_modulo == 1, "Chinese remainder theorem: euclidean algorithm delivered unexpected result! Are your factors coprime?");
         // crt: find x == r1 (m1) and x == r2 (m2)
         // solved by x = r1 + (r2 - r1) * a * m1 == r2 + (r1 - r2) * b * m2
-        // proof (for first expression): x == r1 (m1) trivial, x == r1 + r2 * (a * m1 (m2)) == r1 + r2 * 1 == r2 (m2)
-        T r = remainders[0] + (remainders[1] - remainders[0]) * a * moduli[0];
-        T m = moduli[0] * moduli[1];
+        // proof (for first expression): x == r1 (m1) trivial, x == r1 + (r2 - r1) * (a * m1 (m2)) == r1 + (r2 - r1) * 1 == r2 (m2)
+        r = r + (cur_remainder - r) * a * m;
+        m *= cur_modulo;
         r = (r % m + m) % m;
-        remainders.pop_front();
-        remainders.pop_front();
-        moduli.pop_front();
-        moduli.pop_front();
-        remainders.push_back(r);
-        moduli.push_back(m);
     }
-    assert(remainders.size() == 1);
-    return remainders[0];
+    lassert(remainders.size() == 0, "Chinese remainder theorem: Something went wrong!");
+    return r;
 }
 
 template <typename T>
@@ -469,9 +477,9 @@ namespace algoTools{
 
 // does an argsort (increasing values) over the provided vector
 template <typename T>
-std::deque<long long int> argsort(const std::deque<T> &v) {
+v(long long int) argsort(const v(T) &v) {
     // initialize original index locations
-    std::deque<long long int> idxs(v.size());
+    v(long long int) idxs(v.size());
     std::iota(idxs.begin(), idxs.end(), 0);
 
     // sort indexes based on comparing values in v
@@ -529,7 +537,7 @@ namespace interactiveTools{
 COMM_TYPE in(){
     COMM_TYPE in_value;
     std::cin >> in_value;
-    log("reading value:\t", in_value);
+    llog("reading value:", in_value);
     if(in_value == IA_ERROR_CODE){
         exit(0);
     }
@@ -538,13 +546,13 @@ COMM_TYPE in(){
 
 template<typename T>
 void out(T t){
-    log("sending output:\t", t);
+    llog("sending output:", t);
     std::cout << t << std::endl;
 }
 
 template<typename T, typename... Args>
 void out(T t, Args... args){
-    log("sending output:\t", t);
+    llog("sending output:", t);
     std::cout << t << std::endl;
     out(args...);
 }
@@ -621,7 +629,7 @@ ll ask(ll p){
 
 // write to COMM_TYPE result
 void calcFunction() {
-    assert(N>=7);
+    lassert(N>=7, "N was smaller than 7");
     v(ll) p = {17, 16, 13, 11, 9, 7, 5};
     v(ll) ans;
     forn(i, 7){

@@ -16,12 +16,12 @@ class SelectionIterator{
 private:
     unsigned long long k;
     unsigned long long n;
-    std::deque<T> vector;
-    std::deque<T> selection;
-    std::deque<unsigned long long> selectionNumbers;
+    v(T) vector;
+    v(T) selection;
+    v(unsigned long long) selectionNumbers;
     bool finalState;
 public:
-    SelectionIterator<T>(std::deque<T> vector, unsigned long long k):k(k), n(vector.size()), vector(vector), finalState(false){
+    SelectionIterator<T>(v(T) vector, unsigned long long k):k(k), n(vector.size()), vector(vector), finalState(false){
         if(k>n){
             finalState = true;
             return;
@@ -49,12 +49,12 @@ public:
         finalState=true;
     }
 
-    std::deque<T> operator*(){
+    v(T) operator*(){
         return selection;
     }
 
-    std::deque<T> getNotSelected(){
-        std::deque<T> notSelected;
+    v(T) getNotSelected(){
+        v(T) notSelected;
         unsigned long long cur = 0;
         for(unsigned long long i=0; i<k; ++i){
             for(unsigned long long j=cur; j<selectionNumbers[i]; ++j)
@@ -73,8 +73,8 @@ public:
 #define seliter SelectionIterator
 
 template <typename T>
-std::deque<T> getSelection(std::deque<T> elements, unsigned long long binaryRepresentationOfSelection){
-    std::deque<T> result;
+v(T) getSelection(v(T) elements, unsigned long long binaryRepresentationOfSelection){
+    v(T) result;
     for(unsigned long long i=0;i<elements.size();++i)
         if( (binaryRepresentationOfSelection>>i)%2 )
             result.push_back(elements[i]);

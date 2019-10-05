@@ -105,9 +105,9 @@ unsigned long long log2ll(unsigned long long n){
 }
 
 template <typename T>
-std::deque<T> vecOp(std::deque<T> a, std::deque<T> b, const std::function<T (T, T)> &op = std::plus<T>()){
+v(T) vecOp(v(T) a, v(T) b, const std::function<T (T, T)> &op = std::plus<T>()){
     assert(a.size() == b.size());
-    std::deque<T> out;
+    v(T) out;
     for (unsigned i = 0; i < a.size(); ++i)
         out.push_back(op(a[i], b[i]));
     return out;
@@ -176,30 +176,33 @@ T gcd(const T &a, const T &b){
 
 // chinese remainder theorem in application
 template <typename T>
-T crt(std::deque<T> remainders, std::deque<T> moduli){
-    assert(remainders.size() == moduli.size());
+T crt(v(T) remainders, v(T) moduli){
+    lassert(remainders.size() == moduli.size(), "Chinese remainder theorem: remainders and moduli must be of same size!");
     long long int n = remainders.size();
+    T m = moduli.back();
+    moduli.pop_back();
+    T r = remainders.back();
+    remainders.pop_back();
     for(unsigned int i = 0; i < n - 1; ++i){
         // solve a*m1 + b*m2 == 1
-        T a = moduli[0];
-        T b = moduli[1];
+        T cur_modulo = moduli.back();
+        moduli.pop_back();
+        T cur_remainder = remainders.back();
+        remainders.pop_back();
+        T a = m;
+        T b = cur_modulo;
         euclideanAlgo(a, b);
-        assert(a * moduli[0] + b * moduli[1] == 1); // make sure, that m1 and m2 are indeed coprime
+        // make sure, that m1 and m2 are indeed coprime
+        lassert(a * m + b * cur_modulo == 1, "Chinese remainder theorem: euclidean algorithm delivered unexpected result! Are your factors coprime?");
         // crt: find x == r1 (m1) and x == r2 (m2)
         // solved by x = r1 + (r2 - r1) * a * m1 == r2 + (r1 - r2) * b * m2
-        // proof (for first expression): x == r1 (m1) trivial, x == r1 + r2 * (a * m1 (m2)) == r1 + r2 * 1 == r2 (m2)
-        T r = remainders[0] + (remainders[1] - remainders[0]) * a * moduli[0];
-        T m = moduli[0] * moduli[1];
+        // proof (for first expression): x == r1 (m1) trivial, x == r1 + (r2 - r1) * (a * m1 (m2)) == r1 + (r2 - r1) * 1 == r2 (m2)
+        r = r + (cur_remainder - r) * a * m;
+        m *= cur_modulo;
         r = (r % m + m) % m;
-        remainders.pop_front();
-        remainders.pop_front();
-        moduli.pop_front();
-        moduli.pop_front();
-        remainders.push_back(r);
-        moduli.push_back(m);
     }
-    assert(remainders.size() == 1);
-    return remainders[0];
+    lassert(remainders.size() == 0, "Chinese remainder theorem: Something went wrong!");
+    return r;
 }
 
 template <typename T>

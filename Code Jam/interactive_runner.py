@@ -52,7 +52,7 @@ sep_index = sys.argv.index("--")
 judge_args = sys.argv[1:sep_index]
 sol_args = sys.argv[sep_index + 1:]
 
-t_sol = SubprocessThread(sol_args, stderr_pipe=sys.stdout.fileno())
+t_sol = SubprocessThread(sol_args, stderr_pipe=sys.stderr.fileno())
 t_judge = SubprocessThread(judge_args, stdin_pipe=t_sol.p.stdout,
                            stdout_pipe=t_sol.p.stdin)
 t_sol.start()

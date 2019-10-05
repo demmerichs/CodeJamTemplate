@@ -4,13 +4,13 @@
 namespace printerTools{
 
 template <typename T>
-std::ostream& operator<<(std::ostream& os, std::deque<T> vector);
+std::ostream& operator<<(std::ostream& os, v(T) vector);
 
 template <typename S, typename T>
 std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa);
 
 template <typename T>
-std::ostream& operator<<(std::ostream& os, std::deque<T> vector){
+std::ostream& operator<<(std::ostream& os, v(T) vector){
     if(vector.size()==0)
         return os;
     os << vector[0];

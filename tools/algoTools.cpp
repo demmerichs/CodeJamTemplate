@@ -5,9 +5,9 @@ namespace algoTools{
 
 // does an argsort (increasing values) over the provided vector
 template <typename T>
-std::deque<long long int> argsort(const std::deque<T> &v) {
+v(long long int) argsort(const v(T) &v) {
     // initialize original index locations
-    std::deque<long long int> idxs(v.size());
+    v(long long int) idxs(v.size());
     std::iota(idxs.begin(), idxs.end(), 0);
 
     // sort indexes based on comparing values in v

@@ -1,12 +1,8 @@
-4c4
-< #define COMM_TYPE str
----
-> #define COMM_TYPE ll
-605a606,608
+613a614,616
 > ll N;
 > v(str) words;
 > 
-606a610,619
+614a618,627
 >     cin >> N;
 >     words.clear();
 >     forn(i,N){
@@ -16,8 +12,8 @@
 >         words.pb(word);
 >     }
 >     sort(all(words));
->     log(words);
-610a624,672
+>     llog(words);
+618a632,680
 >     v(ll) matches;
 >     forn(i, N-1){
 >         ll match = 0;
@@ -29,7 +25,7 @@
 >         }
 >         matches.pb(match);
 >     }
->     log(matches);
+>     llog(matches);
 > 
 >     result = 0;
 >     forn(_, N/2){
@@ -41,7 +37,7 @@
 >                 max_match=matches[i];
 >             }
 >         }
->         log("max match: ", max_idx, " ", max_match);
+>         llog("max match:", max_idx, max_match);
 >         if(max_match == 0)
 >             break;
 >         result += 2;
@@ -65,5 +61,5 @@
 >             matches[max_idx - 1] = val;
 >             matches.erase(matches.bn + max_idx);
 >         }
->         log(matches);
+>         llog(matches);
 >     }

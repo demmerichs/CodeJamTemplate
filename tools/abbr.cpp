@@ -8,8 +8,8 @@ typedef std::complex<long long> cell;
 typedef std::complex<long double> pnt;
 typedef std::string str;
 typedef std::stringstream sstr;
-#define hash unordered_map
-#define v(type) std::deque<type >
+#define dict(type1, type2) std::unordered_map<type1, type2 >
+#define v(type) std::vector<type >
 #define p(type1,type2) std::pair<type1, type2 >
 #define c(type) std::complex<type >
 //#endregion types
@@ -18,8 +18,10 @@ typedef std::stringstream sstr;
 #define mt make_tuple
 #define st first
 #define nd second
+#ifdef XY_NOTATION
 #define x real()
 #define y imag()
+#endif /*XY_NOTATION*/
 #define bk back()
 #define ft front()
 #define pb push_back
