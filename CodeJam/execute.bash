@@ -26,11 +26,13 @@ then
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
-            if [ -z $(diff <(color ./Solution.py LOCAL < $1) result.txt) ]
+            diffresult="$(echo "$(diff <(color ./Solution.py LOCAL < $1) result.txt)")"
+            if [ -z "$diffresult" ]
             then
                 exit 0
             else
-                echo "Did not produce the expected result!"
+                echo "Did not produce the expected result! See diff for details:"
+                echo "$diffresult"
                 exit 1
             fi
         else
@@ -55,11 +57,13 @@ else
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
-            if [ -z $(diff <(color ./Solution < $1) result.txt) ]
+            diffresult="$(echo "$(diff <(color ./Solution < $1) result.txt)")"
+            if [ -z "$diffresult" ]
             then
                 exit 0
             else
-                echo "Did not produce the expected result!"
+                echo "Did not produce the expected result! See diff for details:"
+                echo "$diffresult"
                 exit 1
             fi
         else
