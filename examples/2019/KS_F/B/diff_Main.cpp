@@ -1,4 +1,4 @@
-665a666,710
+666a667,711
 > class emp{
 > public:
 >     v(ll) s;
@@ -44,11 +44,11 @@
 >     return r;
 > }
 > 
-668a714,716
+669a715,717
 > dict(ll, ll) counts;
 > dict(ll, emp) emps;
 > 
-669a718,729
+670a719,730
 >     cin >> N >> S;
 >     counts.clear();
 >     emps.clear();
@@ -61,7 +61,7 @@
 >     foreach(it, emps){
 >         llog(it->st, it->nd.s, counts[it->st]);
 >     }
-673a734,746
+674a735,747
 >     result = 0;
 >     foreach(it, emps){
 >         ll unteachable=0;

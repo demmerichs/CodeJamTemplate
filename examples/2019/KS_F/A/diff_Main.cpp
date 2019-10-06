@@ -1,10 +1,10 @@
-668a669,673
+669a670,674
 > ll N, K;
 > 
 > v(ll) Ai;
 > dict(ll, dict(ll, ll)) Rij, Fij;
 > 
-669a675,683
+670a676,684
 >     cin >> N >> K;
 >     Ai.clear();
 >     forn(i, N){
@@ -14,7 +14,7 @@
 >     }
 >     Rij.clear();
 >     Fij.clear();
-671a686,719
+672a687,720
 > ll R(ll i, ll j){
 >     lassert(i<j, "R: i is not smaller than j");
 >     if(Rij.count(i) && Rij[i].count(j)){
@@ -49,5 +49,5 @@
 >     Fij[i][k] = minval;
 >     return Fij[i][k];
 > }
-673a722
+674a723
 >     result = F(N, K);

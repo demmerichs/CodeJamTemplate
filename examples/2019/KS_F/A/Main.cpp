@@ -1,6 +1,6 @@
 // #define DEFAULT_VAL    //remove comment on this line, to activate default value trigger
 // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
-// #define XY_NOTATION    //remove commment on this line, to activat xy notation on complex numbers
+// #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 #define ERROR_WORD "IMPOSSIBLE"
 #define COMM_TYPE ll
 #define IA_ERROR_CODE "ERROR"
@@ -64,6 +64,7 @@ typedef std::stringstream sstr;
 #define EPS 1e-15L
 #define PI 3.14159265358979323846264338328L
 #define MOD 1000000007L
+dict(char, cell) DIRECTIONS = {{'E', cell(1, 0)}, {'N', cell(0, 1)}, {'W', cell(-1, 0)}, {'S', cell(0, -1)}};
 //#endregion constants
 
 //#endregion abbr

@@ -1,4 +1,4 @@
-668a669,690
+669a670,691
 > ll V;
 > v(ll) Bi;
 > v(unordered_set<ll>) neighbors;
@@ -21,7 +21,7 @@
 > 
 > v(ll) maxBeautyHash;
 > 
-669a692,765
+670a693,766
 >     cin >> V;
 >     maxBeautyHash.clear();
 >     maxBeautyHash.resize(4 * V, -INF);
@@ -96,5 +96,5 @@
 >     r_lit *= (childs[cur_node].sz > 0);
 >     maxBeautyHash[hashargnum] = max(r_lit, r_notlit);
 >     return maxBeautyHash[hashargnum];
-673a770
+674a771
 >     result = max(maxBeauty(0, false, true), maxBeauty(0, false, false));
