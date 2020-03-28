@@ -1,11 +1,7 @@
 .DS_Store
 .tags
 
-/CodeJam/A/
-/CodeJam/B/
-/CodeJam/C/
-/CodeJam/D/
-/CodeJam/E/
+/CodeJam/template_problem_folder/
 /CodeJam/Main.cpp
 /CodeJam/Solution.py
 

@@ -42,11 +42,11 @@ Especially in C++, you should make heavy use of code shortcuts, to avoid spendin
 
 The template makes heavy use of `//#region` and `//#endregion` comments. Hopefully, you are able to configure your IDE to define these comments as custom fold sections. In Atom this can be done with the custom-folds package. Additionally, if you specify all custom regions to be folded upon opening a file, you will have a clean and short view of your file with only the essentials visible, that need modification by you.
 
-# Todos
+# TODOs
 - [x] documentation
 - [x] example
 - [x] implement python template as well (potentially helpful for big ints, string manipulation and other convenient stuff)
-- [ ] make the create script more safe so that no present code gets overwritten
+- [x] make the create script more safe so that no present code gets overwritten
 - [x] adapt to new Code Jam Interactive Problem structure
 - [ ] flush buffer for Interactive Problem (usually not a problem, but good to have just to be safe)
 - [ ] add hooks to pre-commit setup
