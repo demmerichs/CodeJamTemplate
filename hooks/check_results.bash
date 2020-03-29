@@ -32,7 +32,7 @@ do
     then
         continue
     fi
-    (cd $d; ./execute.bash sample.txt)
+    (cd $d; ./execute.bash TEST)
     runresult=$?
     if [ $runresult != "0" ]
     then
