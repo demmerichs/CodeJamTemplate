@@ -8,11 +8,10 @@ from math import factorial as fac
 
 FLAGS = set()
 if len(sys.argv) == 2:
-    import pdb; pdb.set_trace()
-    assert sys.argv[1] == 'LOCAL'
-    FLAGS.add('LOCAL')
-# FLAGS.add('DEFAULT_VAL')  #remove comm, to activate default value trigger
-# FLAGS.add('IA_MODE')      #remove comm, to activate interactive problem mode
+    assert sys.argv[1] == "LOCAL"
+    FLAGS.add("LOCAL")
+# FLAGS.add("DEFAULT_VAL")  #remove comm, to activate default value trigger
+# FLAGS.add("IA_MODE")      #remove comm, to activate interactive problem mode
 ERROR_WORD = "IMPOSSIBLE"
 IA_ERROR_CODE = "ERROR"
 

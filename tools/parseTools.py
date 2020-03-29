@@ -18,7 +18,7 @@ def cin():
         return val
     else:
         v = input()
-        v = v.strip().split(' ')
+        v = v.strip().split(" ")
         cin.cached_vals = list(convert_input(val) for val in v)
         return cin()
 
@@ -28,13 +28,13 @@ cin.cached_vals = []
 
 def cint():
     v = input()
-    v = v.strip().split(' ')
+    v = v.strip().split(" ")
     return tuple(convert_input(val) for val in v)
 
 
 def cinl():
     v = input()
-    v = v.strip().split(' ')
+    v = v.strip().split(" ")
     try:
         v = list(map(int, v))
         return v

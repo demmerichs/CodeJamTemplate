@@ -14,8 +14,8 @@ def facmod(n):
 def choosell(n, k):
     if k > n:
         return 0
-    if n-k < k:
-        return choosell(n, n-k)
+    if n - k < k:
+        return choosell(n, n - k)
     result = 1
     for i in range(k):
         result *= n - i
@@ -30,9 +30,9 @@ def choosemod(n, k):
         if len(choosemod.memorize[n]) > k:
             return choosemod.memorize[n][k]
         else:
-            choosemod(n, k-1)
+            choosemod(n, k - 1)
             choosemod.memorize[n].append(
-                (choosemod(n-1, k-1) + choosemod(n-1, k)) % MOD
+                (choosemod(n - 1, k - 1) + choosemod(n - 1, k)) % MOD
             )
             return choosemod.memorize[n][k]
     else:
@@ -47,8 +47,8 @@ choosemod.memorize = []
 def chooseld(n, k):
     if k > n:
         return 0
-    if n-k < k:
-        return choosell(n, n-k)
+    if n - k < k:
+        return choosell(n, n - k)
     result = 1
     for i in range(k):
         result *= n - i

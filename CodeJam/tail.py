@@ -1,5 +1,6 @@
 # #region main
-if 'IA_MODE' in FLAGS:
+if "IA_MODE" in FLAGS:
+
     def get_in():
         in_value = cin()
         if in_value == IA_ERROR_CODE:
@@ -12,25 +13,25 @@ if 'IA_MODE' in FLAGS:
         cout(t)
 
 
-result = ''
+result = ""
 
 
 def main():
     init()
     nbr_tests = cin()
-    for test_id in range(1, 1+nbr_tests):
+    for test_id in range(1, 1 + nbr_tests):
         # read input
         readInput()
         # calc result
         calcFunction()
-        if 'IA_MODE' not in FLAGS:
+        if "IA_MODE" not in FLAGS:
             # write output
             cout("Case #%d: " % test_id, end=False)
             cerr("Case #%d: " % test_id, end=False)
-            if 'DEFAULT_VAL' not in FLAGS:
+            if "DEFAULT_VAL" not in FLAGS:
                 cout(result)
                 cerr(result)
-            if 'DEFAULT_VAL' in FLAGS:
+            if "DEFAULT_VAL" in FLAGS:
                 if len(result) > 0:
                     cout(len(result))
                     cerr(len(result))
@@ -41,6 +42,8 @@ def main():
                     errorWord = ERROR_WORD
                     cout(errorWord)
                     cerr(errorWord)
+
+
 # #endregion main
 
 # #endregion template code
