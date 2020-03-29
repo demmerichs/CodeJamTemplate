@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 
-import functools
+import functools as ft
+import itertools as it
 import numpy as np
+import scipy as sp
 import sys
 from math import factorial as fac
+import math
 
 
 FLAGS = set()

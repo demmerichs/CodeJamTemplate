@@ -5,7 +5,7 @@ def log(*args):
 
 
 def to_str(val, precision=10):
-    local_to_str = functools.partial(to_str, precision=precision)
+    local_to_str = ft.partial(to_str, precision=precision)
     if isinstance(val, list) or isinstance(val, tuple):
         return " ".join(map(local_to_str, val))
     if isinstance(val, float) or isinstance(val, np.float):
@@ -22,7 +22,7 @@ def cout(*args, end=True, error=False):
     if error:
         kwargs["file"] = sys.stderr
         precision = 4
-    local_to_str = functools.partial(to_str, precision=precision)
+    local_to_str = ft.partial(to_str, precision=precision)
     s = "".join(map(local_to_str, args))
     print(s, **kwargs)
 
