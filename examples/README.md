@@ -1,4 +1,11 @@
 # Implementation of examples
+In this folder you can find example solutions using the template from this repo.
+The directory structure starts with the year of the contest, then the round
+(`KS` stands for the Kickstart competition, the rest is CodeJam).
+Every solution contains the complete script which can be uploaded to the
+CodeJam server (in case of python take the `Solution_upload.py` created
+by the `execute.bash` script) and a diff compared to the empty template
+to get a feeling of how valuable in certain situations this template can be.
 
 * [2019](examples/2019)
   * [KS_F](examples/2019/KS_F)

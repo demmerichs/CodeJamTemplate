@@ -2,6 +2,8 @@
 
 set -e
 
+m4 Solution.py.m4 > Solution_upload.py
+
 if [ -z $1 ]
 then
     color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1

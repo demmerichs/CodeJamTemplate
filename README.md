@@ -3,11 +3,19 @@ A template for the Google Code Jam Contest and the (now scrapped) Distributed Ve
 Contains code from high ranking contestants condensed together. Sadly I forgot from whom I took the basis of the
 Code Jam Template (but most of it I wrote by my own anyway), but the Distributed is tweaked of by the solutions of bmerry submitted DCJ World Finals 2016.
 
+# Overview
+
+If you consider using this template for the next CodeJam or Kickstart competitions from Google, and wonder how to get started I recommend the following steps:
+- Look for some practice problem or round and follow the below instructions for `Usage` as much or as little as you like, to have a running template base to start experimenting with and understanding the template and getting a general idea of how the template works.
+- With the created templates you can skim through them, trying to remember the things you like and forget about the things you dislike.
+- To help you focus on my most used features, I provided my solutions to recent competitions using this template in the `examples` folder of this repository with an up-to-date [README](examples/README.md) showing the list and links of implemented solutions and the file endings showing the language used.
+
 # Usage
+Disclaimer: I make heavy use of `bash` scripts, which might not work nicely in `zsh` or other shells (not tested, feel free to give feedback). However, all these tools are constructed in such a way, that there should be no interaction with the shell necessary except for the `execute.bash` script during the contest, such that this should be a minor complication compared to the gain during contest time. Please test and when in doubt, use a `bash` shell or avoid the `execute.bash` script.
 ## Before Contest
 You need to create the contest folder. This can simply be done via:
 
-`/path/to/template/CodeJam/createFolders.bash /path/to/contest-folder/eg/2019/Round2 A B C D E`
+`/path/to/template-repo/CodeJam/createFolders.bash /path/to/contest-folder/eg/2019/Round2 A B C D E`
 
 Relative paths (should) work! You can leave out any of the last letters to get only a subset of folders corresponding to the tasks 1 to 3 for example. Watch out, this script overwrites existing files with the same name, if you provide an existing path (see Todos).
 
