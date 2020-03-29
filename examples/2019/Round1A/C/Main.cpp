@@ -148,39 +148,39 @@ using namespace printerTools;
 //#region debugTools
 namespace debugTools{
 
-void llog(){
-#ifdef LOCAL
+inline void local_log(){
     std::cerr << std::endl;
-#endif /*LOCAL*/
-    return;
 }
 
 template<typename T>
-void llog(T t){
-#ifdef LOCAL
+inline void local_log(T t){
     std::cerr << t << std::endl;
-#endif /*LOCAL*/
-    return;
 }
 
 template<typename T, typename... Args>
-void llog(T t, Args... args){
-#ifdef LOCAL
+inline void local_log(T t, Args... args){
     std::cerr << t << "\t";
-    llog(args...);
-#endif /*LOCAL*/
-    return;
+    local_log(args...);
 }
 
-template<typename T>
-void lassert(T t, std::string message){
 #ifdef LOCAL
+    #define llog(args...) local_log(args)
+#else
+    #define llog(args...)
+#endif /*LOCAL*/
+
+template<typename T>
+void local_assert(T t, std::string message){
     if(!t)
         llog(message);
     assert(t);
-#endif /*LOCAL*/
-    return;
 }
+
+#ifdef LOCAL
+    #define lassert(args...) local_assert(args)
+#else
+    #define lassert(args...)
+#endif /*LOCAL*/
 
 } // namespace debugTools
 using namespace debugTools;
