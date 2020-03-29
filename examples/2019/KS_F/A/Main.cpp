@@ -718,6 +718,7 @@ ll F(ll i, ll k){
     Fij[i][k] = minval;
     return Fij[i][k];
 }
+
 // write to COMM_TYPE result
 void calcFunction() {
     result = F(N, K);

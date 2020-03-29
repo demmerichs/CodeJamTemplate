@@ -19,6 +19,6 @@ do
     [[ $d =~ ^(.*)/(Main.cpp|Solution.py)$ ]]
     output_file=${BASH_REMATCH[1]}/diff_${BASH_REMATCH[2]}
     basefile=${BASH_REMATCH[2]}
-    diff CodeJam/$basefile $d > $output_file
+    git diff --no-index CodeJam/$basefile $d > $output_file
 done
 exit 0
