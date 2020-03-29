@@ -1,7 +1,4 @@
 # #region printerTools
-def log(*args):
-    if "LOCAL" in FLAGS:
-        cerr(*list(map(str, args)))
 
 
 def to_str(val, precision=10):
