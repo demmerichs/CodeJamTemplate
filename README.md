@@ -20,23 +20,25 @@ Use your favorite IDE. Work on the tasks in their specific folders.
 The two supported languages by this template. Choose wisely depending on the task. The below steps should work the same either way. Of course, if you deviate, you need to take special care depending on your language selection.
 
 ### Non-interactive/Traditional problem
-In this case implement your solution in the `Main.cpp` or the `Solution.py` (see the example implementations). The task usually provides a simple example input and the corresponding output. Copy and paste the example input into the `sample.txt` file. Of course you can modify this (helpful for debugging), e.g. by adding more test cases (don't forget to increase the first number T). To test your code on this sample, just execute:
+In this case implement your solution in the `Main.cpp` or the `Solution.py` (see the example implementations). The task usually provides a simple example input and the corresponding output. Copy and paste the example input into the `sample.txt` file and the corresponding output into the `result.txt`. Of course you can modify this (helpful for debugging), e.g. by adding more test cases (don't forget to increase the first number T and adding the respective results). To test your code on this sample, just execute:
 
-`/path/to/contest-task-folder/eg/A/execute.bash /path/to/contest-task-folder/eg/A/sample.txt`
+`/path/to/contest-task-folder/eg/A/execute.bash [TEST]`
 
-Again, relative paths work. The output on the terminal should be exactly what is shown on the problem page.
+Again, relative paths work. The output on the terminal should be just your error messages when everything was correct (corresponding to the `result.txt`). If there was a difference then this is summarized at the end after all your error messages.
+
+The error messages are piped away when an argument like `TEST` is provided to the script.
 
 ### Interactive problem
 Again, work in the corresponding solution file. At the top of the file, set the switch/flag correspondingly, so that the template is aware, that this is an interactive problem. Instead of a sample you can download a file usually called `testing_tool.py` from the problem page. Put this script in your task folder. Then again, you can test your code by executing:
 
-`/path/to/contest-task-folder/eg/A/execute.bash /path/to/contest-task-folder/eg/A/sample.txt`
+`/path/to/contest-task-folder/eg/A/execute.bash [TEST]`
 
-You could also leave out the last argument, in this case the `execute.bash` detects the existence of `testing_tool.py` and ignores the argument provided.
+In this case the `execute.bash` detects the existence of `testing_tool.py` and ignores the `sample.txt`.
 
 ### General advice
-Setup your IDE, so that it works for you and prevents you from doing mistakes during the contest under pressure. You should be able do provide a run configuration, which executes a command with placeholders to have a shortcut for executing the above mentioned lines in a terminal.
+Setup your IDE, so that it works for you and prevents you from doing mistakes during the contest under time pressure. You should be able do provide a run configuration, which executes a command with placeholders to have a shortcut for executing the above mentioned lines in a terminal.
 
-E.g. I use Atom as an text editor with Platformio Ide Terminal as one particular package, which lets me have a terminal inside the editor and lets me execute `cd $D; ./execute.bash $F` via a shortcut ($D is placeholder for the directory of the current opened file, and $F for the file itself, so I just switch to `sample.txt` and hit the shortcut, to test my code on traditional problems).
+E.g. I use Atom as an text editor with Platformio Ide Terminal as one particular package, which lets me have a terminal inside the editor and lets me execute `cd $D; ./execute.bash` via a shortcut ($D is placeholder for the directory of the current opened file, so I can just hit the shortcut, to test my code on problems. Additionally, I have a shortcut for the cleaner output without error messages `cd $D; ./execute.bash TEST` as mentioned above).
 
 Especially in C++, you should make heavy use of code shortcuts, to avoid spending time on typing and fixing typos. Take a look at the examples in this repo and in the header of the template file, where the definitions of the abbreviations can be found (also in this repo under `tools/abbr.cpp`).
 
@@ -49,4 +51,4 @@ The template makes heavy use of `//#region` and `//#endregion` comments. Hopeful
 - [x] make the create script more safe so that no present code gets overwritten
 - [x] adapt to new Code Jam Interactive Problem structure
 - [ ] flush buffer for Interactive Problem (usually not a problem, but good to have just to be safe)
-- [ ] add hooks to pre-commit setup
+- [x] add hooks to pre-commit setup

@@ -2,7 +2,7 @@
 
 set -e
 
-if [ -z $2 ]
+if [ -z $1 ]
 then
     color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
 else
@@ -26,7 +26,7 @@ then
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
-            diffresult="$(echo "$(diff <(color ./Solution.py LOCAL < $1) result.txt)")"
+            diffresult="$(echo "$(diff <(color ./Solution.py LOCAL < sample.txt) result.txt)")"
             if [ -z "$diffresult" ]
             then
                 exit 0
@@ -36,7 +36,7 @@ then
                 exit 1
             fi
         else
-            color ./Solution.py LOCAL < $1
+            color ./Solution.py LOCAL < sample.txt
             exit $?
         fi
     fi
@@ -57,7 +57,7 @@ else
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
-            diffresult="$(echo "$(diff <(color ./Solution < $1) result.txt)")"
+            diffresult="$(echo "$(diff <(color ./Solution < sample.txt) result.txt)")"
             if [ -z "$diffresult" ]
             then
                 exit 0
@@ -67,7 +67,7 @@ else
                 exit 1
             fi
         else
-            color ./Solution < $1
+            color ./Solution < sample.txt
             exit $?
         fi
     fi
