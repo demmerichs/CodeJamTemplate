@@ -13,12 +13,17 @@ do
     orig_file=${BASH_REMATCH[1]}/${BASH_REMATCH[2]}
     bak_file=${BASH_REMATCH[1]}/${BASH_REMATCH[2]}.bak
     basefile=CodeJam/${BASH_REMATCH[2]}
-    if [ -f $bak_file ]
+    patch -o $orig_file.recreated $basefile $diff_file
+    if [ "$(diff $orig_file.recreated $orig_file)" ]
     then
-        echo "There was already a backup file $bak_file in the way, so the process terminated here."
-        exit 1
+        if [ -f $bak_file ]
+        then
+            echo "There was already a backup file $bak_file in the way, so the process terminated here."
+            exit 1
+        fi
+        mv $orig_file $bak_file
+        cp $orig_file.recreated $orig_file
     fi
-    mv $orig_file $bak_file
-    patch -o $orig_file $basefile $diff_file
+    rm $orig_file.recreated
 done
 exit 0

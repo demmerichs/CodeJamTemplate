@@ -3,6 +3,13 @@
 shopt -s globstar
 ./CodeJam/mainCreation.bash
 
+if [[ $1 != "-f" ]]
+then
+    echo "You probably do not want to use this script anymore, because it is better to use old diffs to recreate the solution files!"
+    echo "If you want to force run this, please provide as argument '-f'!"
+    exit 0
+fi
+
 for d in examples/*/*/*/{Main.cpp,Solution.py}
 do
     if [ ! -f $d ]
