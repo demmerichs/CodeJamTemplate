@@ -9,7 +9,7 @@ else
     color()(set -o pipefail;"$@" 2>/dev/null)
 fi
 
-if [[ ! -z $(diff Solution.py ../Solution.py) ]]
+if [[ -f Solution.py && ! -z $(diff Solution.py ../Solution.py) ]]
 then
     if [ -f testing_tool.py ]
     then
