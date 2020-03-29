@@ -1,2 +1,11 @@
+# exit when any pre-commit scripts fail
+set -e
+
+if [ "$(diff hooks .git/hooks --exclude *.sample)" ]
+then
+    echo "The hooks folders do not match!"
+    diff hooks .git/hooks --exclude *.sample
+    exit 1
+fi
 ./.git/hooks/check_diffs.bash
 ./.git/hooks/check_results.bash

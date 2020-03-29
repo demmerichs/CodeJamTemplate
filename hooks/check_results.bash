@@ -11,7 +11,7 @@ do
     then
         continue
     fi
-    [[ $d =~ ^examples/(.*)/([ABCDEFGH])(_interactive)?/(Main.cpp|Solution.py)$ ]]
+    [[ $d =~ ^examples/(.*)/(.*)(_interactive)?/(Main.cpp|Solution.py)$ ]]
     basedir=examples/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}${BASH_REMATCH[3]}
     recreate=test_examples/${BASH_REMATCH[1]}
     mkdir -p $recreate
@@ -26,7 +26,7 @@ do
 done
 
 output=""
-for d in test_examples/*/*/{A,B,C,D,E,F,G,H}
+for d in test_examples/*/*/*
 do
     if [ ! -d $d ]
     then
