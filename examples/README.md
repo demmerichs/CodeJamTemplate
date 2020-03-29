@@ -16,6 +16,8 @@
       * [Main.cpp](examples/2019/KS_G/A/Main.cpp)
       * [diff_Main.cpp](examples/2019/KS_G/A/diff_Main.cpp)
     * [C](examples/2019/KS_G/C)
+      * [Main.cpp](examples/2019/KS_G/C/Main.cpp)
+      * [diff_Main.cpp](examples/2019/KS_G/C/diff_Main.cpp)
   * [KS_H](examples/2019/KS_H)
     * [A](examples/2019/KS_H/A)
       * [Main.cpp](examples/2019/KS_H/A/Main.cpp)
