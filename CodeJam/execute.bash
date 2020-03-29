@@ -41,7 +41,7 @@ then
         fi
     fi
 else
-    g++-6 Main.cpp -std=c++14 -pthread -O3 -o Solution -DLOCAL
+    g++-7 Main.cpp -std=c++14 -pthread -O3 -o Solution -DLOCAL
     if [ -f testing_tool.py ]
     then
         color ./interactive_runner.py python testing_tool.py 0 -- ./Solution
