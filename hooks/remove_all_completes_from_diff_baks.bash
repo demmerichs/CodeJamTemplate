@@ -3,7 +3,7 @@
 shopt -s globstar
 ./CodeJam/mainCreation.bash
 
-for bak_file in examples/*/*/*/{Main.cpp,Solution.py}.bak
+for bak_file in examples/*/*/*/{Main.cpp,Solution.py.m4}.bak
 do
     if [ ! -f $bak_file ]
     then

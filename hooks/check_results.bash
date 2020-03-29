@@ -5,18 +5,18 @@ shopt -s globstar
 
 rm -rf test_examples/*
 
-for d in examples/*/*/*/{Main.cpp,Solution.py}
+for d in examples/*/*/*/{Main.cpp,Solution.py.m4}
 do
     if [ ! -f $d ]
     then
         continue
     fi
-    [[ $d =~ ^examples/(.*)/(.*)(_interactive)?/(Main.cpp|Solution.py)$ ]]
+    [[ $d =~ ^examples/(.*)/(.*)(_interactive)?/(Main.cpp|Solution.py.m4)$ ]]
     basedir=examples/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}${BASH_REMATCH[3]}
     recreate=test_examples/${BASH_REMATCH[1]}
     mkdir -p $recreate
     ./CodeJam/createFolders.bash $recreate ${BASH_REMATCH[2]}
-    for k in $basedir/{Main.cpp,Solution.py,result.txt,sample.txt,testing_tool.py}
+    for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,testing_tool.py}
     do
         if [ -f $k ]
         then

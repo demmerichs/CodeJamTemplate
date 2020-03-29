@@ -1,10 +1,8 @@
-diff --git a/CodeJam/Solution.py b/examples/template_tests/gss/py/Solution.py
-old mode 100755
-new mode 100644
-index c61c5b3..fe5fdc1
---- a/CodeJam/Solution.py
-+++ b/examples/template_tests/gss/py/Solution.py
-@@ -325,12 +325,19 @@ def init():
+diff --git a/CodeJam/Solution.py.m4 b/examples/template_tests/gss/py/Solution.py.m4
+index 1a3cee4..9848428 100644
+--- a/CodeJam/Solution.py.m4
++++ b/examples/template_tests/gss/py/Solution.py.m4
+@@ -347,12 +347,19 @@ def init():
  
  
  def readInput():

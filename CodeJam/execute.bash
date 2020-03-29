@@ -6,27 +6,38 @@ if [ -z $1 ]
 then
     color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
 else
-    color()(set -o pipefail;"$@" 2>/dev/null)
+    if [[ $1 == "PDB" ]]
+    then
+        color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
+        m4 -DLOCAL -DPDB Solution.py.m4 > Solution.py
+        chmod +x Solution.py
+        color ./Solution.py < sample.txt
+        exit 0
+    else
+        color()(set -o pipefail;"$@" 2>/dev/null)
+    fi
 fi
 
-if [[ -f Solution.py && ! -z $(diff Solution.py ../Solution.py) ]]
+if [[ -f Solution.py.m4 && ! -z $(diff Solution.py.m4 ../Solution.py.m4) ]]
 then
+    m4 -DLOCAL Solution.py.m4 > Solution.py
+    chmod +x Solution.py
     if [ -f testing_tool.py ]
     then
-        color ./interactive_runner.py python testing_tool.py 0 -- ./Solution.py LOCAL
-        color ./interactive_runner.py python testing_tool.py 1 -- ./Solution.py LOCAL
-        color ./interactive_runner.py python testing_tool.py 2 -- ./Solution.py LOCAL
-        color ./interactive_runner.py python testing_tool.py 3 -- ./Solution.py LOCAL
-        color ./interactive_runner.py python testing_tool.py 4 -- ./Solution.py LOCAL
-        color ./interactive_runner.py python testing_tool.py 5 -- ./Solution.py LOCAL
-        color ./interactive_runner.py python testing_tool.py 6 -- ./Solution.py LOCAL
-        color ./interactive_runner.py python testing_tool.py 7 -- ./Solution.py LOCAL
-        color ./interactive_runner.py python testing_tool.py 8 -- ./Solution.py LOCAL
-        color ./interactive_runner.py python testing_tool.py 9 -- ./Solution.py LOCAL
+        color ./interactive_runner.py python testing_tool.py 0 -- ./Solution.py
+        color ./interactive_runner.py python testing_tool.py 1 -- ./Solution.py
+        color ./interactive_runner.py python testing_tool.py 2 -- ./Solution.py
+        color ./interactive_runner.py python testing_tool.py 3 -- ./Solution.py
+        color ./interactive_runner.py python testing_tool.py 4 -- ./Solution.py
+        color ./interactive_runner.py python testing_tool.py 5 -- ./Solution.py
+        color ./interactive_runner.py python testing_tool.py 6 -- ./Solution.py
+        color ./interactive_runner.py python testing_tool.py 7 -- ./Solution.py
+        color ./interactive_runner.py python testing_tool.py 8 -- ./Solution.py
+        color ./interactive_runner.py python testing_tool.py 9 -- ./Solution.py
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
-            diffresult="$(echo "$(diff <(color ./Solution.py LOCAL < sample.txt) result.txt)")"
+            diffresult="$(echo "$(diff <(color ./Solution.py < sample.txt) result.txt)")"
             if [ -z "$diffresult" ]
             then
                 exit 0
@@ -36,7 +47,7 @@ then
                 exit 1
             fi
         else
-            color ./Solution.py LOCAL < sample.txt
+            color ./Solution.py < sample.txt
             exit $?
         fi
     fi

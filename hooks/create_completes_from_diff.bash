@@ -3,13 +3,13 @@
 shopt -s globstar
 ./CodeJam/mainCreation.bash
 
-for diff_file in examples/*/*/*/{diff_Main.cpp,diff_Solution.py}
+for diff_file in examples/*/*/*/{diff_Main.cpp,diff_Solution.py.m4}
 do
     if [ ! -f $diff_file ]
     then
         continue
     fi
-    [[ $diff_file =~ ^(.*)/diff_(Main.cpp|Solution.py)$ ]]
+    [[ $diff_file =~ ^(.*)/diff_(Main.cpp|Solution.py.m4)$ ]]
     orig_file=${BASH_REMATCH[1]}/${BASH_REMATCH[2]}
     bak_file=${BASH_REMATCH[1]}/${BASH_REMATCH[2]}.bak
     basefile=CodeJam/${BASH_REMATCH[2]}

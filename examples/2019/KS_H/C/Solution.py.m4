@@ -10,9 +10,6 @@ import math
 
 
 FLAGS = set()
-if len(sys.argv) == 2:
-    assert sys.argv[1] == "LOCAL"
-    FLAGS.add("LOCAL")
 # FLAGS.add("DEFAULT_VAL")  #remove comm, to activate default value trigger
 # FLAGS.add("IA_MODE")      #remove comm, to activate interactive problem mode
 ERROR_WORD = "IMPOSSIBLE"
@@ -75,23 +72,48 @@ def cerr(*args, **kwargs):
 # #region debugTools
 
 
-def pdb():
-    if "LOCAL" in FLAGS:
-        import ipdb
-
-        ipdb.set_trace()
+# the following definitions are just for the linter to be satiesfied
+# as it cannot detect the m4 macro expansions
+def lpdb():
+    pass
 
 
 def llog(*args):
-    if "LOCAL" in FLAGS:
-        cerr(*list(map(str, args)))
+    pass
 
 
 def lassert(*args):
-    if "LOCAL" in FLAGS:
-        if not args[0]:
-            llog(args[1:])
-            pdb()
+    pass
+
+
+"""
+m4 macro expansions
+define(`lpdb', `ifdef(`PDB',`local_pdb($@)',`pass')')# define(`lpdb', `ifdef(`PDB',`local_pdb($@)',`pass')')
+define(`llog', `ifdef(`LOCAL',`local_log($@)',`pass')')# define(`llog', `ifdef(`LOCAL',`local_log($@)',`pass')')
+define(`lassert', `ifdef(`LOCAL',`local_assert($@)',`pass')')# define(`lassert', `ifdef(`LOCAL',`local_assert($@)',`pass')')
+undefine(`eval')# undefine(`eval')
+undefine(`len')# undefine(`len')
+undefine(`index')# undefine(`index')
+undefine(`substr')# undefine(`substr')
+"""
+
+
+def local_pdb():
+    lines = sys.stdin.readlines()
+    sys.stdin = open("/dev/tty")
+    import pdb
+
+    pdb.set_trace()
+
+
+def local_log(*args):
+    cerr(*list(map(str, args)))
+
+
+def local_assert(*args):
+    if not args[0]:
+        llog(args[1:])
+        pdb()
 
 
 # #endregion debugTools
@@ -325,19 +347,49 @@ def init():
 
 
 def readInput():
-    global result, a, b, c
-    a = cin()
-    b = cin()
-    c = cin()
+    global result, num_digits
+    num_digits = {}
+    for dig in range(1, 10):
+        val = cin()
+        if val > 0:
+            num_digits[dig] = val
+
+
+def check_all_combos():
+    sorted_digits = sorted(list(num_digits.keys()), key=lambda dig: num_digits[dig])
+    total_digits = sum(num_digits.values())
+    left_half_num = total_digits // 2
+    for vals in it.product(
+        *(list(range(num_digits[d] + 1)) for d in sorted_digits[:-1])
+    ):
+        cur_left_digits = sum(vals)
+        remain = left_half_num - cur_left_digits
+        if remain < 0 or remain > num_digits[sorted_digits[-1]]:
+            continue
+        left_vals = dict(zip(sorted_digits, vals + (remain,)))
+        right_vals = {d: num_digits[d] - left_vals[d] for d in sorted_digits}
+        llog("left vals:", left_vals)
+        llog("right vals:", right_vals)
+        llog("")
+        if (
+            sum(k * v for k, v in left_vals.items())
+            - sum(k * v for k, v in right_vals.items())
+        ) % 11 == 0:
+            return True
+    return False
 
 
 #  write to result
 def calcFunction():
     global result
-    f = lambda x: a * x * x + b * x + c
-    interval = gss(f, -100, 100, tol=1)
-    llog("result interval:", interval)
-    result = "%d %.2f" % (interval[1], f(interval[1]))
+    occs = sorted(num_digits.values())
+    if len(occs) >= 2 and occs[-2] >= 10:
+        result = "YES"
+    else:
+        if check_all_combos():
+            result = "YES"
+        else:
+            result = "NO"
 
 
 if __name__ == "__main__":

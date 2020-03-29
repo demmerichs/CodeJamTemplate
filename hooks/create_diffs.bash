@@ -10,13 +10,13 @@ then
     exit 0
 fi
 
-for d in examples/*/*/*/{Main.cpp,Solution.py}
+for d in examples/*/*/*/{Main.cpp,Solution.py.m4}
 do
     if [ ! -f $d ]
     then
         continue
     fi
-    [[ $d =~ ^(.*)/(Main.cpp|Solution.py)$ ]]
+    [[ $d =~ ^(.*)/(Main.cpp|Solution.py.m4)$ ]]
     output_file=${BASH_REMATCH[1]}/diff_${BASH_REMATCH[2]}
     basefile=${BASH_REMATCH[2]}
     git diff --no-index CodeJam/$basefile $d > $output_file

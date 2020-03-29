@@ -9,7 +9,7 @@ bash $DIR/mainCreation.bash
 
 mkdir $DIR/template_problem_folder
 cp $DIR/Main.cpp $DIR/template_problem_folder/Main.cpp
-cp $DIR/Solution.py $DIR/template_problem_folder/Solution.py
+cp $DIR/Solution.py.m4 $DIR/template_problem_folder/Solution.py.m4
 touch $DIR/template_problem_folder/sample.txt
 touch $DIR/template_problem_folder/result.txt
 cp $DIR/interactive_runner.py $DIR/template_problem_folder/interactive_runner.py
