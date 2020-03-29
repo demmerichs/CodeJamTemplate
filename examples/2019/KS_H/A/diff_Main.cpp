@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_H/A/Main.cpp
-index 4f27d32..45f8e96 100644
+index fe07306..9c590ef 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_H/A/Main.cpp
 @@ -2,7 +2,7 @@
@@ -11,7 +11,7 @@ index 4f27d32..45f8e96 100644
  #define IA_ERROR_CODE "ERROR"
  
  // The maintained and empty code template can be found at:
-@@ -667,11 +667,30 @@ namespace task {
+@@ -802,11 +802,30 @@ namespace task {
  void init(){
  }
  
