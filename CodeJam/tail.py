@@ -5,11 +5,11 @@ if "IA_MODE" in FLAGS:
         in_value = cin()
         if in_value == IA_ERROR_CODE:
             quit()
-        log("reading value:\t", in_value)
+        llog("reading value:\t", in_value)
         return in_value
 
     def out(t):
-        log("sending output:\t", t)
+        llog("sending output:\t", t)
         cout(t)
 
 
