@@ -16,6 +16,7 @@ do
     recreate=test_examples/${BASH_REMATCH[1]}
     mkdir -p $recreate
     ./CodeJam/createFolders.bash $recreate ${BASH_REMATCH[2]}
+    rm -rf $recreate/${BASH_REMATCH[2]}.bak
     for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,testing_tool.py}
     do
         if [ -f $k ]
@@ -32,6 +33,9 @@ do
     then
         continue
     fi
+    echo "##########"
+    echo "##########  Executing $d ..."
+    echo "##########"
     (cd $d; ./execute.bash TEST)
     runresult=$?
     if [ $runresult != "0" ]

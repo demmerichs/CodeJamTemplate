@@ -1,7 +1,7 @@
-diff --git a/CodeJam/Main.cpp b/examples/2019/Round1B/B/Main.cpp
+diff --git a/CodeJam/Main.cpp b/examples/2019/Round1B/B_interactive/Main.cpp
 index fe07306..bd2689f 100644
 --- a/CodeJam/Main.cpp
-+++ b/examples/2019/Round1B/B/Main.cpp
++++ b/examples/2019/Round1B/B_interactive/Main.cpp
 @@ -1,9 +1,9 @@
  // #define DEFAULT_VAL    //remove comment on this line, to activate default value trigger
 -// #define IA_MODE        //remove comment on this line, to activate interactive problem mode
