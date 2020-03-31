@@ -9,13 +9,13 @@ IA_ERROR_CODE = "ERROR"
 # The maintained and empty code template can be found at:
 # https://github.com/DavidS3141/CodeJamTemplate
 # #region template code
-import functools as ft  # noqa: E402
-import itertools as it  # noqa: E402
-import numpy as np  # noqa: E402
-import scipy as sp  # noqa: E402
-import sys  # noqa: E402
-from math import factorial as fac  # noqa: E402
-import math  # noqa: E402
+import functools as ft  # noqa: E402,F401
+import itertools as it  # noqa: E402,F401
+import numpy as np  # noqa: E402,F401
+import scipy as sp  # noqa: E402,F401
+import sys  # noqa: E402,F401
+from math import factorial as fac  # noqa: E402,F401
+import math  # noqa: E402,F401
 
 # #region abbr
 
@@ -97,7 +97,7 @@ undefine(`substr')# undefine(`substr')
 
 
 def local_pdb():
-    lines = sys.stdin.readlines()
+    sys.stdin.readlines()
     sys.stdin = open("/dev/tty")
     import pdb
 
@@ -111,7 +111,7 @@ def local_log(*args):
 def local_assert(*args):
     if not args[0]:
         llog(args[1:])
-        pdb()
+        lpdb()
 
 
 # #endregion debugTools
@@ -243,6 +243,69 @@ def log2ll(n):
     return 1 + log2ll(n >> 1)
 
 
+# Implementation returns the values corresponding values for a, b
+# a_in * a_out + b_in * b_out = gcd(a, b) (> 0, trivial solution =0 excluded)
+def euclideanAlgo(a, b):
+    # only process, a,b >= 0, a<=b; transform all other cases to this
+    if a < 0:
+        a = -a
+        a, b = euclideanAlgo(a, b)
+        a = -a
+        return a, b
+    if b < 0:
+        b = -b
+        a, b = euclideanAlgo(a, b)
+        b = -b
+        return a, b
+    if a > b:
+        b, a = euclideanAlgo(b, a)
+        return a, b
+    if a == 0:
+        lassert(b >= 0, "euclideanAlgo: Logic error")
+        lassert(b > 0, "euclideanAlgo: Both numbers are zero")
+        b = 1
+        return a, b
+    s = b // a
+    r = b - s * a
+    r, a = euclideanAlgo(r, a)
+    a = a - s * r
+    b = r
+    return a, b
+
+
+def gcd(a, b):
+    c, d = euclideanAlgo(a, b)
+    return a * c + b * d
+
+
+# chinese remainder theorem in application
+def crt(remainders, moduli):
+    lassert(
+        len(remainders) == len(moduli),
+        "Chinese remainder theorem: remainders and moduli must be of same size!",
+    )
+    idxs = np.argsort(moduli)[::-1]
+    m = 1
+    r = 0
+    for idx in idxs:
+        # solve a*m1 + b*m2 == 1
+        cur_modulo = moduli[idx]
+        cur_remainder = remainders[idx]
+        a, b = euclideanAlgo(m, cur_modulo)
+        # make sure, that m1 and m2 are indeed coprime
+        lassert(
+            a * m + b * cur_modulo == 1,
+            "Chinese remainder theorem: euclidean algorithm delivered unexpected result! Are your factors coprime?",
+        )
+        # crt: find x == r1 (m1) and x == r2 (m2)
+        # solved by x = r1 + (r2 - r1) * a * m1 == r2 + (r1 - r2) * b * m2
+        # proof (for first expression): x == r1 (m1) trivial, x == r1 + (r2 - r1) * (a * m1 (m2)) == r1 + (r2 - r1) * 1 == r2 (m2)
+        r = r + (cur_remainder - r) * a * m
+        m *= cur_modulo
+        r = (r % m + m) % m
+    return r
+
+
 # #endregion mathTools
 
 # #region algoTools
@@ -308,8 +371,8 @@ result = ""
 
 
 def main():
-    init()
     nbr_tests = cin()
+    init()
     for test_id in range(1, 1 + nbr_tests):
         # read input
         readInput()

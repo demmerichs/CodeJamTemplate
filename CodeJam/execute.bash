@@ -2,7 +2,10 @@
 
 set -e
 
-m4 Solution.py.m4 > Solution_upload.py
+if [[ -f Solution.py.m4 ]]
+then
+    m4 Solution.py.m4 > Solution_upload.py
+fi
 
 if [ -z $1 ]
 then
@@ -22,6 +25,9 @@ fi
 
 if [[ -f Solution.py.m4 && ! -z $(diff Solution.py.m4 ../Solution.py.m4) ]]
 then
+    echo "#####################################################################"
+    echo "Using Python solution..."
+    echo "#####################################################################"
     m4 -DLOCAL Solution.py.m4 > Solution.py
     chmod +x Solution.py
     if [ -f testing_tool.py ]
@@ -57,6 +63,9 @@ fi
 
 if [[ -f Main.cpp && ! -z $(diff Main.cpp ../Main.cpp) ]]
 then
+    echo "#####################################################################"
+    echo "Using C++ solution..."
+    echo "#####################################################################"
     g++-7 Main.cpp -std=c++14 -pthread -O3 -o Solution -DLOCAL
     if [ -f testing_tool.py ]
     then

@@ -802,7 +802,8 @@ namespace task {
 ll N, m;
 
 void init(){
-    cin >> N >> m;
+    N = in();
+    m = in();
 }
 
 void readInput(){

@@ -28,7 +28,7 @@ undefine(`substr')# undefine(`substr')
 
 
 def local_pdb():
-    lines = sys.stdin.readlines()
+    sys.stdin.readlines()
     sys.stdin = open("/dev/tty")
     import pdb
 
@@ -42,7 +42,7 @@ def local_log(*args):
 def local_assert(*args):
     if not args[0]:
         llog(args[1:])
-        pdb()
+        lpdb()
 
 
 # #endregion debugTools

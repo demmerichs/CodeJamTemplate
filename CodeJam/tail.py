@@ -17,8 +17,8 @@ result = ""
 
 
 def main():
-    init()
     nbr_tests = cin()
+    init()
     for test_id in range(1, 1 + nbr_tests):
         # read input
         readInput()
