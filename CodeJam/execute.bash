@@ -53,7 +53,10 @@ then
             exit $?
         fi
     fi
-else
+fi
+
+if [[ -f Main.cpp && ! -z $(diff Main.cpp ../Main.cpp) ]]
+then
     g++-7 Main.cpp -std=c++14 -pthread -O3 -o Solution -DLOCAL
     if [ -f testing_tool.py ]
     then
