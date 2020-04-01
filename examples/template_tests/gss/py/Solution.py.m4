@@ -119,50 +119,34 @@ def local_assert(*args):
 # TODO add documentation
 
 
-def convert_input(val):
+def convert_input(vals):
     try:
-        result = eval(val)
-        assert type(result) in [float, int]
-    except (NameError, SyntaxError):
-        result = val
-    return result
+        return list(map(int, vals))
+    except ValueError:
+        pass
+    try:
+        return list(map(float, vals))
+    except ValueError:
+        pass
+    return vals
 
 
-def cin():
-    if len(cin.cached_vals) > 0:
-        val = cin.cached_vals[0]
-        del cin.cached_vals[0]
+def cin(n=None):
+    k = 1 if n is None else n
+    if len(cin.cached_vals) >= k:
+        val = cin.cached_vals[:k]
+        del cin.cached_vals[:k]
+        if n is None:
+            return val[0]
         return val
     else:
         v = input()
         v = v.strip().split(" ")
-        cin.cached_vals = list(convert_input(val) for val in v)
-        return cin()
+        cin.cached_vals += convert_input(v)
+        return cin(n)
 
 
 cin.cached_vals = []
-
-
-def cint():
-    v = input()
-    v = v.strip().split(" ")
-    return tuple(convert_input(val) for val in v)
-
-
-def cinl():
-    v = input()
-    v = v.strip().split(" ")
-    try:
-        v = list(map(int, v))
-        return v
-    except Exception:
-        pass
-    try:
-        v = list(map(float, v))
-        return v
-    except Exception:
-        pass
-    return v
 
 
 # #endregion parseTools
