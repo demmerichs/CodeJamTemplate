@@ -48,7 +48,7 @@ then
             diffresult="$(echo "$(diff <(color ./Solution.py < sample.txt) result.txt)")"
             if [ -z "$diffresult" ]
             then
-                exit 0
+                :
             else
                 echo "Did not produce the expected result! See diff for details:"
                 echo "$diffresult"
@@ -85,7 +85,7 @@ then
             diffresult="$(echo "$(diff <(color ./Solution < sample.txt) result.txt)")"
             if [ -z "$diffresult" ]
             then
-                exit 0
+                :
             else
                 echo "Did not produce the expected result! See diff for details:"
                 echo "$diffresult"
