@@ -4,7 +4,7 @@ set -e
 
 if [[ -f Solution.py.m4 ]]
 then
-    m4 Solution.py.m4 > Solution_upload.py
+    m4 --synclines Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution_upload.py
 fi
 
 if [ -z $1 ]
@@ -14,7 +14,7 @@ else
     if [[ $1 == "PDB" ]]
     then
         color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
-        m4 -DLOCAL -DPDB Solution.py.m4 > Solution.py
+        m4 --synclines -DLOCAL -DPDB Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution.py
         chmod +x Solution.py
         color ./Solution.py < sample.txt
         exit 0
@@ -28,7 +28,7 @@ then
     echo "#####################################################################"
     echo "Using Python solution..."
     echo "#####################################################################"
-    m4 -DLOCAL Solution.py.m4 > Solution.py
+    m4 --synclines -DLOCAL Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution.py
     chmod +x Solution.py
     if [ -f testing_tool.py ]
     then

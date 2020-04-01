@@ -14,6 +14,7 @@ touch $DIR/template_problem_folder/sample.txt
 touch $DIR/template_problem_folder/result.txt
 cp $DIR/interactive_runner.py $DIR/template_problem_folder/interactive_runner.py
 cp $DIR/execute.bash $DIR/template_problem_folder/execute.bash
+cp $DIR/sync_lines_after_m4.py $DIR/template_problem_folder/sync_lines_after_m4.py
 
 TARGET_DIR="$1"
 LETTER_1="$2"
