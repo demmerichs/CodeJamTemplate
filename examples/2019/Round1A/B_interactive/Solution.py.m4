@@ -43,9 +43,6 @@ def to_str(val, precision=10):
         return " ".join(map(local_to_str, val))
     if isinstance(val, np.float):
         return ("%%.%df" % precision) % val
-    if isinstance(val, (str, np.integer)):
-        return str(val)
-    lassert(False, "could not convert %s of type %s to string" % (val, type(val)))
     return str(val)
 
 
