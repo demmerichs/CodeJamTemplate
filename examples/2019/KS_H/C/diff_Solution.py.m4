@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/2019/KS_H/C/Solution.py.m4
-index 3a95eba..e002663 100644
+index 10cac5c..1fdc489 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/2019/KS_H/C/Solution.py.m4
-@@ -391,12 +391,49 @@ def init():
+@@ -388,12 +388,49 @@ def init():
  
  
  def readInput():
