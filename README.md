@@ -39,11 +39,11 @@ The error messages are piped away when an argument like `TEST` is provided to th
 **[ONLY PYTHON]** The `lpdb()` statements get activated and are usable if `PDB` is provided as argument to the script.
 
 ### Interactive problem
-Again, work in the corresponding solution file. At the top of the file, set the switch/flag correspondingly, so that the template is aware, that this is an interactive problem. Instead of a sample you can download a file usually called `testing_tool.py` from the problem page. Put this script in your task folder. Then again, you can test your code by executing:
+Again, work in the corresponding solution file. At the top of the file, set the switch/flag correspondingly, so that the template is aware, that this is an interactive problem. Instead of a sample you can download a file usually called `local_testing_tool.py` from the problem page. Put this script in your task folder. Then again, you can test your code by executing:
 
 `/path/to/contest-task-folder/eg/A/execute.bash [TEST|PDB]`
 
-In this case the `execute.bash` detects the existence of `testing_tool.py` and ignores the `sample.txt`.
+In this case the `execute.bash` detects the existence of `local_testing_tool.py` and ignores the `sample.txt`.
 
 ### Template Layout
 If you open `Main.cpp` or `Solution.py.m4` to work in, and you fold the whole `#region template code` (ideally supported by your IDE as described [below](#general-advice)) you should be left with something like this:
@@ -104,9 +104,9 @@ Here is short (language dependent) description of the control flags at the begin
 
 - **IA_MODE, IA_ERROR_CODE**
 
-  If you are working on an interactive problem, you should activate the *IA_MODE*. This will make sure, that additional error messages are printed visualizing for you, what data is sent between the `testing_tool.py` mentioned earlier, and your program. Also, the problem statement will usually describe what the `testing_tool.py` will do, when it comes to some kind of error state (probably because you sent data in the wrong way or order). This behavior is usually described as *"It will send a -1 in an error case"*. In this case you would set the *IA_ERROR_CODE* to -1. However, recently it seemed they switched to the default *IA_ERROR_CODE* of "ERROR".
+  If you are working on an interactive problem, you should activate the *IA_MODE*. This will make sure, that additional error messages are printed visualizing for you, what data is sent between the `local_testing_tool.py` mentioned earlier, and your program. Also, the problem statement will usually describe what the `local_testing_tool.py` will do, when it comes to some kind of error state (probably because you sent data in the wrong way or order). This behavior is usually described as *"It will send a -1 in an error case"*. In this case you would set the *IA_ERROR_CODE* to -1. However, recently it seemed they switched to the default *IA_ERROR_CODE* of "ERROR".
 
-  It is quite important to catch this error code and terminate your program when receiving it, the reason for this beeing that you are less confused when getting a "WRONG ANSWER" verdict from the judge system. The other case would be, that your program waits indefinetly for another input, but the `testing_tool.py` stopped already, and the judge system will report a "TIMELIMIT EXCEEDED" after a while, which will confuse you completely during the contest. For the template code to take care of this, it is important that during *IA_MODE* you do not use `cin, cout` but `in` (python: `get_in`) and `out(some_value)` on scalar values (eventually calling it multiple times in a row for a list of values).
+  It is quite important to catch this error code and terminate your program when receiving it, the reason for this beeing that you are less confused when getting a "WRONG ANSWER" verdict from the judge system. The other case would be, that your program waits indefinetly for another input, but the `local_testing_tool.py` stopped already, and the judge system will report a "TIMELIMIT EXCEEDED" after a while, which will confuse you completely during the contest. For the template code to take care of this, it is important that during *IA_MODE* you do not use `cin, cout` but `in` (python: `get_in`) and `out(some_value)` on scalar values (eventually calling it multiple times in a row for a list of values).
 
 - **COMM_TYPE** (C++ only)
 

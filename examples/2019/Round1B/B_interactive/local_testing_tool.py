@@ -1,9 +1,9 @@
 """Draupnir interactive judge.
 """
 
-# Usage: `python testing_tool.py test_number`, where the argument test_number is
+# Usage: `python local_testing_tool.py test_number`, where the argument test_number is
 # either 0 (first test set) or 1 (second test set).
-# This can also be run as `python3 testing_tool.py test_number`.
+# This can also be run as `python3 local_testing_tool.py test_number`.
 
 from __future__ import print_function
 import sys

@@ -17,7 +17,7 @@ do
     mkdir -p $recreate
     ./CodeJam/createFolders.bash $recreate ${BASH_REMATCH[2]}
     rm -rf $recreate/${BASH_REMATCH[2]}.bak
-    for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,testing_tool.py}
+    for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,local_testing_tool.py}
     do
         if [ -f $k ]
         then

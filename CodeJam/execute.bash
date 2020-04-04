@@ -30,18 +30,18 @@ then
     echo "#####################################################################"
     m4 --synclines -DLOCAL Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution.py
     chmod +x Solution.py
-    if [ -f testing_tool.py ]
+    if [ -f local_testing_tool.py ]
     then
-        color ./interactive_runner.py python testing_tool.py 0 -- ./Solution.py
-        color ./interactive_runner.py python testing_tool.py 1 -- ./Solution.py
-        color ./interactive_runner.py python testing_tool.py 2 -- ./Solution.py
-        color ./interactive_runner.py python testing_tool.py 3 -- ./Solution.py
-        color ./interactive_runner.py python testing_tool.py 4 -- ./Solution.py
-        color ./interactive_runner.py python testing_tool.py 5 -- ./Solution.py
-        color ./interactive_runner.py python testing_tool.py 6 -- ./Solution.py
-        color ./interactive_runner.py python testing_tool.py 7 -- ./Solution.py
-        color ./interactive_runner.py python testing_tool.py 8 -- ./Solution.py
-        color ./interactive_runner.py python testing_tool.py 9 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 0 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 1 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 2 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 3 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 4 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 5 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 6 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 7 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 8 -- ./Solution.py
+        color ./interactive_runner.py python local_testing_tool.py 9 -- ./Solution.py
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
@@ -67,18 +67,18 @@ then
     echo "Using C++ solution..."
     echo "#####################################################################"
     g++-7 Main.cpp -std=c++14 -pthread -O3 -o Solution -DLOCAL
-    if [ -f testing_tool.py ]
+    if [ -f local_testing_tool.py ]
     then
-        color ./interactive_runner.py python testing_tool.py 0 -- ./Solution
-        color ./interactive_runner.py python testing_tool.py 1 -- ./Solution
-        color ./interactive_runner.py python testing_tool.py 2 -- ./Solution
-        color ./interactive_runner.py python testing_tool.py 3 -- ./Solution
-        color ./interactive_runner.py python testing_tool.py 4 -- ./Solution
-        color ./interactive_runner.py python testing_tool.py 5 -- ./Solution
-        color ./interactive_runner.py python testing_tool.py 6 -- ./Solution
-        color ./interactive_runner.py python testing_tool.py 7 -- ./Solution
-        color ./interactive_runner.py python testing_tool.py 8 -- ./Solution
-        color ./interactive_runner.py python testing_tool.py 9 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 0 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 1 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 2 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 3 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 4 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 5 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 6 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 7 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 8 -- ./Solution
+        color ./interactive_runner.py python local_testing_tool.py 9 -- ./Solution
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
