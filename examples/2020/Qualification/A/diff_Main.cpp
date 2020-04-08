@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/A/Main.cpp
-index 0493fca..3966dc6 100644
+index aed7a25..b859cd6 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/A/Main.cpp
 @@ -2,7 +2,7 @@
@@ -17,15 +17,15 @@ index 0493fca..3966dc6 100644
  
 +ll k, N;
 +v(v(ll)) Mij;
-+v(set(ll)) rc, cc;
++v(s(ll)) rc, cc;
 +
  void readInput(){
 +    cin >> N;
 +    Mij.clear();
 +    rc.clear();
 +    cc.clear();
-+    rc = v(set(ll))(N);
-+    cc = v(set(ll))(N);
++    rc = v(s(ll))(N);
++    cc = v(s(ll))(N);
 +    ll t;
 +    k = 0;
 +    forn(i,N){

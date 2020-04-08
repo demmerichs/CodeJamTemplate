@@ -20,10 +20,10 @@ typedef std::complex<long long> cell;
 typedef std::complex<long double> pnt;
 typedef std::string str;
 typedef std::stringstream sstr;
-#define set(type) std::set<type >
-#define unordered_set(type) std::unordered_set<type >
-#define dict(type1, type2) std::unordered_map<type1, type2 >
-#define ordered_dict(type1, type2) std::map<type1, type2 >
+#define s(type) std::set<type >
+#define uos(type) std::unordered_set<type >
+#define d(type1, type2) std::map<type1, type2 >
+#define uod(type1, type2) std::unordered_map<type1, type2 >
 #define v(type) std::vector<type >
 #define p(type1,type2) std::pair<type1, type2 >
 #define c(type) std::complex<type >
@@ -64,7 +64,7 @@ typedef std::stringstream sstr;
 #define EPS 1e-15L
 #define PI 3.14159265358979323846264338328L
 #define MOD 1000000007L
-dict(char, cell) DIRECTIONS = {{'E', cell(1, 0)}, {'N', cell(0, 1)}, {'W', cell(-1, 0)}, {'S', cell(0, -1)}};
+d(char, cell) DIRECTIONS = {{'E', cell(1, 0)}, {'N', cell(0, 1)}, {'W', cell(-1, 0)}, {'S', cell(0, -1)}};
 //#endregion constants
 
 //#endregion abbr
@@ -825,11 +825,11 @@ using namespace std;
 
 namespace task {
 
-v(dict(ll, ll)) pfc;
+v(d(ll, ll)) pfc;
 
 void init(){
     forn(i, 100000){
-        dict(ll, ll) result;
+        d(ll, ll) result;
         ll startprime=2;
         ll cur = i+1;
         while(startprime*startprime<=cur){
@@ -850,7 +850,7 @@ void init(){
 
 ll N, Q, M;
 v(ll) Ri, Pi;
-dict(ll, ll) Rc;
+d(ll, ll) Rc;
 void readInput(){
     cin >> N >> M >> Q;
     Ri.clear();
@@ -869,7 +869,7 @@ void readInput(){
     }
 }
 
-v(ll) listofdivisors(dict(ll, ll) pf){
+v(ll) listofdivisors(d(ll, ll) pf){
     v(ll) result;
     result.pb(1);
     foreach(it, pf){
@@ -892,7 +892,7 @@ void calcFunction() {
         result += N / Ri[i];
     }
     forn(i, M){
-        dict(ll, ll) pf=pfc[Pi[i]-1];
+        d(ll, ll) pf=pfc[Pi[i]-1];
         v(ll) divs = listofdivisors(pf);
         llog("Pi:", Pi[i], "divs:", divs);
         forn(k, divs.sz){

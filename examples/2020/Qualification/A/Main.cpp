@@ -20,10 +20,10 @@ typedef std::complex<long long> cell;
 typedef std::complex<long double> pnt;
 typedef std::string str;
 typedef std::stringstream sstr;
-#define set(type) std::set<type >
-#define unordered_set(type) std::unordered_set<type >
-#define dict(type1, type2) std::unordered_map<type1, type2 >
-#define ordered_dict(type1, type2) std::map<type1, type2 >
+#define s(type) std::set<type >
+#define uos(type) std::unordered_set<type >
+#define d(type1, type2) std::map<type1, type2 >
+#define uod(type1, type2) std::unordered_map<type1, type2 >
 #define v(type) std::vector<type >
 #define p(type1,type2) std::pair<type1, type2 >
 #define c(type) std::complex<type >
@@ -64,7 +64,7 @@ typedef std::stringstream sstr;
 #define EPS 1e-15L
 #define PI 3.14159265358979323846264338328L
 #define MOD 1000000007L
-dict(char, cell) DIRECTIONS = {{'E', cell(1, 0)}, {'N', cell(0, 1)}, {'W', cell(-1, 0)}, {'S', cell(0, -1)}};
+d(char, cell) DIRECTIONS = {{'E', cell(1, 0)}, {'N', cell(0, 1)}, {'W', cell(-1, 0)}, {'S', cell(0, -1)}};
 //#endregion constants
 
 //#endregion abbr
@@ -830,15 +830,15 @@ void init(){
 
 ll k, N;
 v(v(ll)) Mij;
-v(set(ll)) rc, cc;
+v(s(ll)) rc, cc;
 
 void readInput(){
     cin >> N;
     Mij.clear();
     rc.clear();
     cc.clear();
-    rc = v(set(ll))(N);
-    cc = v(set(ll))(N);
+    rc = v(s(ll))(N);
+    cc = v(s(ll))(N);
     ll t;
     k = 0;
     forn(i,N){

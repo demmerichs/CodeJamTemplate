@@ -1,16 +1,16 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_G/A/Main.cpp
-index 0493fca..de38f38 100644
+index aed7a25..c8b7ce2 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_G/A/Main.cpp
 @@ -825,14 +825,80 @@ using namespace std;
  
  namespace task {
  
-+v(dict(ll, ll)) pfc;
++v(d(ll, ll)) pfc;
 +
  void init(){
 +    forn(i, 100000){
-+        dict(ll, ll) result;
++        d(ll, ll) result;
 +        ll startprime=2;
 +        ll cur = i+1;
 +        while(startprime*startprime<=cur){
@@ -31,7 +31,7 @@ index 0493fca..de38f38 100644
  
 +ll N, Q, M;
 +v(ll) Ri, Pi;
-+dict(ll, ll) Rc;
++d(ll, ll) Rc;
  void readInput(){
 +    cin >> N >> M >> Q;
 +    Ri.clear();
@@ -50,7 +50,7 @@ index 0493fca..de38f38 100644
 +    }
 +}
 +
-+v(ll) listofdivisors(dict(ll, ll) pf){
++v(ll) listofdivisors(d(ll, ll) pf){
 +    v(ll) result;
 +    result.pb(1);
 +    foreach(it, pf){
@@ -73,7 +73,7 @@ index 0493fca..de38f38 100644
 +        result += N / Ri[i];
 +    }
 +    forn(i, M){
-+        dict(ll, ll) pf=pfc[Pi[i]-1];
++        d(ll, ll) pf=pfc[Pi[i]-1];
 +        v(ll) divs = listofdivisors(pf);
 +        llog("Pi:", Pi[i], "divs:", divs);
 +        forn(k, divs.sz){

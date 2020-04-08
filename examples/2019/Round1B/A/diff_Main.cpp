@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round1B/A/Main.cpp
-index 0493fca..ecf7273 100644
+index aed7a25..b7aec4b 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round1B/A/Main.cpp
 @@ -2,7 +2,7 @@
@@ -19,8 +19,8 @@ index 0493fca..ecf7273 100644
 +v(cell) persons;
 +v(cell) directions;
 +v(char) dirnames;
-+ordered_dict(ll, ll) xcounts;
-+ordered_dict(ll, ll) ycounts;
++d(ll, ll) xcounts;
++d(ll, ll) ycounts;
 +
  void readInput(){
 +    cin >> P >> Q;

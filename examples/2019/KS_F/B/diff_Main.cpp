@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_F/B/Main.cpp
-index 0493fca..b60f965 100644
+index aed7a25..ca3a23d 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_F/B/Main.cpp
 @@ -825,14 +825,87 @@ using namespace std;
@@ -54,8 +54,8 @@ index 0493fca..b60f965 100644
  void init(){
  }
  
-+dict(ll, ll) counts;
-+dict(ll, emp) emps;
++d(ll, ll) counts;
++d(ll, emp) emps;
 +
  void readInput(){
 +    cin >> N >> S;

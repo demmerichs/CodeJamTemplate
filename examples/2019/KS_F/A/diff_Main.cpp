@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_F/A/Main.cpp
-index 0493fca..4e3dd22 100644
+index aed7a25..0963b24 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_F/A/Main.cpp
 @@ -828,11 +828,61 @@ namespace task {
@@ -9,7 +9,7 @@ index 0493fca..4e3dd22 100644
 +ll N, K;
 +
 +v(ll) Ai;
-+dict(ll, dict(ll, ll)) Rij, Fij;
++d(ll, d(ll, ll)) Rij, Fij;
 +
  void readInput(){
 +    cin >> N >> K;
@@ -28,7 +28,7 @@ index 0493fca..4e3dd22 100644
 +    if(Rij.count(i) && Rij[i].count(j)){
 +        return Rij[i][j];
 +    }
-+    dict(ll, ll) counts;
++    d(ll, ll) counts;
 +    fornn(c, i, j){
 +        counts[Ai[c]]++;
 +    }
