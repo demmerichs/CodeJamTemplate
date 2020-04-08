@@ -20,18 +20,17 @@ int main() {
 #ifndef IA_MODE
         //write output
         std::cout << "Case #" << test << ": ";
-#ifndef DEFAULT_VAL
+#ifndef DEFAULT_VAL_MODE
         std::cout << result << std::endl;
-#endif /*DEFAULT_VAL*/
-#ifdef DEFAULT_VAL
-        if(result>=0){
-            std::cout << result << std::endl;
+#endif /*DEFAULT_VAL_MODE*/
+#ifdef DEFAULT_VAL_MODE
+        if(DEFAULT_VAL_TRIGGER){
+            std::cout << DEFAULT_VAL << std::endl;
         }
         else{
-            std::string errorWord = ERROR_WORD;
-            std::cout << errorWord << std::endl;
+            std::cout << result << std::endl;
         }
-#endif /*DEFAULT_VAL*/
+#endif /*DEFAULT_VAL_MODE*/
 #endif /*IA_MODE*/
     }
     return 0;

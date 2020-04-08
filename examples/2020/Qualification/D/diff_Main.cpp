@@ -1,17 +1,18 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/D/Main.cpp
-index aed7a25..a15a7e9 100644
+index 1b5e28b..a718c60 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/D/Main.cpp
-@@ -1,9 +1,9 @@
- // #define DEFAULT_VAL    //remove comment on this line, to activate default value trigger
+@@ -1,10 +1,10 @@
+ // #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
+ #define DEFAULT_VAL_TRIGGER result<0
+ #define DEFAULT_VAL "IMPOSSIBLE"
 -// #define IA_MODE        //remove comment on this line, to activate interactive problem mode
-+#define IA_MODE        //remove comment on this line, to activate interactive problem mode
- // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
- #define ERROR_WORD "IMPOSSIBLE"
--#define COMM_TYPE ll
 -#define IA_ERROR_CODE "ERROR"
-+#define COMM_TYPE str
++#define IA_MODE        //remove comment on this line, to activate interactive problem mode
 +#define IA_ERROR_CODE "N"
+ // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
+-#define COMM_TYPE ll
++#define COMM_TYPE str
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate

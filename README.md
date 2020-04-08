@@ -48,12 +48,13 @@ In this case the `execute.bash` detects the existence of `local_testing_tool.py`
 ### Template Layout
 If you open `Main.cpp` or `Solution.py.m4` to work in, and you fold the whole `#region template code` (ideally supported by your IDE as described [below](#general-advice)) you should be left with something like this:
 ```c++
-// #define DEFAULT_VAL    //remove comment on this line, to activate default value trigger
+// #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
+#define DEFAULT_VAL_TRIGGER result<0
+#define DEFAULT_VAL "IMPOSSIBLE"
 // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
-// #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
-#define ERROR_WORD "IMPOSSIBLE"
-#define COMM_TYPE ll
 #define IA_ERROR_CODE "ERROR"
+// #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
+#define COMM_TYPE ll
 
 // The maintained and empty code template can be found at:
 // https://github.com/DavidS3141/CodeJamTemplate
@@ -98,9 +99,9 @@ In the case of an interactive problem, this changes a bit, by just not printing 
 
 #### Control Flags
 Here is short (language dependent) description of the control flags at the beginning of the template file, which you control by (un-)commenting those lines.
-- **DEFAULT_VAL, ERROR_WORD**
+- **DEFAULT_VAL_MODE, DEFAULT_VAL_TRIGGER, DEFAULT_VAL**
 
-  These two control the magic formatting of the `result` data structure. If you activate the *DEFAULT_VAL* mode then there will be some kind of check if your `result` variable carries some data (e.g. list as at least one element, integer is non-negative, etc.). If there is some data, it will just be printed like usually through the `magic_formatting`. However, if there was no/invalid data, then the content of the *ERROR_WORD* variable will be printed instead. The detection of when this error case happens, is in the main function and you might want to change this during the contest as well. However, remember that you also always can fallback to returning the constructed string in the `result` variable and not using this mechanism.
+  These three control the magic formatting of the `result` data structure. If you activate the *DEFAULT_VAL_MODE* then there will be some check if your `result` variable carries some data (e.g. integer is non-negative). You can specify this trigger in the *DEFAULT_VAL_TRIGGER* expression by only using the result variable (all abbreviations and functions work here). If the trigger is signaled, then the *DEFAULT_VAL* will be just printed, otherwise it will print like usual through the `magic_formatting`. However, remember that you also always can fallback to returning the constructed string in the `result` variable and not using this mechanism.
 
 - **IA_MODE, IA_ERROR_CODE**
 

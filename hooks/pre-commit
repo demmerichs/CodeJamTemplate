@@ -8,5 +8,7 @@ then
     exit 1
 fi
 ./.git/hooks/create_examples_implementation_tree.bash
+./.git/hooks/create_completes_from_diff.bash
+./.git/hooks/create_diffs.bash -f
 ./.git/hooks/check_diffs.bash
 ./.git/hooks/check_results.bash

@@ -1,27 +1,21 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/E/Main.cpp
-index aed7a25..e92e082 100644
+index 1b5e28b..0a42d6a 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/E/Main.cpp
-@@ -1,8 +1,8 @@
--// #define DEFAULT_VAL    //remove comment on this line, to activate default value trigger
-+#define DEFAULT_VAL    //remove comment on this line, to activate default value trigger
+@@ -1,10 +1,10 @@
+-// #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
+-#define DEFAULT_VAL_TRIGGER result<0
++#define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
++#define DEFAULT_VAL_TRIGGER result.sz==0
+ #define DEFAULT_VAL "IMPOSSIBLE"
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
+ #define IA_ERROR_CODE "ERROR"
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
- #define ERROR_WORD "IMPOSSIBLE"
 -#define COMM_TYPE ll
 +#define COMM_TYPE str
- #define IA_ERROR_CODE "ERROR"
  
  // The maintained and empty code template can be found at:
-@@ -806,7 +806,7 @@ int main() {
-         std::cout << result << std::endl;
- #endif /*DEFAULT_VAL*/
- #ifdef DEFAULT_VAL
--        if(result>=0){
-+        if(result.sz>0){
-             std::cout << result << std::endl;
-         }
-         else{
+ // https://github.com/DavidS3141/CodeJamTemplate
 @@ -828,11 +828,114 @@ namespace task {
  void init(){
  }

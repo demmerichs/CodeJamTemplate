@@ -1,16 +1,16 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/B/Main.cpp
-index aed7a25..b693492 100644
+index 1b5e28b..5023238 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/B/Main.cpp
-@@ -2,7 +2,7 @@
+@@ -4,7 +4,7 @@
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
+ #define IA_ERROR_CODE "ERROR"
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
- #define ERROR_WORD "IMPOSSIBLE"
 -#define COMM_TYPE ll
 +#define COMM_TYPE str
- #define IA_ERROR_CODE "ERROR"
  
  // The maintained and empty code template can be found at:
+ // https://github.com/DavidS3141/CodeJamTemplate
 @@ -828,11 +828,37 @@ namespace task {
  void init(){
  }
