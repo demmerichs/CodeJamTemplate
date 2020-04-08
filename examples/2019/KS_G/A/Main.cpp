@@ -20,8 +20,8 @@ typedef std::complex<long long> cell;
 typedef std::complex<long double> pnt;
 typedef std::string str;
 typedef std::stringstream sstr;
-#define set(type) std::unordered_set<type >
-#define ordered_set(type) std::set<type >
+#define set(type) std::set<type >
+#define unordered_set(type) std::unordered_set<type >
 #define dict(type1, type2) std::unordered_map<type1, type2 >
 #define ordered_dict(type1, type2) std::map<type1, type2 >
 #define v(type) std::vector<type >
@@ -714,6 +714,32 @@ public:
         return result;
     }
 };
+
+bool find_match(unsigned long long r, const std::vector<std::vector<bool> > &connected, std::vector<long long> &matched_rows, std::vector<long long> &matched_cols, std::vector<bool> &seen) {
+    for(unsigned long long c = 0; c < connected[r].size(); c++){
+        if(connected[r][c] && !seen[c]){
+            seen[c] = true;
+            if(matched_cols[c] < 0 || find_match(matched_cols[c], connected, matched_rows, matched_cols, seen)){
+                matched_rows[r] = c;
+                matched_cols[c] = r;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+unsigned long long maximal_bipartite_matching(const std::vector<std::vector<bool> > &connected, std::vector<long long> &matched_rows, std::vector<long long> &matched_cols) {
+    matched_rows = std::vector<long long>(connected.size(), -1);
+    matched_cols = std::vector<long long>(connected[0].size(), -1);
+
+    unsigned long long num_matches = 0;
+    for(unsigned long long r = 0; r < connected.size(); r++){
+        std::vector<bool> seen(connected[0].size(), false);
+        if(find_match(r, connected, matched_rows, matched_cols, seen)) num_matches++;
+    }
+    return num_matches;
+}
 
 } // namespace algoTools
 using namespace algoTools;
