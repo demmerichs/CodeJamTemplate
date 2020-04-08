@@ -1,7 +1,7 @@
-#/bin/bash!
+#!/usr/bin/env bash
 
 IFS=$'\n'
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )"
+DIR="$( cd "$( dirname $0 )" && pwd -P )"
 
 rm -rf $DIR/template_problem_folder
 

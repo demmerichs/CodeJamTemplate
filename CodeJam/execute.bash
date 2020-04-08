@@ -2,6 +2,28 @@
 
 set -e
 
+if test -n "$ZSH_VERSION"; then
+  PROFILE_SHELL=zsh
+elif test -n "$BASH_VERSION"; then
+  PROFILE_SHELL=bash
+elif test -n "$KSH_VERSION"; then
+  PROFILE_SHELL=ksh
+elif test -n "$FCEDIT"; then
+  PROFILE_SHELL=ksh
+elif test -n "$PS3"; then
+  PROFILE_SHELL=unknown
+else
+  PROFILE_SHELL=sh
+fi
+
+if [ $PROFILE_SHELL != "bash" ]
+then
+    echo "The following shell seems to be used ... "$PROFILE_SHELL
+    echo "However, it is best tested with bash shells! I wish you the best of luck :)"
+else
+    echo "Great, you are using bash which is well-tested!"
+fi
+
 if [[ -f Solution.py.m4 ]]
 then
     m4 --synclines Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution_upload.py
@@ -9,11 +31,15 @@ fi
 
 if [ -z $1 ]
 then
-    color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
+    function color {
+        "$@" 2> >(sed $'s,.*,\e[31m&\e[m,')
+    }
 else
-    if [[ $1 == "PDB" ]]
+    if [ $1 = "PDB" ]
     then
-        color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
+        function color {
+            "$@" 2> >(sed $'s,.*,\e[31m&\e[m,')
+        }
         m4 --synclines -DLOCAL -DPDB Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution.py
         chmod +x Solution.py
         color ./Solution.py < sample.txt
