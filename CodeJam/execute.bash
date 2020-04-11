@@ -32,13 +32,13 @@ fi
 if [ -z $1 ]
 then
     function color {
-        "$@" 2> >(sed $'s,.*,\e[31m&\e[m,')
+        "$@" 2> >(sed $'s,.*,\e[31m&\e[m,' 1>&2)
     }
 else
     if [ $1 = "PDB" ]
     then
         function color {
-            "$@" 2> >(sed $'s,.*,\e[31m&\e[m,')
+            "$@" 2> >(sed $'s,.*,\e[31m&\e[m,' 1>&2)
         }
         m4 --synclines -DLOCAL -DPDB Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution.py
         chmod +x Solution.py
@@ -71,7 +71,7 @@ then
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
-            diffresult="$(echo "$(diff <(color ./Solution.py < sample.txt) result.txt)")"
+            diffresult="$(echo "$(diff -Z <(time color ./Solution.py < sample.txt) result.txt)")"
             if [ -z "$diffresult" ]
             then
                 :
@@ -81,7 +81,7 @@ then
                 exit 1
             fi
         else
-            color ./Solution.py < sample.txt
+            time color ./Solution.py < sample.txt
             exit $?
         fi
     fi
@@ -108,7 +108,7 @@ then
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
-            diffresult="$(echo "$(diff <(color ./Solution < sample.txt) result.txt)")"
+            diffresult="$(echo "$(diff -Z <(time color ./Solution < sample.txt) result.txt)")"
             if [ -z "$diffresult" ]
             then
                 :
@@ -118,7 +118,7 @@ then
                 exit 1
             fi
         else
-            color ./Solution < sample.txt
+            time color ./Solution < sample.txt
             exit $?
         fi
     fi
