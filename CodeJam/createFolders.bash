@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 TARGET_DIR="$1"
-PROBLEM_FOLDERS=(${@:2})
+PROBLEM_FOLDERS=("${@:2}")
 
 IFS=$'\n'
 DIR="$( cd "$( dirname $0 )" && pwd -P )"
