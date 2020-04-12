@@ -4,6 +4,7 @@
 /CodeJam/template_problem_folder/
 /CodeJam/Main.cpp
 /CodeJam/Solution.py.m4
+/CodeJam/CMakeLists.txt
 
 /examples/*/*/*/Solution
 /test_examples
