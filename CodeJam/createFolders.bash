@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+TARGET_DIR="$1"
+PROBLEM_FOLDERS=(${@:2})
+
 IFS=$'\n'
 DIR="$( cd "$( dirname $0 )" && pwd -P )"
 
@@ -16,13 +19,6 @@ cp $DIR/interactive_runner.py $DIR/template_problem_folder/interactive_runner.py
 cp $DIR/execute.bash $DIR/template_problem_folder/execute.bash
 cp $DIR/sync_lines_after_m4.py $DIR/template_problem_folder/sync_lines_after_m4.py
 
-TARGET_DIR="$1"
-LETTER_1="$2"
-LETTER_2="$3"
-LETTER_3="$4"
-LETTER_4="$5"
-LETTER_5="$6"
-LETTER_6="$7"
 
 if [[ $TARGET_DIR = "" ]]
 then
@@ -36,110 +32,27 @@ mkdir -p "$TARGET_DIR"
 cp -r $DIR/template_problem_folder/* "$TARGET_DIR"
 echo "  The following folders get created in "$TARGET_DIR
 
-if [[ $LETTER_1 = "" ]]
-then
-    exit
-fi
-echo "    "$LETTER_1
-if [ -d "$TARGET_DIR/$LETTER_1" ]
-then
-    if [ -d "$TARGET_DIR/$LETTER_1.bak" ]
-    then
-        echo "The folders $TARGET_DIR/$LETTER_1 and $TARGET_DIR/$LETTER_1.bak already existed!"
-        exit
-    else
-        cp -r "$TARGET_DIR/$LETTER_1" "$TARGET_DIR/$LETTER_1.bak"
-        rm -rf "$TARGET_DIR/$LETTER_1"
-    fi
-fi
-cp -r $DIR/template_problem_folder "$TARGET_DIR/$LETTER_1"
 
-if [[ $LETTER_2 = "" ]]
-then
-    exit
-fi
-echo "    "$LETTER_2
-if [ -d "$TARGET_DIR/$LETTER_2" ]
-then
-    if [ -d "$TARGET_DIR/$LETTER_2.bak" ]
-    then
-        echo "The folders $TARGET_DIR/$LETTER_2 and $TARGET_DIR/$LETTER_2.bak already existed!"
-        exit
-    else
-        cp -r "$TARGET_DIR/$LETTER_2" "$TARGET_DIR/$LETTER_2.bak"
-        rm -rf "$TARGET_DIR/$LETTER_2"
-    fi
-fi
-cp -r $DIR/template_problem_folder "$TARGET_DIR/$LETTER_2"
+function make_problem_folder {
+  name="$1"
+  echo "    $name"
+  if [ -d "$TARGET_DIR/${name}" ]
+  then
+      if [ -d "$TARGET_DIR/${name}.bak" ]
+      then
+          echo "The folders $TARGET_DIR/${name} and $TARGET_DIR/${name}.bak already existed!"
+          exit
+      else
+          cp -r "$TARGET_DIR/${name}" "$TARGET_DIR/${name}.bak"
+          rm -rf "$TARGET_DIR/${name}"
+      fi
+  fi
+  cp -r $DIR/template_problem_folder "$TARGET_DIR/${name}"
+}
 
-if [[ $LETTER_3 = "" ]]
-then
-    exit
-fi
-echo "    "$LETTER_3
-if [ -d "$TARGET_DIR/$LETTER_3" ]
-then
-    if [ -d "$TARGET_DIR/$LETTER_3.bak" ]
-    then
-        echo "The folders $TARGET_DIR/$LETTER_3 and $TARGET_DIR/$LETTER_3.bak already existed!"
-        exit
-    else
-        cp -r "$TARGET_DIR/$LETTER_3" "$TARGET_DIR/$LETTER_3.bak"
-        rm -rf "$TARGET_DIR/$LETTER_3"
-    fi
-fi
-cp -r $DIR/template_problem_folder "$TARGET_DIR/$LETTER_3"
 
-if [[ $LETTER_4 = "" ]]
-then
-    exit
-fi
-echo "    "$LETTER_4
-if [ -d "$TARGET_DIR/$LETTER_4" ]
-then
-    if [ -d "$TARGET_DIR/$LETTER_4.bak" ]
-    then
-        echo "The folders $TARGET_DIR/$LETTER_4 and $TARGET_DIR/$LETTER_4.bak already existed!"
-        exit
-    else
-        cp -r "$TARGET_DIR/$LETTER_4" "$TARGET_DIR/$LETTER_4.bak"
-        rm -rf "$TARGET_DIR/$LETTER_4"
-    fi
-fi
-cp -r $DIR/template_problem_folder "$TARGET_DIR/$LETTER_4"
+for problem_folder in ${PROBLEM_FOLDERS[@]}
+do
+  make_problem_folder ${problem_folder}
+done
 
-if [[ $LETTER_5 = "" ]]
-then
-    exit
-fi
-echo "    "$LETTER_5
-if [ -d "$TARGET_DIR/$LETTER_5" ]
-then
-    if [ -d "$TARGET_DIR/$LETTER_5.bak" ]
-    then
-        echo "The folders $TARGET_DIR/$LETTER_5 and $TARGET_DIR/$LETTER_5.bak already existed!"
-        exit
-    else
-        cp -r "$TARGET_DIR/$LETTER_5" "$TARGET_DIR/$LETTER_5.bak"
-        rm -rf "$TARGET_DIR/$LETTER_5"
-    fi
-fi
-cp -r $DIR/template_problem_folder "$TARGET_DIR/$LETTER_5"
-
-if [[ $LETTER_6 = "" ]]
-then
-    exit
-fi
-echo "    "$LETTER_6
-if [ -d "$TARGET_DIR/$LETTER_6" ]
-then
-    if [ -d "$TARGET_DIR/$LETTER_6.bak" ]
-    then
-        echo "The folders $TARGET_DIR/$LETTER_6 and $TARGET_DIR/$LETTER_6.bak already existed!"
-        exit
-    else
-        cp -r "$TARGET_DIR/$LETTER_6" "$TARGET_DIR/$LETTER_6.bak"
-        rm -rf "$TARGET_DIR/$LETTER_6"
-    fi
-fi
-cp -r $DIR/template_problem_folder "$TARGET_DIR/$LETTER_6"
