@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_F/C/Main.cpp
-index 1b5e28b..27bd3d3 100644
+index 98774ea..9be074e 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_F/C/Main.cpp
 @@ -828,11 +828,108 @@ namespace task {
@@ -21,8 +21,8 @@ index 1b5e28b..27bd3d3 100644
 +    } else{
 +        childs[cur_node] = v(ll)(all(neighbors[cur_node]));
 +    }
-+    foreach(it, childs[cur_node]){
-+        traverse_tree(cur_node, *it);
++    foreach(child_node, childs[cur_node]){
++        traverse_tree(cur_node, child_node);
 +    }
 +}
 +
@@ -52,8 +52,8 @@ index 1b5e28b..27bd3d3 100644
 +        neighbors[s].insert(e);
 +        neighbors[e].insert(s);
 +    }
-+    foreach(it, neighbors)
-+        llog(*it);
++    foreach(neigh, neighbors)
++        llog(neigh);
 +    llog();
 +    traverse_tree(-1, 0);
 +}
@@ -72,16 +72,16 @@ index 1b5e28b..27bd3d3 100644
 +    }
 +    if(cur_has_lh){
 +        ll r = Bi[cur_node];
-+        foreach(it, childs[cur_node]){
-+            r += max(maxBeauty(*it, true, true), maxBeauty(*it, true, false));
++        foreach(child_node, childs[cur_node]){
++            r += max(maxBeauty(child_node, true, true), maxBeauty(child_node, true, false));
 +        }
 +        maxBeautyHash[hashargnum] = r;
 +        return maxBeautyHash[hashargnum];
 +    }
 +    if(par_has_lh){
 +        ll r = Bi[cur_node];
-+        foreach(it, childs[cur_node]){
-+            r += max(maxBeauty(*it, false, true), maxBeauty(*it, false, false));
++        foreach(child_node, childs[cur_node]){
++            r += max(maxBeauty(child_node, false, true), maxBeauty(child_node, false, false));
 +        }
 +        maxBeautyHash[hashargnum] = r;
 +        return maxBeautyHash[hashargnum];
@@ -90,9 +90,9 @@ index 1b5e28b..27bd3d3 100644
 +    // compute two cases: cur is lit by child, or cur is not lit
 +    ll r_notlit = 0;
 +    ll best_addable_at_least_one_lh_child = -INF;
-+    foreach(it, childs[cur_node]){
-+        ll curval_child_lh = maxBeauty(*it, false, true);
-+        ll curval_child_nolh = maxBeauty(*it, false, false);
++    foreach(child_node, childs[cur_node]){
++        ll curval_child_lh = maxBeauty(child_node, false, true);
++        ll curval_child_nolh = maxBeauty(child_node, false, false);
 +        best_addable_at_least_one_lh_child = max(
 +            best_addable_at_least_one_lh_child + max(curval_child_lh, curval_child_nolh),
 +            r_notlit + curval_child_lh

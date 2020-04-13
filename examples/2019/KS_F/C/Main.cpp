@@ -52,8 +52,8 @@ typedef std::stringstream sstr;
 #define all(x) (x).begin(), (x).end()
 #define ssel(x,i) (x).begin()+(i), (x).begin()+(i)+1
 #define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
-#define foreach(cit,container) for(auto cit = (container).begin(); cit != (container).end(); cit++)
-#define foreachc(c,cit,container) ll c=0;for(auto cit = (container).begin(); cit != (container).end(); c++, cit++)
+#define foreach(elem,container) for(auto &elem : container)
+#define foreachc(elem,container) for(const auto &elem : container)
 //#endregion iterators
 //#region for-loops
 #define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
@@ -658,12 +658,12 @@ private:
 public:
     BalancedRangeTree<T>(const v(v(T)) &values, ll dimension, v(ll) idxs): values(values), dimension(dimension){
         v(T) cur_values;
-        foreach(idx_iter, idxs){
-            cur_values.pb(values[dimension][*idx_iter]);
+        foreach(idx, idxs){
+            cur_values.pb(values[dimension][idx]);
         }
         v(ll) cur_argsorted = argsort(cur_values);
-        foreach(cur_arg_idx_it, cur_argsorted){
-            argsorted.pb(idxs[*cur_arg_idx_it]);
+        foreach(cur_arg_idx, cur_argsorted){
+            argsorted.pb(idxs[cur_arg_idx]);
         }
 
         create_subtrees();
@@ -686,7 +686,7 @@ public:
             v(T) rest_range_u(msel(u, 1, u.size()));
             v(ll) idxs_of_subtrees_in_range = get_idxs_of_subtrees_in_idx_range(low_idx-1, up_idx == argsorted.size() ? 1<<(max_depth-1):up_idx);
             foreach(subtree_idx, idxs_of_subtrees_in_range){
-                v(ll) cur_result_idxs = subtrees[*subtree_idx].get_range(rest_range_l, rest_range_u);
+                v(ll) cur_result_idxs = subtrees[subtree_idx].get_range(rest_range_l, rest_range_u);
                 result.insert(result.ed, all(cur_result_idxs));
             }
         } else {
@@ -706,7 +706,7 @@ public:
             v(T) rest_range_u(msel(u, 1, u.size()));
             v(ll) idxs_of_subtrees_in_range = get_idxs_of_subtrees_in_idx_range(low_idx-1, up_idx == argsorted.size() ? 1<<(max_depth-1):up_idx);
             foreach(subtree_idx, idxs_of_subtrees_in_range){
-                ll cur_result = subtrees[*subtree_idx].get_range_count(rest_range_l, rest_range_u);
+                ll cur_result = subtrees[subtree_idx].get_range_count(rest_range_l, rest_range_u);
                 result += cur_result;
             }
         } else {
@@ -843,8 +843,8 @@ void traverse_tree(ll cur_par, ll cur_node){
     } else{
         childs[cur_node] = v(ll)(all(neighbors[cur_node]));
     }
-    foreach(it, childs[cur_node]){
-        traverse_tree(cur_node, *it);
+    foreach(child_node, childs[cur_node]){
+        traverse_tree(cur_node, child_node);
     }
 }
 
@@ -874,8 +874,8 @@ void readInput(){
         neighbors[s].insert(e);
         neighbors[e].insert(s);
     }
-    foreach(it, neighbors)
-        llog(*it);
+    foreach(neigh, neighbors)
+        llog(neigh);
     llog();
     traverse_tree(-1, 0);
 }
@@ -894,16 +894,16 @@ ll maxBeauty(ll cur_node, bool par_has_lh, bool cur_has_lh){
     }
     if(cur_has_lh){
         ll r = Bi[cur_node];
-        foreach(it, childs[cur_node]){
-            r += max(maxBeauty(*it, true, true), maxBeauty(*it, true, false));
+        foreach(child_node, childs[cur_node]){
+            r += max(maxBeauty(child_node, true, true), maxBeauty(child_node, true, false));
         }
         maxBeautyHash[hashargnum] = r;
         return maxBeautyHash[hashargnum];
     }
     if(par_has_lh){
         ll r = Bi[cur_node];
-        foreach(it, childs[cur_node]){
-            r += max(maxBeauty(*it, false, true), maxBeauty(*it, false, false));
+        foreach(child_node, childs[cur_node]){
+            r += max(maxBeauty(child_node, false, true), maxBeauty(child_node, false, false));
         }
         maxBeautyHash[hashargnum] = r;
         return maxBeautyHash[hashargnum];
@@ -912,9 +912,9 @@ ll maxBeauty(ll cur_node, bool par_has_lh, bool cur_has_lh){
     // compute two cases: cur is lit by child, or cur is not lit
     ll r_notlit = 0;
     ll best_addable_at_least_one_lh_child = -INF;
-    foreach(it, childs[cur_node]){
-        ll curval_child_lh = maxBeauty(*it, false, true);
-        ll curval_child_nolh = maxBeauty(*it, false, false);
+    foreach(child_node, childs[cur_node]){
+        ll curval_child_lh = maxBeauty(child_node, false, true);
+        ll curval_child_nolh = maxBeauty(child_node, false, false);
         best_addable_at_least_one_lh_child = max(
             best_addable_at_least_one_lh_child + max(curval_child_lh, curval_child_nolh),
             r_notlit + curval_child_lh

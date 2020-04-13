@@ -52,8 +52,8 @@ typedef std::stringstream sstr;
 #define all(x) (x).begin(), (x).end()
 #define ssel(x,i) (x).begin()+(i), (x).begin()+(i)+1
 #define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
-#define foreach(cit,container) for(auto cit = (container).begin(); cit != (container).end(); cit++)
-#define foreachc(c,cit,container) ll c=0;for(auto cit = (container).begin(); cit != (container).end(); c++, cit++)
+#define foreach(elem,container) for(auto &elem : container)
+#define foreachc(elem,container) for(const auto &elem : container)
 //#endregion iterators
 //#region for-loops
 #define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
@@ -658,12 +658,12 @@ private:
 public:
     BalancedRangeTree<T>(const v(v(T)) &values, ll dimension, v(ll) idxs): values(values), dimension(dimension){
         v(T) cur_values;
-        foreach(idx_iter, idxs){
-            cur_values.pb(values[dimension][*idx_iter]);
+        foreach(idx, idxs){
+            cur_values.pb(values[dimension][idx]);
         }
         v(ll) cur_argsorted = argsort(cur_values);
-        foreach(cur_arg_idx_it, cur_argsorted){
-            argsorted.pb(idxs[*cur_arg_idx_it]);
+        foreach(cur_arg_idx, cur_argsorted){
+            argsorted.pb(idxs[cur_arg_idx]);
         }
 
         create_subtrees();
@@ -686,7 +686,7 @@ public:
             v(T) rest_range_u(msel(u, 1, u.size()));
             v(ll) idxs_of_subtrees_in_range = get_idxs_of_subtrees_in_idx_range(low_idx-1, up_idx == argsorted.size() ? 1<<(max_depth-1):up_idx);
             foreach(subtree_idx, idxs_of_subtrees_in_range){
-                v(ll) cur_result_idxs = subtrees[*subtree_idx].get_range(rest_range_l, rest_range_u);
+                v(ll) cur_result_idxs = subtrees[subtree_idx].get_range(rest_range_l, rest_range_u);
                 result.insert(result.ed, all(cur_result_idxs));
             }
         } else {
@@ -706,7 +706,7 @@ public:
             v(T) rest_range_u(msel(u, 1, u.size()));
             v(ll) idxs_of_subtrees_in_range = get_idxs_of_subtrees_in_idx_range(low_idx-1, up_idx == argsorted.size() ? 1<<(max_depth-1):up_idx);
             foreach(subtree_idx, idxs_of_subtrees_in_range){
-                ll cur_result = subtrees[*subtree_idx].get_range_count(rest_range_l, rest_range_u);
+                ll cur_result = subtrees[subtree_idx].get_range_count(rest_range_l, rest_range_u);
                 result += cur_result;
             }
         } else {
@@ -886,25 +886,25 @@ void readInput(){
         counts[h]++;
         emps[h] = t;
     }
-    foreach(it, emps){
-        llog(it->st, it->nd.s, counts[it->st]);
+    foreach(cur_emp, emps){
+        llog(cur_emp.st, cur_emp.nd.s, counts[cur_emp.st]);
     }
 }
 
 // write to COMM_TYPE result
 void calcFunction() {
     result = 0;
-    foreach(it, emps){
+    foreach(cur_emp, emps){
         ll unteachable=0;
-        forn(i, 1<<it->nd.s.sz){
-            v(ll) cur = getSelection(it->nd.s, i);
+        forn(i, 1<<cur_emp.nd.s.sz){
+            v(ll) cur = getSelection(cur_emp.nd.s, i);
             emp t(cur);
             ll h = hash_emp(t);
             if(counts.count(h)==0)
                 continue;
             unteachable += counts[h];
         }
-        result += (N - unteachable) * counts[it->st];
+        result += (N - unteachable) * counts[cur_emp.st];
     }
 }
 

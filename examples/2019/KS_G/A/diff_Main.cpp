@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_G/A/Main.cpp
-index 1b5e28b..23c4325 100644
+index 98774ea..d0a2fff 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_G/A/Main.cpp
 @@ -825,14 +825,80 @@ using namespace std;
@@ -53,11 +53,11 @@ index 1b5e28b..23c4325 100644
 +v(ll) listofdivisors(d(ll, ll) pf){
 +    v(ll) result;
 +    result.pb(1);
-+    foreach(it, pf){
++    foreach(el, pf){
 +        ll curlen = result.sz;
 +        ll fac = 1;
-+        forn(i, it->nd){
-+            fac *= it->st;
++        forn(i, el.nd){
++            fac *= el.st;
 +            forn(j, curlen){
 +                result.pb(result[j] * fac);
 +            }

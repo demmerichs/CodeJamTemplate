@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round1B/A/Main.cpp
-index 1b5e28b..01a3490 100644
+index 98774ea..3fb476b 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round1B/A/Main.cpp
 @@ -4,7 +4,7 @@
@@ -53,17 +53,17 @@ index 1b5e28b..01a3490 100644
  // write to COMM_TYPE result
  void calcFunction() {
 +    ll bestx=0, besty=0, cx=0, cy=0, bestcx=0, bestcy=0;
-+    foreach(it, xcounts){
-+        cx += it->nd;
++    foreach(xcount, xcounts){
++        cx += xcount.nd;
 +        if(cx > bestcx){
-+            bestx = it->st;
++            bestx = xcount.st;
 +            bestcx = cx;
 +        }
 +    }
-+    foreach(it, ycounts){
-+        cy += it->nd;
++    foreach(ycount, ycounts){
++        cy += ycount.nd;
 +        if(cy > bestcy){
-+            besty = it->st;
++            besty = ycount.st;
 +            bestcy = cy;
 +        }
 +    }

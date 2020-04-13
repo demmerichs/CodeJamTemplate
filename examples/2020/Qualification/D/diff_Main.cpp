@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/D/Main.cpp
-index 1b5e28b..a718c60 100644
+index 98774ea..addd554 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/D/Main.cpp
 @@ -1,10 +1,10 @@
@@ -95,8 +95,8 @@ index 1b5e28b..a718c60 100644
 +        end.popb;
 +    }
 +    sstr outr;
-+    foreach(it, start){
-+        if(*it) outr << "1"; else outr << "0";
++    foreachc(bit, start){
++        if(bit) outr << "1"; else outr << "0";
 +    }
 +    forn(i, end.sz){
 +        if(end[end.sz-1-i]) outr << "1"; else outr << "0";

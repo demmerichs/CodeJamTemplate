@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1A/C/Main.cpp
-index 1b5e28b..d10f05b 100644
+index 98774ea..9566508 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1A/C/Main.cpp
 @@ -149,6 +149,19 @@ using namespace printerTools;

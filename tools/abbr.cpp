@@ -39,8 +39,8 @@ typedef std::stringstream sstr;
 #define all(x) (x).begin(), (x).end()
 #define ssel(x,i) (x).begin()+(i), (x).begin()+(i)+1
 #define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
-#define foreach(cit,container) for(auto cit = (container).begin(); cit != (container).end(); cit++)
-#define foreachc(c,cit,container) ll c=0;for(auto cit = (container).begin(); cit != (container).end(); c++, cit++)
+#define foreach(elem,container) for(auto &elem : container)
+#define foreachc(elem,container) for(const auto &elem : container)
 //#endregion iterators
 //#region for-loops
 #define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)

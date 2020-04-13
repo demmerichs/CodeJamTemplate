@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/C/Main.cpp
-index 1b5e28b..b0bcfdb 100644
+index 98774ea..2882067 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/C/Main.cpp
 @@ -1,10 +1,10 @@
@@ -64,8 +64,8 @@ index 1b5e28b..b0bcfdb 100644
 +    if(overlaps[act].sz == 0){
 +        return true;
 +    } else {
-+        foreach(it, overlaps[act]){
-+            bool r = recur(*it, 3-p);
++        foreach(other_act, overlaps[act]){
++            bool r = recur(other_act, 3-p);
 +            if(!r){
 +                return false;
 +            }
@@ -97,10 +97,10 @@ index 1b5e28b..b0bcfdb 100644
 +    }
 +    if(possible){
 +        foreach(p, resultv){
-+            if(*p==1){
++            if(p==1){
 +                result += "C";
 +            } else{
-+                lassert(*p==2,"p==2");
++                lassert(p==2,"p==2");
 +                result += "J";
 +            }
 +        }

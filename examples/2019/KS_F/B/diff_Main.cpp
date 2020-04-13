@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_F/B/Main.cpp
-index 1b5e28b..f5aa381 100644
+index 98774ea..5c66152 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_F/B/Main.cpp
 @@ -825,14 +825,87 @@ using namespace std;
@@ -67,25 +67,25 @@ index 1b5e28b..f5aa381 100644
 +        counts[h]++;
 +        emps[h] = t;
 +    }
-+    foreach(it, emps){
-+        llog(it->st, it->nd.s, counts[it->st]);
++    foreach(cur_emp, emps){
++        llog(cur_emp.st, cur_emp.nd.s, counts[cur_emp.st]);
 +    }
  }
  
  // write to COMM_TYPE result
  void calcFunction() {
 +    result = 0;
-+    foreach(it, emps){
++    foreach(cur_emp, emps){
 +        ll unteachable=0;
-+        forn(i, 1<<it->nd.s.sz){
-+            v(ll) cur = getSelection(it->nd.s, i);
++        forn(i, 1<<cur_emp.nd.s.sz){
++            v(ll) cur = getSelection(cur_emp.nd.s, i);
 +            emp t(cur);
 +            ll h = hash_emp(t);
 +            if(counts.count(h)==0)
 +                continue;
 +            unteachable += counts[h];
 +        }
-+        result += (N - unteachable) * counts[it->st];
++        result += (N - unteachable) * counts[cur_emp.st];
 +    }
  }
  
