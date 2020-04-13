@@ -3,7 +3,7 @@
 #define DEFAULT_VAL "IMPOSSIBLE"
 // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
 #define IA_ERROR_CODE "ERROR"
-// #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
+#define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 #define COMM_TYPE ll
 
 // The maintained and empty code template can be found at:
@@ -852,8 +852,8 @@ v(v(ll)) sk;
 
 v(v(ll)) up, down, left, right;
 
-v(p(ll, ll)) get_compass_neigh(ll i, ll j){
-    v(p(ll, ll)) res;
+v(cell) get_compass_neigh(ll i, ll j){
+    v(cell) res;
     if(up[i][j] != -1){
         res.emplace_back(up[i][j], j);
     }
@@ -899,7 +899,7 @@ void readInput(){
 // write to COMM_TYPE result
 void calcFunction() {
     result = 0;
-    v(p(ll, ll)) todos;
+    v(cell) todos;
     forn(i, R){
         forn(j, C){
             todos.emplace_back(i,j);
@@ -910,24 +910,24 @@ void calcFunction() {
     while(round++, true){
         result += sum_sk;
         // sim round
-        v(p(ll,ll)) elims;
-        v(p(ll, ll)) next_todos;
+        v(cell) elims;
+        v(cell) next_todos;
         for(auto &todo: todos){
-            ll i = todo.st, j = todo.nd;
+            ll i = todo.x, j = todo.y;
 
             if(sk[i][j] == 0) continue;
 
-            v(p(ll,ll)) neighs = get_compass_neigh(i, j);
+            v(cell) neighs = get_compass_neigh(i, j);
             ll sum = 0;
             for(auto &neigh : neighs){
-                sum += sk[neigh.st][neigh.nd];
+                sum += sk[neigh.x][neigh.y];
             }
 
             if(sum > neighs.sz * sk[i][j]){
                 elims.emplace_back(i,j);
                 for(auto &neigh: neighs){
-                    if(when_todo[neigh.st][neigh.nd] != round){
-                        when_todo[neigh.st][neigh.nd] = round;
+                    if(when_todo[neigh.x][neigh.y] != round){
+                        when_todo[neigh.x][neigh.y] = round;
                         next_todos.pb(neigh);
                     }
                 }
@@ -936,12 +936,12 @@ void calcFunction() {
         if(elims.sz == 0) return;
         // perform elims
         for(auto &elim: elims){
-            sum_sk -= sk[elim.st][elim.nd];
-            sk[elim.st][elim.nd] = 0;
-            if(up[elim.st][elim.nd]!=-1) down[up[elim.st][elim.nd]][elim.nd] = down[elim.st][elim.nd];
-            if(down[elim.st][elim.nd]!=R) up[down[elim.st][elim.nd]][elim.nd] = up[elim.st][elim.nd];
-            if(left[elim.st][elim.nd]!=-1) right[elim.st][left[elim.st][elim.nd]] = right[elim.st][elim.nd];
-            if(right[elim.st][elim.nd]!=C) left[elim.st][right[elim.st][elim.nd]] = left[elim.st][elim.nd];
+            sum_sk -= sk[elim.x][elim.y];
+            sk[elim.x][elim.y] = 0;
+            if(up[elim.x][elim.y]!=-1) down[up[elim.x][elim.y]][elim.y] = down[elim.x][elim.y];
+            if(down[elim.x][elim.y]!=R) up[down[elim.x][elim.y]][elim.y] = up[elim.x][elim.y];
+            if(left[elim.x][elim.y]!=-1) right[elim.x][left[elim.x][elim.y]] = right[elim.x][elim.y];
+            if(right[elim.x][elim.y]!=C) left[elim.x][right[elim.x][elim.y]] = left[elim.x][elim.y];
         }
         // compute new todos
         swap(todos, next_todos);
