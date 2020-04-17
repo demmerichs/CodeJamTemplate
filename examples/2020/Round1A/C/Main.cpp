@@ -151,6 +151,7 @@ namespace debugTools{
 
 #ifdef LOCAL
     #include <chrono>
+
     auto start=std::chrono::high_resolution_clock::now(), stop=std::chrono::high_resolution_clock::now();
 
     inline void start_timer(){start=std::chrono::high_resolution_clock::now();}
@@ -809,23 +810,26 @@ int main() {
     std::cin >> tests;
     task::init();
     for(long long unsigned test=1; test<=tests; ++test){
-        //read input
+        llog("################", test, "################");
+        llog();
+        llog("============      reading input     ============");
         start_timer();
         task::readInput();
         stop_timer();
-        llog("test set", test, "input reading took", get_time(), "s");
-        //calc result
+        llog("-----------", get_time(), "secs -----------");
+        llog();
+        llog("============    doing computation   ============");
         start_timer();
         task::calcFunction();
         stop_timer();
-        llog("test set", test, "calculation   took", get_time(), "s");
+        llog("-----------", get_time(), "secs -----------");
+        llog();
 #ifndef IA_MODE
         //write output
         std::cout << "Case #" << test << ": ";
 #ifndef DEFAULT_VAL_MODE
         std::cout << result << std::endl;
-#endif /*DEFAULT_VAL_MODE*/
-#ifdef DEFAULT_VAL_MODE
+#else
         if(DEFAULT_VAL_TRIGGER){
             std::cout << DEFAULT_VAL << std::endl;
         }

@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round1B/A/Main.cpp
-index 98774ea..3fb476b 100644
+index 97f9cae..1b248f1 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round1B/A/Main.cpp
 @@ -4,7 +4,7 @@
@@ -11,7 +11,7 @@ index 98774ea..3fb476b 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -828,11 +828,59 @@ namespace task {
+@@ -851,11 +851,59 @@ namespace task {
  void init(){
  }
  

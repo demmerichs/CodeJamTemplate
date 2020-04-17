@@ -1,6 +1,20 @@
 //#region debugTools
 namespace debugTools{
 
+#ifdef LOCAL
+    #include <chrono>
+
+    auto start=std::chrono::high_resolution_clock::now(), stop=std::chrono::high_resolution_clock::now();
+
+    inline void start_timer(){start=std::chrono::high_resolution_clock::now();}
+    inline void stop_timer(){stop=std::chrono::high_resolution_clock::now();}
+    inline double get_time(){return std::chrono::duration<double>(stop - start).count();}
+#else
+    #define start_timer()
+    #define stop_timer()
+    #define get_time()
+#endif /*LOCAL*/
+
 inline void local_log(){
     std::cerr << std::endl;
 }

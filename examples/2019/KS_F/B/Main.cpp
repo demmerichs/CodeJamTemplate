@@ -149,6 +149,20 @@ using namespace printerTools;
 //#region debugTools
 namespace debugTools{
 
+#ifdef LOCAL
+    #include <chrono>
+
+    auto start=std::chrono::high_resolution_clock::now(), stop=std::chrono::high_resolution_clock::now();
+
+    inline void start_timer(){start=std::chrono::high_resolution_clock::now();}
+    inline void stop_timer(){stop=std::chrono::high_resolution_clock::now();}
+    inline double get_time(){return std::chrono::duration<double>(stop - start).count();}
+#else
+    #define start_timer()
+    #define stop_timer()
+    #define get_time()
+#endif /*LOCAL*/
+
 inline void local_log(){
     std::cerr << std::endl;
 }
@@ -796,17 +810,26 @@ int main() {
     std::cin >> tests;
     task::init();
     for(long long unsigned test=1; test<=tests; ++test){
-        //read input
+        llog("################", test, "################");
+        llog();
+        llog("============      reading input     ============");
+        start_timer();
         task::readInput();
-        //calc result
+        stop_timer();
+        llog("-----------", get_time(), "secs -----------");
+        llog();
+        llog("============    doing computation   ============");
+        start_timer();
         task::calcFunction();
+        stop_timer();
+        llog("-----------", get_time(), "secs -----------");
+        llog();
 #ifndef IA_MODE
         //write output
         std::cout << "Case #" << test << ": ";
 #ifndef DEFAULT_VAL_MODE
         std::cout << result << std::endl;
-#endif /*DEFAULT_VAL_MODE*/
-#ifdef DEFAULT_VAL_MODE
+#else
         if(DEFAULT_VAL_TRIGGER){
             std::cout << DEFAULT_VAL << std::endl;
         }

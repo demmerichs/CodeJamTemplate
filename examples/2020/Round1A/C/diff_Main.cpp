@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1A/C/Main.cpp
-index 98774ea..8fca548 100644
+index 97f9cae..236422e 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1A/C/Main.cpp
 @@ -3,7 +3,7 @@
@@ -11,43 +11,7 @@ index 98774ea..8fca548 100644
  #define COMM_TYPE ll
  
  // The maintained and empty code template can be found at:
-@@ -149,6 +149,19 @@ using namespace printerTools;
- //#region debugTools
- namespace debugTools{
- 
-+#ifdef LOCAL
-+    #include <chrono>
-+    auto start=std::chrono::high_resolution_clock::now(), stop=std::chrono::high_resolution_clock::now();
-+
-+    inline void start_timer(){start=std::chrono::high_resolution_clock::now();}
-+    inline void stop_timer(){stop=std::chrono::high_resolution_clock::now();}
-+    inline double get_time(){return std::chrono::duration<double>(stop - start).count();}
-+#else
-+    #define start_timer()
-+    #define stop_timer()
-+    #define get_time()
-+#endif /*LOCAL*/
-+
- inline void local_log(){
-     std::cerr << std::endl;
- }
-@@ -797,9 +810,15 @@ int main() {
-     task::init();
-     for(long long unsigned test=1; test<=tests; ++test){
-         //read input
-+        start_timer();
-         task::readInput();
-+        stop_timer();
-+        llog("test set", test, "input reading took", get_time(), "s");
-         //calc result
-+        start_timer();
-         task::calcFunction();
-+        stop_timer();
-+        llog("test set", test, "calculation   took", get_time(), "s");
- #ifndef IA_MODE
-         //write output
-         std::cout << "Case #" << test << ": ";
-@@ -828,11 +847,105 @@ namespace task {
+@@ -851,11 +851,105 @@ namespace task {
  void init(){
  }
  

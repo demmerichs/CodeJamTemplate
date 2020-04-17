@@ -13,17 +13,26 @@ int main() {
     std::cin >> tests;
     task::init();
     for(long long unsigned test=1; test<=tests; ++test){
-        //read input
+        llog("################", test, "################");
+        llog();
+        llog("============      reading input     ============");
+        start_timer();
         task::readInput();
-        //calc result
+        stop_timer();
+        llog("-----------", get_time(), "secs -----------");
+        llog();
+        llog("============    doing computation   ============");
+        start_timer();
         task::calcFunction();
+        stop_timer();
+        llog("-----------", get_time(), "secs -----------");
+        llog();
 #ifndef IA_MODE
         //write output
         std::cout << "Case #" << test << ": ";
 #ifndef DEFAULT_VAL_MODE
         std::cout << result << std::endl;
-#endif /*DEFAULT_VAL_MODE*/
-#ifdef DEFAULT_VAL_MODE
+#else
         if(DEFAULT_VAL_TRIGGER){
             std::cout << DEFAULT_VAL << std::endl;
         }
