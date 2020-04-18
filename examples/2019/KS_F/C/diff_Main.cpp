@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_F/C/Main.cpp
-index 7b152f5..705c202 100644
+index 80a6300..67a725e 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_F/C/Main.cpp
-@@ -896,11 +896,108 @@ namespace task {
+@@ -897,11 +897,108 @@ namespace task {
  void init(){
  }
  
@@ -30,17 +30,17 @@ index 7b152f5..705c202 100644
 +
  void readInput(){
 +    cin >> V;
-+    maxBeautyHash.clear();
++    maxBeautyHash.cl;
 +    maxBeautyHash.resize(4 * V, -INF);
-+    Bi.clear();
++    Bi.cl;
 +    forn(i, V){
 +        ll t;
 +        cin >> t;
 +        Bi.pb(t);
 +    }
-+    childs.clear();
-+    parent.clear();
-+    neighbors.clear();
++    childs.cl;
++    parent.cl;
++    neighbors.cl;
 +    childs.resize(V);
 +    neighbors.resize(V);
 +    parent.resize(V, -1);

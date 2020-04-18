@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/C/Main.cpp
-index 7b152f5..1da3996 100644
+index 80a6300..7e79cb6 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/C/Main.cpp
 @@ -1,10 +1,10 @@
@@ -16,7 +16,7 @@ index 7b152f5..1da3996 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -896,11 +896,92 @@ namespace task {
+@@ -897,11 +897,92 @@ namespace task {
  void init(){
  }
  
@@ -24,8 +24,8 @@ index 7b152f5..1da3996 100644
 +v(ll) Si, Ei;
 +
  void readInput(){
-+    Si.clear();
-+    Ei.clear();
++    Si.cl;
++    Ei.cl;
 +    cin >> N;
 +    ll s,e;
 +    forn(i,N){
@@ -37,7 +37,7 @@ index 7b152f5..1da3996 100644
 +
 +v(v(ll)) overlaps;
 +void compute_overlaps(){
-+    overlaps.clear();
++    overlaps.cl;
 +    overlaps = v(v(ll))(N);
 +    forn(i, N){
 +        forn(j,i){
@@ -78,9 +78,9 @@ index 7b152f5..1da3996 100644
  void calcFunction() {
 +    compute_overlaps();
 +    llog(overlaps);
-+    resultv.clear();
++    resultv.cl;
 +    resultv = v(ll)(N, 0);
-+    result.clear();
++    result.cl;
 +    bool possible=true;
 +    while(true){
 +        ll unfilled = distance(resultv.bn, find(all(resultv), 0));

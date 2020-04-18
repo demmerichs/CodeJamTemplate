@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_H/A/Main.cpp
-index 7b152f5..9395da0 100644
+index 80a6300..53f9394 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_H/A/Main.cpp
 @@ -4,7 +4,7 @@
@@ -11,7 +11,7 @@ index 7b152f5..9395da0 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -896,11 +896,30 @@ namespace task {
+@@ -897,11 +897,30 @@ namespace task {
  void init(){
  }
  
@@ -20,7 +20,7 @@ index 7b152f5..9395da0 100644
 +
  void readInput(){
 +    cin >> N;
-+    cits.clear();
++    cits.cl;
 +    forn(i, N){
 +        ll t;
 +        cin >> t;
@@ -31,7 +31,7 @@ index 7b152f5..9395da0 100644
  // write to COMM_TYPE result
  void calcFunction() {
 +    multiset<ll> tops;
-+    result.clear();
++    result.cl;
 +    forn(i, N){
 +        tops.insert(cits[i]);
 +        if(*tops.begin() < tops.sz){

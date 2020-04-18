@@ -45,6 +45,7 @@ typedef std::stringstream sstr;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
+#define cl clear()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -946,8 +947,8 @@ d(ll, emp) emps;
 
 void readInput(){
     cin >> N >> S;
-    counts.clear();
-    emps.clear();
+    counts.cl;
+    emps.cl;
     forn(i, N){
         emp t(true);
         ll h = hash_emp(t);

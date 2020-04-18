@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_F/B/Main.cpp
-index 7b152f5..9d7e80e 100644
+index 80a6300..bf70e8b 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_F/B/Main.cpp
-@@ -893,14 +893,87 @@ using namespace std;
+@@ -894,14 +894,87 @@ using namespace std;
  
  namespace task {
  
@@ -59,8 +59,8 @@ index 7b152f5..9d7e80e 100644
 +
  void readInput(){
 +    cin >> N >> S;
-+    counts.clear();
-+    emps.clear();
++    counts.cl;
++    emps.cl;
 +    forn(i, N){
 +        emp t(true);
 +        ll h = hash_emp(t);

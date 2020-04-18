@@ -45,6 +45,7 @@ typedef std::stringstream sstr;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
+#define cl clear()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -901,7 +902,7 @@ v(ll) cits;
 
 void readInput(){
     cin >> N;
-    cits.clear();
+    cits.cl;
     forn(i, N){
         ll t;
         cin >> t;
@@ -912,7 +913,7 @@ void readInput(){
 // write to COMM_TYPE result
 void calcFunction() {
     multiset<ll> tops;
-    result.clear();
+    result.cl;
     forn(i, N){
         tops.insert(cits[i]);
         if(*tops.begin() < tops.sz){

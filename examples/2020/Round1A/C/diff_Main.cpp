@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1A/C/Main.cpp
-index 7b152f5..88e23a8 100644
+index 80a6300..67e0967 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1A/C/Main.cpp
 @@ -3,7 +3,7 @@
@@ -11,7 +11,7 @@ index 7b152f5..88e23a8 100644
  #define COMM_TYPE ll
  
  // The maintained and empty code template can be found at:
-@@ -896,11 +896,105 @@ namespace task {
+@@ -897,11 +897,105 @@ namespace task {
  void init(){
  }
  
@@ -38,11 +38,11 @@ index 7b152f5..88e23a8 100644
 +}
 +
  void readInput(){
-+    sk.clear();
-+    up.clear();
-+    down.clear();
-+    left.clear();
-+    right.clear();
++    sk.cl;
++    up.cl;
++    down.cl;
++    left.cl;
++    right.cl;
 +    cin >> R >> C;
 +    sk = v(v(ll))(R, v(ll)(C));
 +    up = v(v(ll))(R, v(ll)(C));

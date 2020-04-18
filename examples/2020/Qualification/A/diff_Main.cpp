@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/A/Main.cpp
-index 7b152f5..8db0c46 100644
+index 80a6300..76462fd 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/A/Main.cpp
 @@ -4,7 +4,7 @@
@@ -11,7 +11,7 @@ index 7b152f5..8db0c46 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -896,11 +896,44 @@ namespace task {
+@@ -897,11 +897,44 @@ namespace task {
  void init(){
  }
  
@@ -21,9 +21,9 @@ index 7b152f5..8db0c46 100644
 +
  void readInput(){
 +    cin >> N;
-+    Mij.clear();
-+    rc.clear();
-+    cc.clear();
++    Mij.cl;
++    rc.cl;
++    cc.cl;
 +    rc = v(s(ll))(N);
 +    cc = v(s(ll))(N);
 +    ll t;
@@ -44,7 +44,7 @@ index 7b152f5..8db0c46 100644
  
  // write to COMM_TYPE result
  void calcFunction() {
-+    result.clear();
++    result.cl;
 +    result.pb(k);
 +    ll r=0, c=0;
 +    forn(i, N){

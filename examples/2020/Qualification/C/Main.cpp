@@ -45,6 +45,7 @@ typedef std::stringstream sstr;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
+#define cl clear()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -900,8 +901,8 @@ ll N;
 v(ll) Si, Ei;
 
 void readInput(){
-    Si.clear();
-    Ei.clear();
+    Si.cl;
+    Ei.cl;
     cin >> N;
     ll s,e;
     forn(i,N){
@@ -913,7 +914,7 @@ void readInput(){
 
 v(v(ll)) overlaps;
 void compute_overlaps(){
-    overlaps.clear();
+    overlaps.cl;
     overlaps = v(v(ll))(N);
     forn(i, N){
         forn(j,i){
@@ -954,9 +955,9 @@ bool recur(ll act, ll p){
 void calcFunction() {
     compute_overlaps();
     llog(overlaps);
-    resultv.clear();
+    resultv.cl;
     resultv = v(ll)(N, 0);
-    result.clear();
+    result.cl;
     bool possible=true;
     while(true){
         ll unfilled = distance(resultv.bn, find(all(resultv), 0));

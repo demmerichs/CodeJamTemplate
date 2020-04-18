@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_H/B/Main.cpp
-index 7b152f5..b9274fd 100644
+index 80a6300..7d15ab0 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_H/B/Main.cpp
-@@ -896,11 +896,69 @@ namespace task {
+@@ -897,11 +897,69 @@ namespace task {
  void init(){
  }
  
@@ -11,7 +11,7 @@ index 7b152f5..b9274fd 100644
 +
  void readInput(){
 +    cin >> N;
-+    grid.clear();
++    grid.cl;
 +    grid.resize(N);
 +    forn(i,N){
 +        str t;

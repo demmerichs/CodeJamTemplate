@@ -45,6 +45,7 @@ typedef std::stringstream sstr;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
+#define cl clear()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -919,11 +920,11 @@ v(cell) get_compass_neigh(ll i, ll j){
 }
 
 void readInput(){
-    sk.clear();
-    up.clear();
-    down.clear();
-    left.clear();
-    right.clear();
+    sk.cl;
+    up.cl;
+    down.cl;
+    left.cl;
+    right.cl;
     cin >> R >> C;
     sk = v(v(ll))(R, v(ll)(C));
     up = v(v(ll))(R, v(ll)(C));

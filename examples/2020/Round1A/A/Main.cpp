@@ -45,6 +45,7 @@ typedef std::stringstream sstr;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
+#define cl clear()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -902,9 +903,9 @@ str start, end;
 
 void readInput(){
     cin >> N;
-    pats.clear();
-    start.clear();
-    end.clear();
+    pats.cl;
+    start.cl;
+    end.cl;
     forn(i,N){
         str t;
         cin >> t;

@@ -45,6 +45,7 @@ typedef std::stringstream sstr;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
+#define cl clear()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -909,7 +910,7 @@ void calcFunction() {
     lassert(k>=0, "ohnooo");
     ll counter = 0;
 
-    result.clear();
+    result.cl;
     result += "\n";
     sstr res;
     bool left = true;

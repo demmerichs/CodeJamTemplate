@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/D/Main.cpp
-index 7b152f5..987defc 100644
+index 80a6300..d10506f 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/D/Main.cpp
 @@ -1,10 +1,10 @@
@@ -16,7 +16,7 @@ index 7b152f5..987defc 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -893,14 +893,91 @@ using namespace std;
+@@ -894,14 +894,91 @@ using namespace std;
  
  namespace task {
  
@@ -29,8 +29,8 @@ index 7b152f5..987defc 100644
 +v(bool) end;
 +
  void readInput(){
-+    start.clear();
-+    end.clear();
++    start.cl;
++    end.cl;
 +}
 +
 +void invert(){

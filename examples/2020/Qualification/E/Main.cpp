@@ -45,6 +45,7 @@ typedef std::stringstream sstr;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
+#define cl clear()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -960,7 +961,7 @@ void calcFunction() {
         result = "";
         return;
     }
-    ls.clear();
+    ls.cl;
     ls = v(v(ll))(N, v(ll)(N, -1));
     forn(i,N){
         ls[i][i] = parts[i];

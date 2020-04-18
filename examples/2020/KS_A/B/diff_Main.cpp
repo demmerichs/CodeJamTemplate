@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/KS_A/B/Main.cpp
-index 7b152f5..65cb557 100644
+index 80a6300..feb26b0 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/KS_A/B/Main.cpp
-@@ -896,11 +896,41 @@ namespace task {
+@@ -897,11 +897,41 @@ namespace task {
  void init(){
  }
  
@@ -12,7 +12,7 @@ index 7b152f5..65cb557 100644
  void readInput(){
 +    cin >> N >> K >> P;
 +    ll t;
-+    bnk.clear();
++    bnk.cl;
 +    forn(n, N){
 +        bnk.pb(v(ll)());
 +        bnk.bk.pb(0);

@@ -45,6 +45,7 @@ typedef std::stringstream sstr;
 #define popb pop_back()
 #define popf pop_front()
 #define sz size()
+#define cl clear()
 //#endregion members and functions
 //#region iterators
 #define bn begin()
@@ -920,17 +921,17 @@ v(ll) maxBeautyHash;
 
 void readInput(){
     cin >> V;
-    maxBeautyHash.clear();
+    maxBeautyHash.cl;
     maxBeautyHash.resize(4 * V, -INF);
-    Bi.clear();
+    Bi.cl;
     forn(i, V){
         ll t;
         cin >> t;
         Bi.pb(t);
     }
-    childs.clear();
-    parent.clear();
-    neighbors.clear();
+    childs.cl;
+    parent.cl;
+    neighbors.cl;
     childs.resize(V);
     neighbors.resize(V);
     parent.resize(V, -1);

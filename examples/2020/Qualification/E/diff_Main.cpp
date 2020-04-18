@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/E/Main.cpp
-index 7b152f5..dc5a991 100644
+index 80a6300..df18bf7 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/E/Main.cpp
 @@ -1,10 +1,10 @@
@@ -16,7 +16,7 @@ index 7b152f5..dc5a991 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -896,11 +896,114 @@ namespace task {
+@@ -897,11 +897,114 @@ namespace task {
  void init(){
  }
  
@@ -84,7 +84,7 @@ index 7b152f5..dc5a991 100644
 +        result = "";
 +        return;
 +    }
-+    ls.clear();
++    ls.cl;
 +    ls = v(v(ll))(N, v(ll)(N, -1));
 +    forn(i,N){
 +        ls[i][i] = parts[i];
