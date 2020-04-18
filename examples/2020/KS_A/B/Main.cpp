@@ -568,32 +568,30 @@ T middle(T l, T u){
     return mid + r/2 - 1;
 }
 
-// for list structures use as function list.operator[] and start = 0
-// returns the number of elements which are strict smaller/larger than val
-// otherwise returns the smallest index for which f(idx) >=/<= val and start+length if this index does not exist
 template <typename T>
-long long binSearchDisc(const T &val, const std::function<T (long long)> &f, const unsigned long long &length, const long long &start = 0, bool increasing = true){
+long long lower_bound_function(const T &val, const std::function<T (long long)> &f, const unsigned long long &length, const long long &start = 0){
     long long l = start - 1;
     long long u = start + length;
-    if(increasing){
-        while(u>l+1){
-            long long mid = middle(l,u);
-            if(f(mid)<val)
-                l=mid;
-            else
-                u=mid;
-        }
-    } else {
-        while(u>l+1){
-            long long mid = middle(l,u);
-            if(f(mid)>val)
-                l=mid;
-            else
-                u=mid;
-        }
+    while(u>l+1){
+        long long mid = middle(l, u);
+        if(f(mid) >= val) u=mid;
+        else l=mid;
     }
     return u;
 }
+
+template <typename T>
+long long upper_bound_function(const T &val, const std::function<T (long long)> &f, const unsigned long long &length, const long long &start = 0){
+    long long l = start - 1;
+    long long u = start + length;
+    while(u>l+1){
+        long long mid = middle(l, u);
+        if(f(mid) > val) u=mid;
+        else l=mid;
+    }
+    return u;
+}
+
 
 template <typename T>
 class BalancedRangeTree{
@@ -609,7 +607,7 @@ private:
     }
 
     ll get_nbr_values_smaller_thresh(T thresh){
-        return binSearchDisc<T>(thresh, [&](ll idx){ return this->get_sort(idx); }, argsorted.size());
+        return lower_bound_function<T>(thresh, [&](ll idx){ return this->get_sort(idx); }, argsorted.size());
     }
 
     v(ll) get_tree_path_idxs(ll leaf_idx){
@@ -755,6 +753,53 @@ unsigned long long maximal_bipartite_matching(const std::vector<std::vector<bool
     }
     return num_matches;
 }
+
+template <typename T>
+class RangeMinMaxTable{
+private:
+    const bool query_min;
+    const v(T) &values;
+    v(v(ll)) lookup_idxs;
+
+    bool comp(const T& lhs, const T& rhs){
+        if(query_min) return lhs <= rhs;
+        else return lhs >= rhs;
+    }
+
+    void create_lookup_table(){
+        ll n = values.size();
+        ll logn = log2ll(n);
+        lookup_idxs.clear();
+        lookup_idxs.resize(n);
+        forn(i, n){
+            lookup_idxs[i].push_back(i);
+        }
+        fornn(j, 1, logn+1){
+            forn(i, n + 1 - (1<<j)){
+                if(comp(values[lookup_idxs[i][j-1]], values[lookup_idxs[i+(1<<(j-1))][j-1]]))
+                    lookup_idxs[i].push_back(lookup_idxs[i][j-1]);
+                else
+                    lookup_idxs[i].push_back(lookup_idxs[i + (1<<(j-1))][j-1]);
+            }
+        }
+    }
+
+public:
+    RangeMinMaxTable<T>(const v(T) &values, const bool &query_min=true): values(values), query_min(query_min){
+        create_lookup_table();
+    }
+
+    ll query(ll lower, ll upper){
+        ll n = upper - lower;
+        lassert(n>0, "invalid range max query");
+        ll logn = log2ll(n);
+        ll first = lookup_idxs[lower][logn];
+        ll second = lookup_idxs[upper - (1<<logn)][logn];
+        if(comp(values[first], values[second]))
+            return first;
+        return second;
+    }
+};
 
 } // namespace algoTools
 using namespace algoTools;

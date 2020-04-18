@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/KS_A/C/Main.cpp
-index 97f9cae..6984fb3 100644
+index 7b152f5..2d3257a 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/KS_A/C/Main.cpp
-@@ -851,11 +851,56 @@ namespace task {
+@@ -896,11 +896,56 @@ namespace task {
  void init(){
  }
  
@@ -55,7 +55,7 @@ index 97f9cae..6984fb3 100644
  
  // write to COMM_TYPE result
  void calcFunction() {
-+    result = binSearchDisc<bool>(true, difficulty_possible, dAi.bk, 1);
++    result = lower_bound_function<bool>(true, difficulty_possible, dAi.bk, 1);
  }
  
  } // namespace task

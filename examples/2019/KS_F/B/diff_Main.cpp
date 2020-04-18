@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/KS_F/B/Main.cpp
-index 97f9cae..6cfdef4 100644
+index 7b152f5..9d7e80e 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/KS_F/B/Main.cpp
-@@ -848,14 +848,87 @@ using namespace std;
+@@ -893,14 +893,87 @@ using namespace std;
  
  namespace task {
  
