@@ -565,28 +565,28 @@ v(long long int) argsort(const v(T) &v) {
 template <typename T>
 T middle(T l, T u){
     T mid = (l/2)+(u/2);
-    T r = l%2 + u%2 + 2;
-    return mid + r/2 - 1;
+    T r = ((l-mid) + (u-mid))/2;
+    return mid + r;
 }
 
-template <typename T>
-long long lower_bound_function(const T &val, const std::function<T (long long)> &f, const unsigned long long &length, const long long &start = 0){
-    long long l = start - 1;
-    long long u = start + length;
-    while(u>l+1){
-        long long mid = middle(l, u);
+template <typename Tidx, typename Tval>
+Tidx lower_bound_function(const Tval &val, const std::function<Tval (Tidx)> &f, const Tidx &length, const Tidx &start = 0, const Tidx &resolution = 1){
+    Tidx l = start - resolution;
+    Tidx u = start + length;
+    while(u>l+resolution){
+        Tidx mid = middle(l, u);
         if(f(mid) >= val) u=mid;
         else l=mid;
     }
     return u;
 }
 
-template <typename T>
-long long upper_bound_function(const T &val, const std::function<T (long long)> &f, const unsigned long long &length, const long long &start = 0){
-    long long l = start - 1;
-    long long u = start + length;
-    while(u>l+1){
-        long long mid = middle(l, u);
+template <typename Tidx, typename Tval>
+Tidx upper_bound_function(const Tval &val, const std::function<Tval (Tidx)> &f, const Tidx &length, const Tidx &start = 0, const Tidx &resolution = 1){
+    Tidx l = start - resolution;
+    Tidx u = start + length;
+    while(u>l+resolution){
+        Tidx mid = middle(l, u);
         if(f(mid) > val) u=mid;
         else l=mid;
     }
@@ -608,7 +608,7 @@ private:
     }
 
     ll get_nbr_values_smaller_thresh(T thresh){
-        return lower_bound_function<T>(thresh, [&](ll idx){ return this->get_sort(idx); }, argsorted.size());
+        return lower_bound_function<ll,T>(thresh, [&](ll idx){ return this->get_sort(idx); }, argsorted.size());
     }
 
     v(ll) get_tree_path_idxs(ll leaf_idx){
@@ -926,10 +926,10 @@ void calcFunction() {
         auto not_charles_chooses_i_and_is_good_upper = [&](ll u){return !(Ci[i] >= Di[lookup_D.query(i, u)] - K && lookup_C.query(i, u) == i);};
         auto charles_chooses_i_and_is_too_good_lower = [&](ll l){return Ci[i] > Di[lookup_D.query(l, i+1)] + K && lookup_C.query(l, i+1) == i;};
         auto not_charles_chooses_i_and_is_too_good_upper = [&](ll u){return !(Ci[i] > Di[lookup_D.query(i, u)] + K && lookup_C.query(i, u) == i);};
-        ll low_good_enough = lower_bound_function<bool>(true, charles_chooses_i_and_is_good_lower, i+1);
-        ll low_too_good = lower_bound_function<bool>(true, charles_chooses_i_and_is_too_good_lower, i+1);
-        ll up_good_enough = upper_bound_function<bool>(false, not_charles_chooses_i_and_is_good_upper, N-i, i+1);
-        ll up_too_good = upper_bound_function<bool>(false, not_charles_chooses_i_and_is_too_good_upper, N-i, i+1);
+        ll low_good_enough = lower_bound_function<ll,bool>(true, charles_chooses_i_and_is_good_lower, i+1);
+        ll low_too_good = lower_bound_function<ll,bool>(true, charles_chooses_i_and_is_too_good_lower, i+1);
+        ll up_good_enough = upper_bound_function<ll,bool>(false, not_charles_chooses_i_and_is_good_upper, N-i, i+1);
+        ll up_too_good = upper_bound_function<ll,bool>(false, not_charles_chooses_i_and_is_too_good_upper, N-i, i+1);
         result += (i+1-low_good_enough) * (up_good_enough-1-i) - (i+1-low_too_good) * (up_too_good-1-i);
     }
 }

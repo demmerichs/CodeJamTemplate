@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/KS_A/C/Main.cpp
-index 80a6300..5b78b02 100644
+index d7377dd..9fea43a 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/KS_A/C/Main.cpp
 @@ -897,11 +897,56 @@ namespace task {
@@ -55,7 +55,7 @@ index 80a6300..5b78b02 100644
  
  // write to COMM_TYPE result
  void calcFunction() {
-+    result = lower_bound_function<bool>(true, difficulty_possible, dAi.bk, 1);
++    result = lower_bound_function<ll,bool>(true, difficulty_possible, dAi.bk, 1);
  }
  
  } // namespace task

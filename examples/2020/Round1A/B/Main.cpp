@@ -565,28 +565,28 @@ v(long long int) argsort(const v(T) &v) {
 template <typename T>
 T middle(T l, T u){
     T mid = (l/2)+(u/2);
-    T r = l%2 + u%2 + 2;
-    return mid + r/2 - 1;
+    T r = ((l-mid) + (u-mid))/2;
+    return mid + r;
 }
 
-template <typename T>
-long long lower_bound_function(const T &val, const std::function<T (long long)> &f, const unsigned long long &length, const long long &start = 0){
-    long long l = start - 1;
-    long long u = start + length;
-    while(u>l+1){
-        long long mid = middle(l, u);
+template <typename Tidx, typename Tval>
+Tidx lower_bound_function(const Tval &val, const std::function<Tval (Tidx)> &f, const Tidx &length, const Tidx &start = 0, const Tidx &resolution = 1){
+    Tidx l = start - resolution;
+    Tidx u = start + length;
+    while(u>l+resolution){
+        Tidx mid = middle(l, u);
         if(f(mid) >= val) u=mid;
         else l=mid;
     }
     return u;
 }
 
-template <typename T>
-long long upper_bound_function(const T &val, const std::function<T (long long)> &f, const unsigned long long &length, const long long &start = 0){
-    long long l = start - 1;
-    long long u = start + length;
-    while(u>l+1){
-        long long mid = middle(l, u);
+template <typename Tidx, typename Tval>
+Tidx upper_bound_function(const Tval &val, const std::function<Tval (Tidx)> &f, const Tidx &length, const Tidx &start = 0, const Tidx &resolution = 1){
+    Tidx l = start - resolution;
+    Tidx u = start + length;
+    while(u>l+resolution){
+        Tidx mid = middle(l, u);
         if(f(mid) > val) u=mid;
         else l=mid;
     }
@@ -608,7 +608,7 @@ private:
     }
 
     ll get_nbr_values_smaller_thresh(T thresh){
-        return lower_bound_function<T>(thresh, [&](ll idx){ return this->get_sort(idx); }, argsorted.size());
+        return lower_bound_function<ll,T>(thresh, [&](ll idx){ return this->get_sort(idx); }, argsorted.size());
     }
 
     v(ll) get_tree_path_idxs(ll leaf_idx){
