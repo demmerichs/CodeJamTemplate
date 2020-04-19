@@ -5,16 +5,15 @@ shopt -s globstar
 
 rm -rf test_examples/*
 
-for d in examples/*/*/*/{Main.cpp,Solution.py.m4}
+for d in examples/**/{Main.cpp,Solution.py.m4}
 do
     if [ ! -f $d ]
     then
         continue
     fi
-    [[ $d =~ ^examples/(.*)/(.*)(_interactive)?/(Main.cpp|Solution.py.m4)$ ]]
-    basedir=examples/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}${BASH_REMATCH[3]}
+    [[ $d =~ ^examples/(.*)/(.*)/(Main.cpp|Solution.py.m4)$ ]]
+    basedir=examples/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}
     recreate=test_examples/${BASH_REMATCH[1]}
-    mkdir -p $recreate
     ./CodeJam/createFolders.bash $recreate ${BASH_REMATCH[2]}
     rm -rf $recreate/${BASH_REMATCH[2]}.bak
     for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,local_testing_tool.py}
@@ -27,9 +26,15 @@ do
 done
 
 output=""
-for d in test_examples/*/*/*
+for exec_script in test_examples/**/execute.bash
 do
+    [[ $exec_script =~ ^test_examples/(.*)/execute.bash$ ]]
+    d=test_examples/${BASH_REMATCH[1]}
     if [ ! -d $d ]
+    then
+        continue
+    fi
+    if ! [[ $(diff $d/Main.cpp CodeJam/Main.cpp) || $(diff $d/Solution.py.m4 CodeJam/Solution.py.m4) ]]
     then
         continue
     fi

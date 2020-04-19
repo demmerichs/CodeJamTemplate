@@ -3,7 +3,7 @@
 shopt -s globstar
 ./CodeJam/mainCreation.bash
 
-for diff_file in examples/*/*/*/{diff_Main.cpp,diff_Solution.py.m4}
+for diff_file in examples/**/{diff_Main.cpp,diff_Solution.py.m4}
 do
     if [ ! -f $diff_file ]
     then

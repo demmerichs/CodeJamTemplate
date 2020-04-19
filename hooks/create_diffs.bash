@@ -10,7 +10,7 @@ then
     exit 0
 fi
 
-for d in examples/*/*/*/{Main.cpp,Solution.py.m4}
+for d in examples/**/{Main.cpp,Solution.py.m4}
 do
     if [ ! -f $d ]
     then

@@ -49,7 +49,7 @@ else
     fi
 fi
 
-if [[ -f Solution.py.m4 && ! -z $(diff Solution.py.m4 ../Solution.py.m4) ]]
+if [[ -f Solution.py.m4 && -f ../Solution.py.m4 && ! -z $(diff Solution.py.m4 ../Solution.py.m4) ]]
 then
     echo "#####################################################################"
     echo "Using Python solution..."
@@ -87,7 +87,7 @@ then
     fi
 fi
 
-if [[ -f Main.cpp && ! -z $(diff Main.cpp ../Main.cpp) ]]
+if [[ -f Main.cpp && -f ../Main.cpp && ! -z $(diff Main.cpp ../Main.cpp) ]]
 then
     echo "#####################################################################"
     echo "Using C++ solution..."
