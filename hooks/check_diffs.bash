@@ -15,6 +15,7 @@ do
     if [ "$(diff $d <(git diff --no-index CodeJam/$basefile $file))" ]
     then
         echo $d and $file did not match up!
+        diff $d <(git diff --no-index CodeJam/$basefile $file)
         exit 1
     else
         echo $d and $file did match up!

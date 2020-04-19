@@ -1,7 +1,7 @@
-diff --git a/CodeJam/Solution.py.m4 b/examples/template_tests/gss/py/Solution.py.m4
+diff --git a/CodeJam/Solution.py.m4 b/examples/template_tests/golden_section_search/Solution.py.m4
 index 10cac5c..5ffdeea 100644
 --- a/CodeJam/Solution.py.m4
-+++ b/examples/template_tests/gss/py/Solution.py.m4
++++ b/examples/template_tests/golden_section_search/Solution.py.m4
 @@ -388,12 +388,19 @@ def init():
  
  

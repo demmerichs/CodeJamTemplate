@@ -1,0 +1,8 @@
+Case #1: 2
+Case #2: 0
+Case #3: 2
+Case #4: 0
+Case #5: 1
+Case #6: 1
+Case #7: 1
+Case #8: 0
