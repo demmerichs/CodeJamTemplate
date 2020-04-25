@@ -53,7 +53,6 @@ to get a feeling of how valuable in certain situations this template can be.
     * [E](./2018/Round1A/E)
       * [Main.cpp](./2018/Round1A/E/Main.cpp)
       * [diff_Main.cpp](./2018/Round1A/E/diff_Main.cpp)
-    * [Inputs](./2018/Round1A/Inputs)
   * [Round1C](./2018/Round1C)
     * [A](./2018/Round1C/A)
       * [Main.cpp](./2018/Round1C/A/Main.cpp)

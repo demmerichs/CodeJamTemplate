@@ -13,7 +13,18 @@ do
     fi
     [[ $d =~ ^examples/(.*)/(.*)/(Main.cpp|Solution.py.m4)$ ]]
     basedir=examples/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}
-    recreate=test_examples/${BASH_REMATCH[1]}
+    unset recreate
+    for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,local_testing_tool.py}
+    do
+        if [ "$(git status -uno -s $k)" ]
+        then
+            recreate=test_examples/${BASH_REMATCH[1]}
+        fi
+    done
+    if [ -z $recreate ]
+    then
+        continue
+    fi
     ./CodeJam/createFolders.bash $recreate ${BASH_REMATCH[2]}
     rm -rf $recreate/${BASH_REMATCH[2]}.bak
     for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,local_testing_tool.py}
