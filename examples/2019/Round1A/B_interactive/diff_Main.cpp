@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round1A/B_interactive/Main.cpp
-index d7377dd..cf0c809 100644
+index 5a22041..38edaba 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round1A/B_interactive/Main.cpp
 @@ -1,8 +1,8 @@
@@ -13,7 +13,7 @@ index d7377dd..cf0c809 100644
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
  #define COMM_TYPE ll
  
-@@ -894,14 +894,36 @@ using namespace std;
+@@ -905,14 +905,36 @@ using namespace std;
  
  namespace task {
  

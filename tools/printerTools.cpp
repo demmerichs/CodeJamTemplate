@@ -25,6 +25,9 @@ template <typename S, typename T>
 std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa);
 
 template <typename T>
+std::ostream& operator<<(std::ostream& os, std::complex<T> c);
+
+template <typename T>
 std::ostream& _outstream_iteratables(std::ostream& os, T iteratable){
     if(iteratable.begin() == iteratable.end())
         return os;
@@ -67,6 +70,12 @@ std::ostream& operator<<(std::ostream& os, std::unordered_map<S, T> iteratable){
 template <typename S, typename T>
 std::ostream& operator<<(std::ostream& os, std::pair<S,T> pa){
     os << pa.first << ' ' << pa.second;
+    return os;
+}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, std::complex<T> c){
+    os << c.real() << ' ' << c.imag();
     return os;
 }
 

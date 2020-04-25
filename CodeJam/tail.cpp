@@ -34,9 +34,11 @@ int main() {
         std::cout << result << std::endl;
 #else
         if(DEFAULT_VAL_TRIGGER){
+            llog("default val triggered");
             std::cout << DEFAULT_VAL << std::endl;
         }
         else{
+            llog("default val NOT triggered");
             std::cout << result << std::endl;
         }
 #endif /*DEFAULT_VAL_MODE*/
