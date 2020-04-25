@@ -33,6 +33,7 @@ Things to consider for the language selection:
     - rule of thumb: this aspect starts to matter around Round 1 problem 3 and Round 2 upwards possibly everything
 - language differences that result in easier code and therefore are less error prone
     - Python has big integers (no upper bound) naturally implemented (watch out not to use numpy arrays, as they convert back to int64)
+        - take a look at [examples/2019/Qualification/C/Solution.py.m4](examples/2019/Qualification/C/Solution.py.m4) and the corresponding [problem statement](https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/000000000008830b)
     - Python can do quite easily complex string manipulations and semi-fancy list and fancy numpy indexing operations
 - how familiar and fast you are with one language over the other
 
