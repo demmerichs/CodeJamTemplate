@@ -17,4 +17,4 @@ git add -u **/Main.cpp **/Solution.py.m4
 ./.git/hooks/create_diffs.bash -f
 git add -u **/diff_Main.cpp **/diff_Solution.py.m4
 ./.git/hooks/check_diffs.bash
-./.git/hooks/check_results.bash
+./.git/hooks/check_results.bash TEST

@@ -52,7 +52,7 @@ do
     echo "##########"
     echo "##########  Executing $d ..."
     echo "##########"
-    (cd $d; ./execute.bash TEST)
+    (cd $d; ./execute.bash $1)
     runresult=$?
     if [ $runresult != "0" ]
     then
