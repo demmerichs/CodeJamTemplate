@@ -181,7 +181,6 @@ to get a feeling of how valuable in certain situations this template can be.
       * [diff_Main.cpp](./2019/Round2/C/diff_Main.cpp)
     * [D](./2019/Round2/D)
       * [Main.cpp](./2019/Round2/D/Main.cpp)
-      * [diff_Main.cpp](./2019/Round2/D/diff_Main.cpp)
 * [2020](./2020)
   * [KS_A](./2020/KS_A)
     * [A](./2020/KS_A/A)

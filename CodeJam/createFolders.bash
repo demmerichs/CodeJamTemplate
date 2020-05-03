@@ -17,6 +17,7 @@ touch $DIR/template_problem_folder/sample.txt
 touch $DIR/template_problem_folder/result.txt
 cp $DIR/interactive_runner.py $DIR/template_problem_folder/interactive_runner.py
 cp $DIR/execute.bash $DIR/template_problem_folder/execute.bash
+cp $DIR/compare_solutions.bash $DIR/template_problem_folder/compare_solutions.bash
 cp $DIR/sync_lines_after_m4.py $DIR/template_problem_folder/sync_lines_after_m4.py
 
 
@@ -55,4 +56,3 @@ for problem_folder in ${PROBLEM_FOLDERS[@]}
 do
   make_problem_folder ${problem_folder}
 done
-

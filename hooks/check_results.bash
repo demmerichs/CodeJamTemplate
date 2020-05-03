@@ -27,7 +27,7 @@ do
     fi
     ./CodeJam/createFolders.bash $recreate ${BASH_REMATCH[2]}
     rm -rf $recreate/${BASH_REMATCH[2]}.bak
-    for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,local_testing_tool.py}
+    for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,local_testing_tool.py,create_test.py}
     do
         if [ -f $k ]
         then
