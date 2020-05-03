@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1A/C/Main.cpp
-index a548e30..ccbd71e 100644
+index 57063df..9899a42 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1A/C/Main.cpp
 @@ -3,7 +3,7 @@
@@ -11,7 +11,7 @@ index a548e30..ccbd71e 100644
  #define COMM_TYPE ll
  
  // The maintained and empty code template can be found at:
-@@ -999,11 +999,105 @@ namespace task {
+@@ -1009,11 +1009,105 @@ namespace task {
  void init(){
  }
  
