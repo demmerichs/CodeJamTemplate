@@ -259,3 +259,4 @@ to get a feeling of how valuable in certain situations this template can be.
     * [diff_Solution.py.m4](./template_tests/golden_section_search/diff_Solution.py.m4)
   * [strongly_connected_components](./template_tests/strongly_connected_components)
     * [Main.cpp](./template_tests/strongly_connected_components/Main.cpp)
+    * [diff_Main.cpp](./template_tests/strongly_connected_components/diff_Main.cpp)
