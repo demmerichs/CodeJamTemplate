@@ -258,6 +258,58 @@ public:
     }
 };
 
+void strongly_connected_components_tarjan_recursive(
+    const v(s(ll))& adjacency_list,
+    v(ll) &discovered,
+    v(ll) &lowest,
+    v(bool) &on_stack,
+    v(ll) &stack,
+    ll &discover_counter,
+    v(ll) &scc,
+    ll next_to_discover
+){
+    discovered[next_to_discover] = discover_counter;
+    lowest[next_to_discover] = discover_counter;
+    on_stack[next_to_discover] = true;
+    stack.pb(next_to_discover);
+    discover_counter++;
+    foreach(neigh, adjacency_list[next_to_discover]){
+        if(discovered[neigh]==-1){
+            strongly_connected_components_tarjan_recursive(
+                adjacency_list, discovered, lowest, on_stack, stack, discover_counter, scc, neigh
+            );
+        }
+        if(on_stack[neigh]){
+            lowest[next_to_discover] = std::min(lowest[next_to_discover], lowest[neigh]);
+        }
+    }
+    if(discovered[next_to_discover] == lowest[next_to_discover]){
+        while(stack.bk != next_to_discover){
+            scc[stack.bk] = discovered[next_to_discover];
+            on_stack[stack.bk] = false;
+            stack.popb;
+        }
+        scc[next_to_discover] = discovered[next_to_discover];
+        on_stack[next_to_discover] = false;
+        stack.popb;
+    }
+}
+
+v(ll) strongly_connected_components_tarjan(v(s(ll)) adjacency_list){
+    ll n = adjacency_list.sz;
+    v(ll) discovered(n, -1), lowest(n, -1), stack;
+    v(bool) on_stack(n, false);
+    ll discover_counter = 0;
+    v(ll) scc(n, -1);
+    forn(i, n){
+        if(discovered[i] >= 0) continue;
+        strongly_connected_components_tarjan_recursive(
+            adjacency_list, discovered, lowest, on_stack, stack, discover_counter, scc, i
+        );
+    }
+    return scc;
+}
+
 } // namespace algoTools
 using namespace algoTools;
 //#endregion algoTools
