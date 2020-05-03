@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Qualification/D/Main.cpp
-index 5a22041..afd6909 100644
+index 44d71ea..fef73c3 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Qualification/D/Main.cpp
 @@ -1,10 +1,10 @@
@@ -16,7 +16,7 @@ index 5a22041..afd6909 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -905,14 +905,93 @@ using namespace std;
+@@ -944,14 +944,93 @@ using namespace std;
  
  namespace task {
  
@@ -47,9 +47,8 @@ index 5a22041..afd6909 100644
  void readInput(){
 +    cin >> N >> B >> F;
 +    llog("NBF:", N, B, F);
- }
- 
--// write to COMM_TYPE result
++}
++
 +str ask(str question){
 +    lassert(question.sz == 1024, "question.sz == 1024");
 +    str end = question.substr(N);
@@ -62,9 +61,9 @@ index 5a22041..afd6909 100644
 +    lassert(end.sz == 1024 - N, "end.sz == 1024 - N");
 +    lassert(answer.sz == 1024 - B, "answer.sz == 1024 - B");
 +    return answer;
-+}
-+
-+// write to OUT_TYPE result
+ }
+ 
+ // write to COMM_TYPE result
  void calcFunction() {
 +    str initial = ask(firstq);
 +    lassert(initial.sz == 1024 - B, "initial.sz == 1024 - B");

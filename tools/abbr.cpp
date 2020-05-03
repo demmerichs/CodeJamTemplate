@@ -55,5 +55,15 @@ typedef std::stringstream sstr;
 #define MOD 1000000007L
 d(char, cell) DIRECTIONS = {{'E', cell(1, 0)}, {'N', cell(0, 1)}, {'W', cell(-1, 0)}, {'S', cell(0, -1)}};
 //#endregion constants
+//#region small conveniance functions
+template <typename K, typename V>
+const V& dget(const std::map<K, V>& dict, const K& key, const V& def=0){
+    auto found = dict.find(key);
+    if(found == dict.end()){
+        return def;
+    }
+    return found->second;
+}
+//#endregion small conveniance functions
 
 //#endregion abbr

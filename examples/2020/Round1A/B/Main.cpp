@@ -68,6 +68,16 @@ typedef std::stringstream sstr;
 #define MOD 1000000007L
 d(char, cell) DIRECTIONS = {{'E', cell(1, 0)}, {'N', cell(0, 1)}, {'W', cell(-1, 0)}, {'S', cell(0, -1)}};
 //#endregion constants
+//#region small conveniance functions
+template <typename K, typename V>
+const V& dget(const std::map<K, V>& dict, const K& key, const V& def=0){
+    auto found = dict.find(key);
+    if(found == dict.end()){
+        return def;
+    }
+    return found->second;
+}
+//#endregion small conveniance functions
 
 //#endregion abbr
 
@@ -536,6 +546,35 @@ long long floorll(long long p, long long q){
     if (p<0)
         return (p-q+1)/q;
     return p/q;
+}
+
+void frac_reduce(cell& frac){
+    ll g = gcd(frac.real(), frac.imag());
+    frac /= g;
+}
+
+cell frac_add(const cell& lhs, const cell& rhs){
+    cell res(lhs.real()*rhs.imag()+lhs.imag()*rhs.real(), lhs.imag()*rhs.imag());
+    frac_reduce(res);
+    return res;
+}
+
+cell frac_sub(const cell& lhs, const cell& rhs){
+    cell res(lhs.real()*rhs.imag()-lhs.imag()*rhs.real(), lhs.imag()*rhs.imag());
+    frac_reduce(res);
+    return res;
+}
+
+cell frac_mul(const cell& lhs, const cell& rhs){
+    cell res(lhs.real()*rhs.real(), lhs.imag()*rhs.imag());
+    frac_reduce(res);
+    return res;
+}
+
+cell frac_div(const cell& lhs, const cell& rhs){
+    cell res(lhs.real()*rhs.imag(), lhs.imag()*rhs.real());
+    frac_reduce(res);
+    return res;
 }
 
 } // namespace mathTools
