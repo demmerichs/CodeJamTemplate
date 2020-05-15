@@ -950,6 +950,7 @@ void calcFunction();
 
 COMM_TYPE result;
 int main() {
+    std::ios::sync_with_stdio(false);  // don't use scanf when sync turned off -> https://www.geeksforgeeks.org/cincout-vs-scanfprintf/
     std::cerr << std::setprecision(4);
     std::cout << std::setprecision(10);
     long long unsigned tests = 0;
