@@ -1,5 +1,5 @@
 #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
-#define DEFAULT_VAL_TRIGGER result==INF
+#define DEFAULT_VAL_TRIGGER result == INF
 #define DEFAULT_VAL "UNBOUNDED"
 // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
 #define IA_ERROR_CODE "ERROR"

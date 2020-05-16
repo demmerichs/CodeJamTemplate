@@ -59,7 +59,7 @@ In this case the `execute.bash` detects the existence of `local_testing_tool.py`
 If you open `Main.cpp` or `Solution.py.m4` to work in, and you fold the whole `#region template code` (ideally supported by your IDE as described [below](#general-advice)) you should be left with something like this:
 ```c++
 // #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
-#define DEFAULT_VAL_TRIGGER result<0
+#define DEFAULT_VAL_TRIGGER result.sz == 0
 #define DEFAULT_VAL "IMPOSSIBLE"
 // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
 #define IA_ERROR_CODE "ERROR"

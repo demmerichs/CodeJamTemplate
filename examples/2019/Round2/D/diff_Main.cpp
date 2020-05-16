@@ -1,13 +1,13 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round2/D/Main.cpp
-index d8e2c23..ed224ae 100644
+index eeb0376..13e6a78 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round2/D/Main.cpp
 @@ -1,6 +1,6 @@
 -// #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
--#define DEFAULT_VAL_TRIGGER result<0
+-#define DEFAULT_VAL_TRIGGER result.sz == 0
 -#define DEFAULT_VAL "IMPOSSIBLE"
 +#define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
-+#define DEFAULT_VAL_TRIGGER result==INF
++#define DEFAULT_VAL_TRIGGER result == INF
 +#define DEFAULT_VAL "UNBOUNDED"
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
  #define IA_ERROR_CODE "ERROR"
