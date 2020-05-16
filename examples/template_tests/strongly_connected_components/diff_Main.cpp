@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/strongly_connected_components/Main.cpp
-index eeb0376..4c4aea9 100644
+index e858c1d..a52f745 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/strongly_connected_components/Main.cpp
 @@ -4,7 +4,7 @@
@@ -11,7 +11,7 @@ index eeb0376..4c4aea9 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -1010,11 +1010,25 @@ namespace task {
+@@ -1012,11 +1012,25 @@ namespace task {
  void init(){
  }
  

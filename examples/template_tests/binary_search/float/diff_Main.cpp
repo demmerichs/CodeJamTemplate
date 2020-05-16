@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/binary_search/float/Main.cpp
-index eeb0376..1715fe6 100644
+index e858c1d..d5d9130 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/binary_search/float/Main.cpp
 @@ -4,7 +4,7 @@
@@ -11,7 +11,7 @@ index eeb0376..1715fe6 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -1010,11 +1010,18 @@ namespace task {
+@@ -1012,11 +1012,18 @@ namespace task {
  void init(){
  }
  

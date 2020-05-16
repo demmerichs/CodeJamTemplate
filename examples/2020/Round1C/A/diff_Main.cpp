@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1C/A/Main.cpp
-index eeb0376..f76e282 100644
+index e858c1d..55fbe8d 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1C/A/Main.cpp
 @@ -1,9 +1,9 @@
@@ -15,7 +15,7 @@ index eeb0376..f76e282 100644
  #define COMM_TYPE ll
  
  // The maintained and empty code template can be found at:
-@@ -1010,11 +1010,30 @@ namespace task {
+@@ -1012,11 +1012,30 @@ namespace task {
  void init(){
  }
  
@@ -36,7 +36,7 @@ index eeb0376..f76e282 100644
 +        return;
 +    }
 +    forn(i, path.sz){
-+        cur += DIRECTIONS[path[i]];
++        cur += DIRECTIONS[DIR_IDX[path[i]]];
 +        if(abs(cur.x)+abs(cur.y)<=i+1){
 +            result = i+1;
 +            return;

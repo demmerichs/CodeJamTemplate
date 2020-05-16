@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round1B/A/Main.cpp
-index eeb0376..b55e731 100644
+index e858c1d..624c9f7 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round1B/A/Main.cpp
 @@ -4,7 +4,7 @@
@@ -11,7 +11,7 @@ index eeb0376..b55e731 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/DavidS3141/CodeJamTemplate
-@@ -1010,11 +1010,59 @@ namespace task {
+@@ -1012,11 +1012,59 @@ namespace task {
  void init(){
  }
  
@@ -34,7 +34,7 @@ index eeb0376..b55e731 100644
 +        char dir;
 +        cin >> xi >> yi >> dir;
 +        persons.pb(cell(xi, yi));
-+        directions.pb(DIRECTIONS[dir]);
++        directions.pb(DIRECTIONS[DIR_IDX[dir]]);
 +        dirnames.pb(dir);
 +        if(dir == 'N'){
 +            ycounts[yi+1]++;

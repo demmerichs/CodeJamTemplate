@@ -53,7 +53,9 @@ typedef std::stringstream sstr;
 #define EPS 1e-15L
 #define PI 3.14159265358979323846264338328L
 #define MOD 1000000007L
-d(char, cell) DIRECTIONS = {{'E', cell(1, 0)}, {'N', cell(0, 1)}, {'W', cell(-1, 0)}, {'S', cell(0, -1)}};
+#define DIR_NAMES "ENWS"
+v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};
+d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
 //#endregion constants
 //#region small conveniance functions
 template <typename K, typename V>

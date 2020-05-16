@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2018/Round2/D/Main.cpp
-index eeb0376..ec53cbc 100644
+index e858c1d..bcb724a 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2018/Round2/D/Main.cpp
 @@ -3,7 +3,7 @@
@@ -11,7 +11,7 @@ index eeb0376..ec53cbc 100644
  #define COMM_TYPE ll
  
  // The maintained and empty code template can be found at:
-@@ -1010,11 +1010,97 @@ namespace task {
+@@ -1012,11 +1012,96 @@ namespace task {
  void init(){
  }
  
@@ -49,8 +49,7 @@ index eeb0376..ec53cbc 100644
 +            visited[r][c] = 1;
 +
 +            forn(b, visit_queue.sz){
-+                foreach(named_del, DIRECTIONS){
-+                    cell &del = named_del.nd;
++                foreach(del, DIRECTIONS){
 +                    cell n = visit_queue[b] + del;
 +                    if (n.x >= 0 && n.y >= 0 && n.x < R && n.y < C) {
 +                        if (!visited[n.x][n.y] && matches_pattern[n.x][n.y]) {
