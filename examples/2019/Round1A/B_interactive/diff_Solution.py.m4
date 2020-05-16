@@ -1,20 +1,23 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/2019/Round1A/B_interactive/Solution.py.m4
-index 10cac5c..d37caf9 100644
+index c0a068a..8266b1f 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/2019/Round1A/B_interactive/Solution.py.m4
-@@ -2,9 +2,9 @@
+@@ -1,11 +1,11 @@
+ #!/usr/bin/env python3
  
  FLAGS = set()
- # FLAGS.add("DEFAULT_VAL")  #remove comm, to activate default value trigger
--# FLAGS.add("IA_MODE")      #remove comm, to activate interactive problem mode
-+FLAGS.add("IA_MODE")  # remove comm, to activate interactive problem mode
- ERROR_WORD = "IMPOSSIBLE"
+-# FLAGS.add("DEFAULT_VAL_MODE")  # remove comm, to activate default value trigger
++# FLAGS.add("DEFAULT_VAL_MODE")  #remove comm, to activate default value trigger
+ DEFAULT_VAL_TRIGGER = lambda result: result is None  # noqa: E731
+ DEFAULT_VAL = "IMPOSSIBLE"
+-# FLAGS.add("IA_MODE")  # remove comm, to activate interactive problem mode
 -IA_ERROR_CODE = "ERROR"
++FLAGS.add("IA_MODE")  # remove comm, to activate interactive problem mode
 +IA_ERROR_CODE = -1
  
  # The maintained and empty code template can be found at:
  # https://github.com/DavidS3141/CodeJamTemplate
-@@ -384,16 +384,34 @@ def main():
+@@ -434,16 +434,34 @@ def main():
  
  
  def init():

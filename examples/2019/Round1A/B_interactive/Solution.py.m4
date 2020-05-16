@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 FLAGS = set()
-# FLAGS.add("DEFAULT_VAL")  #remove comm, to activate default value trigger
+# FLAGS.add("DEFAULT_VAL_MODE")  #remove comm, to activate default value trigger
+DEFAULT_VAL_TRIGGER = lambda result: result is None  # noqa: E731
+DEFAULT_VAL = "IMPOSSIBLE"
 FLAGS.add("IA_MODE")  # remove comm, to activate interactive problem mode
-ERROR_WORD = "IMPOSSIBLE"
 IA_ERROR_CODE = -1
 
 # The maintained and empty code template can be found at:
@@ -11,11 +12,13 @@ IA_ERROR_CODE = -1
 # #region template code
 import functools as ft  # noqa: E402,F401
 import itertools as it  # noqa: E402,F401
+import math  # noqa: E402,F401
+import sys  # noqa: E402,F401
+import time  # noqa: E402,F401
+from math import factorial as fac  # noqa: E402,F401
+
 import numpy as np  # noqa: E402,F401
 import scipy as sp  # noqa: E402,F401
-import sys  # noqa: E402,F401
-from math import factorial as fac  # noqa: E402,F401
-import math  # noqa: E402,F401
 
 # #region abbr
 
@@ -28,6 +31,8 @@ INF = 2 ** 64 - 1
 EPS = ld(1e-15)
 PI = ld("3.14159265358979323846264338328")
 MOD = 1000000007
+DIRECTIONS = [v([1, 0]), v([0, 1]), v([-1, 0]), v([0, -1])]
+DIR_NAMES = "ENWS"
 INV_PHI = (np.sqrt(ld(5)) - 1) / 2  # 1 / phi
 INV_PHI2 = (3 - np.sqrt(ld(5))) / 2  # 1 / phi^2
 # #endregion constants
@@ -83,13 +88,43 @@ def lassert(*args):
     pass
 
 
+def start_timer():
+    pass
+
+
+def stop_timer():
+    pass
+
+
+def get_time():
+    pass
+
+
 """
 m4 macro expansions
+define(`start_timer', `ifdef(`LOCAL',`local_start_timer($@)',`pass')')# define(`start_timer', `ifdef(`LOCAL',`local_start_timer($@)',`pass')')
+define(`stop_timer', `ifdef(`LOCAL',`local_stop_timer($@)',`pass')')# define(`stop_timer', `ifdef(`LOCAL',`local_stop_timer($@)',`pass')')
+define(`get_time', `ifdef(`LOCAL',`local_get_time($@)',`pass')')# define(`get_time', `ifdef(`LOCAL',`local_get_time($@)',`pass')')
 define(`lpdb', `ifdef(`PDB',`local_pdb($@)',`pass')')# define(`lpdb', `ifdef(`PDB',`local_pdb($@)',`pass')')
 define(`llog', `ifdef(`LOCAL',`local_log($@)',`pass')')# define(`llog', `ifdef(`LOCAL',`local_log($@)',`pass')')
 define(`lassert', `ifdef(`LOCAL',`local_assert($@)',`pass')')# define(`lassert', `ifdef(`LOCAL',`local_assert($@)',`pass')')
 undefine(`__file__',`__gnu__',`__line__',`__os2__',`__program__',`__unix__',`__windows__',`argn',`array',`array_set',`builtin',`capitalize',`changecom',`changequote',`changeword',`cleardivert',`cond',`copy',`curry',`debugfile',`debugmode',`decr',`define',`define_blind',`defn',`divert',`divnum',`dnl',`downcase',`dquote',`dquote_elt',`dumpdef',`errprint',`esyscmd',`eval',`example',`exch',`fatal_error',`foreach',`foreachq',`forloop',`format',`ifelse',`include',`incr',`index',`indir',`join',`joinall',`len',`m4exit',`m4wrap',`maketemp',`mkstemp',`nargs',`os2',`patsubst',`popdef',`pushdef',`quote',`regexp',`rename',`reverse',`shift',`sinclude',`stack_foreach',`stack_foreach_lifo',`stack_foreach_sep',`stack_foreach_sep_lifo',`substr',`syscmd',`sysval',`traceoff',`traceon',`translit',`undefine',`undivert',`unix',`upcase',`windows')# undefine(`__file__',`__gnu__',`__line__',`__os2__',`__program__',`__unix__',`__windows__',`argn',`array',`array_set',`builtin',`capitalize',`changecom',`changequote',`changeword',`cleardivert',`cond',`copy',`curry',`debugfile',`debugmode',`decr',`define',`define_blind',`defn',`divert',`divnum',`dnl',`downcase',`dquote',`dquote_elt',`dumpdef',`errprint',`esyscmd',`eval',`example',`exch',`fatal_error',`foreach',`foreachq',`forloop',`format',`ifelse',`include',`incr',`index',`indir',`join',`joinall',`len',`m4exit',`m4wrap',`maketemp',`mkstemp',`nargs',`os2',`patsubst',`popdef',`pushdef',`quote',`regexp',`rename',`reverse',`shift',`sinclude',`stack_foreach',`stack_foreach_lifo',`stack_foreach_sep',`stack_foreach_sep_lifo',`substr',`syscmd',`sysval',`traceoff',`traceon',`translit',`undefine',`undivert',`unix',`upcase',`windows')
 """
+
+
+def local_start_timer():
+    global start
+    start = time.time()
+
+
+def local_stop_timer():
+    global stop
+    stop = time.time()
+
+
+def local_get_time():
+    global start, stop
+    return stop - start
 
 
 def local_pdb():
@@ -101,7 +136,7 @@ def local_pdb():
 
 
 def local_log(*args):
-    cerr(*list(map(str, args)))
+    cerr("\t".join(map(str, args)))
 
 
 def local_assert(*args):
@@ -354,28 +389,43 @@ def main():
     nbr_tests = cin()
     init()
     for test_id in range(1, 1 + nbr_tests):
-        # read input
+        llog()
+        llog()
+        llog()
+        llog()
+        llog("`################################################'")
+        llog("`################################################'")
+        llog("`################################################'")
+        llog("`################", test_id, "################'")
+        llog("`################################################'")
+        llog("`################################################'")
+        llog("`################################################'")
+        llog()
+        llog("============      reading input     ============")
+        start_timer()
         readInput()
-        # calc result
+        stop_timer()
+        llog("-----------", get_time(), "secs -----------")
+        llog()
+        llog("============    doing computation   ============")
+        start_timer()
         calcFunction()
+        stop_timer()
+        llog("-----------", get_time(), "secs -----------")
+        llog()
+
         if "IA_MODE" not in FLAGS:
             # write output
             cout("Case #%d: " % test_id, end=False)
-            cerr("Case #%d: " % test_id, end=False)
-            if "DEFAULT_VAL" not in FLAGS:
+            if "DEFAULT_VAL_MODE" not in FLAGS:
                 cout(result)
-                cerr(result)
-            if "DEFAULT_VAL" in FLAGS:
-                if len(result) > 0:
-                    cout(len(result))
-                    cerr(len(result))
-                    for s in result:
-                        cout(s)
-                        cerr(s)
+            if "DEFAULT_VAL_MODE" in FLAGS:
+                if DEFAULT_VAL_TRIGGER(result):
+                    llog("default val triggered")
+                    cout(DEFAULT_VAL)
                 else:
-                    errorWord = ERROR_WORD
-                    cout(errorWord)
-                    cerr(errorWord)
+                    llog("default val NOT triggered")
+                    cout(result)
 
 
 # #endregion main

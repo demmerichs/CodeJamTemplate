@@ -1,8 +1,21 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/2019/KS_H/C/Solution.py.m4
-index 10cac5c..1fdc489 100644
+index c0a068a..e976df7 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/2019/KS_H/C/Solution.py.m4
-@@ -388,12 +388,49 @@ def init():
+@@ -1,10 +1,10 @@
+ #!/usr/bin/env python3
+ 
+ FLAGS = set()
+-# FLAGS.add("DEFAULT_VAL_MODE")  # remove comm, to activate default value trigger
++# FLAGS.add("DEFAULT_VAL_MODE")  #remove comm, to activate default value trigger
+ DEFAULT_VAL_TRIGGER = lambda result: result is None  # noqa: E731
+ DEFAULT_VAL = "IMPOSSIBLE"
+-# FLAGS.add("IA_MODE")  # remove comm, to activate interactive problem mode
++# FLAGS.add("IA_MODE")      #remove comm, to activate interactive problem mode
+ IA_ERROR_CODE = "ERROR"
+ 
+ # The maintained and empty code template can be found at:
+@@ -438,12 +438,49 @@ def init():
  
  
  def readInput():
