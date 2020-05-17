@@ -30,7 +30,6 @@ then
 fi
 
 mkdir -p "$TARGET_DIR"
-cp -r $DIR/template_problem_folder/* "$TARGET_DIR"
 echo "  The following folders get created in "$TARGET_DIR
 
 
@@ -39,7 +38,7 @@ function make_problem_folder {
   echo "    $name"
   if [ -d "$TARGET_DIR/${name}" ]
   then
-      if [ -d "$TARGET_DIR/${name}.bak" ]
+      if [ $name != "template_problem_folder" ] && [ -d "$TARGET_DIR/${name}.bak" ]
       then
           echo "The folders $TARGET_DIR/${name} and $TARGET_DIR/${name}.bak already existed!"
           exit
@@ -51,7 +50,7 @@ function make_problem_folder {
   cp -r $DIR/template_problem_folder "$TARGET_DIR/${name}"
 }
 
-
+make_problem_folder template_problem_folder
 for problem_folder in ${PROBLEM_FOLDERS[@]}
 do
   make_problem_folder ${problem_folder}
