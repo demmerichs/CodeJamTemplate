@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/binary_search/float/Main.cpp
-index b6f94e8..ca73c9b 100644
+index fabbe5f..80db69c 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/binary_search/float/Main.cpp
 @@ -4,7 +4,7 @@

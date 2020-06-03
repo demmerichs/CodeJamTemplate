@@ -58,6 +58,7 @@ v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};
 d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
 //#endregion constants
 //#region small conveniance functions
+#define lg(var_name) llog(#var_name, var_name)
 template <typename K, typename V>
 const V& dget(const std::map<K, V>& dict, const K& key, const V& def=0){
     auto found = dict.find(key);

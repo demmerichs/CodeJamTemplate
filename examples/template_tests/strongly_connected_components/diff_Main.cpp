@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/strongly_connected_components/Main.cpp
-index b6f94e8..093323d 100644
+index fabbe5f..9e218e5 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/strongly_connected_components/Main.cpp
 @@ -4,7 +4,7 @@
