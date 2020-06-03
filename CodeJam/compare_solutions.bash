@@ -12,13 +12,18 @@ then
     exit 1
 fi
 
-if [[ $3 == "" ]]
+if [[ $2 == "" ]]
 then
-    echo "You must provide 3 arguments:"
+    echo "You must provide 2 arguments + 1 optional:"
     echo "  First: first executable that runs on test inputs created by \"create_test.py\""
-    echo "  Second: second executable to compare against"
+    echo "  Second [Optional]: second executable to compare against otherwise first is compared against itself"
     echo "  Third: integer specifying number of test examples to compare"
     exit 1
+fi
+
+if [[ $3 == "" ]]
+then
+    set -- $1 $1 $2
 fi
 
 for i in $(seq 1 $3)

@@ -18,6 +18,7 @@ touch $DIR/template_problem_folder/result.txt
 cp $DIR/interactive_runner.py $DIR/template_problem_folder/interactive_runner.py
 cp $DIR/execute.bash $DIR/template_problem_folder/execute.bash
 cp $DIR/compare_solutions.bash $DIR/template_problem_folder/compare_solutions.bash
+cp $DIR/create_test.py $DIR/template_problem_folder/create_test.py
 cp $DIR/sync_lines_after_m4.py $DIR/template_problem_folder/sync_lines_after_m4.py
 
 

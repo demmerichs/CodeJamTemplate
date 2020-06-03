@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round2/D/Main.cpp
-index e858c1d..1b2bf50 100644
+index b6f94e8..9c3060d 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round2/D/Main.cpp
 @@ -1,6 +1,6 @@
@@ -12,7 +12,7 @@ index e858c1d..1b2bf50 100644
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
  #define IA_ERROR_CODE "ERROR"
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
-@@ -1012,11 +1012,169 @@ namespace task {
+@@ -1013,11 +1013,169 @@ namespace task {
  void init(){
  }
  

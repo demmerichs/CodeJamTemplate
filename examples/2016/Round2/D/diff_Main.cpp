@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2016/Round2/D/Main.cpp
-index e858c1d..2d30971 100644
+index b6f94e8..4393e3c 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2016/Round2/D/Main.cpp
 @@ -3,7 +3,7 @@
@@ -11,18 +11,7 @@ index e858c1d..2d30971 100644
  #define COMM_TYPE ll
  
  // The maintained and empty code template can be found at:
-@@ -66,9 +66,8 @@ typedef std::stringstream sstr;
- #define EPS 1e-15L
- #define PI 3.14159265358979323846264338328L
- #define MOD 1000000007L
--#define DIR_NAMES "ENWS"
- v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};
--d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
-+str DIR_NAMES = "ENWS";
- //#endregion constants
- //#region small conveniance functions
- template <typename K, typename V>
-@@ -1012,11 +1011,93 @@ namespace task {
+@@ -1013,11 +1013,93 @@ namespace task {
  void init(){
  }
  

@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/binary_search/int_list_lower/Main.cpp
-index e858c1d..129574d 100644
+index b6f94e8..d4b7b69 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/binary_search/int_list_lower/Main.cpp
-@@ -1012,11 +1012,24 @@ namespace task {
+@@ -1013,11 +1013,24 @@ namespace task {
  void init(){
  }
  
