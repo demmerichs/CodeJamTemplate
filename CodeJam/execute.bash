@@ -24,11 +24,6 @@ else
     echo "Great, you are using bash which is well-tested!"
 fi
 
-if [[ -f Solution.py.m4 ]]
-then
-    m4 --synclines Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution_upload.py
-fi
-
 if [ -z $1 ]
 then
     function color {
@@ -46,6 +41,7 @@ else
         exit 0
     else
         color()(set -o pipefail;"$@" 2>/dev/null)
+        TEST="True"
     fi
 fi
 
@@ -54,24 +50,29 @@ then
     echo "#####################################################################"
     echo "Using Python solution..."
     echo "#####################################################################"
+
+    if [ $TEST ]
+    then
+        exec="Solution_upload.py"
+    else
+        exec="Solution.py"
+    fi
+
     m4 --synclines -DLOCAL Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution.py
+    m4 --synclines Solution.py.m4 | tail -n +2 | ./sync_lines_after_m4.py > Solution_upload.py
     chmod +x Solution.py
+    chmod +x Solution_upload.py
+
     if [ -f local_testing_tool.py ]
     then
-        color ./interactive_runner.py python local_testing_tool.py 0 -- ./Solution.py
-        color ./interactive_runner.py python local_testing_tool.py 1 -- ./Solution.py
-        color ./interactive_runner.py python local_testing_tool.py 2 -- ./Solution.py
-        color ./interactive_runner.py python local_testing_tool.py 3 -- ./Solution.py
-        color ./interactive_runner.py python local_testing_tool.py 4 -- ./Solution.py
-        color ./interactive_runner.py python local_testing_tool.py 5 -- ./Solution.py
-        color ./interactive_runner.py python local_testing_tool.py 6 -- ./Solution.py
-        color ./interactive_runner.py python local_testing_tool.py 7 -- ./Solution.py
-        color ./interactive_runner.py python local_testing_tool.py 8 -- ./Solution.py
-        color ./interactive_runner.py python local_testing_tool.py 9 -- ./Solution.py
+        for i in {0..9}
+        do
+            color ./interactive_runner.py python local_testing_tool.py $i -- ./$exec
+        done
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
-            diffresult="$(echo "$(diff -Z <(time color ./Solution.py < sample.txt) result.txt)")"
+            diffresult="$(echo "$(diff -Z <(time color ./$exec < sample.txt) result.txt)")"
             if [ -z "$diffresult" ]
             then
                 :
@@ -81,7 +82,7 @@ then
                 exit 1
             fi
         else
-            time color ./Solution.py < sample.txt
+            time color ./$exec < sample.txt
             exit $?
         fi
     fi
@@ -92,23 +93,26 @@ then
     echo "#####################################################################"
     echo "Using C++ solution..."
     echo "#####################################################################"
-    g++-7 Main.cpp -std=c++14 -pthread -O3 -o Solution -DLOCAL
+
+    if [ $TEST ]
+    then
+        exec="Solution_upload"
+        g++-7 Main.cpp -std=c++14 -pthread -O3 -o Solution_upload
+    else
+        exec="Solution"
+        g++-7 Main.cpp -std=c++14 -pthread -O3 -o Solution -DLOCAL
+    fi
+
     if [ -f local_testing_tool.py ]
     then
-        color ./interactive_runner.py python local_testing_tool.py 0 -- ./Solution
-        color ./interactive_runner.py python local_testing_tool.py 1 -- ./Solution
-        color ./interactive_runner.py python local_testing_tool.py 2 -- ./Solution
-        color ./interactive_runner.py python local_testing_tool.py 3 -- ./Solution
-        color ./interactive_runner.py python local_testing_tool.py 4 -- ./Solution
-        color ./interactive_runner.py python local_testing_tool.py 5 -- ./Solution
-        color ./interactive_runner.py python local_testing_tool.py 6 -- ./Solution
-        color ./interactive_runner.py python local_testing_tool.py 7 -- ./Solution
-        color ./interactive_runner.py python local_testing_tool.py 8 -- ./Solution
-        color ./interactive_runner.py python local_testing_tool.py 9 -- ./Solution
+        for i in {0..9}
+        do
+            color ./interactive_runner.py python local_testing_tool.py $i -- ./$exec
+        done
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
-            diffresult="$(echo "$(diff -Z <(time color ./Solution < sample.txt) result.txt)")"
+            diffresult="$(echo "$(diff -Z <(time color ./$exec < sample.txt) result.txt)")"
             if [ -z "$diffresult" ]
             then
                 :
@@ -118,8 +122,13 @@ then
                 exit 1
             fi
         else
-            time color ./Solution < sample.txt
+            time color ./$exec < sample.txt
             exit $?
         fi
     fi
+fi
+
+if [ ! $TEST ]
+then
+    ./execute.bash TEST
 fi
