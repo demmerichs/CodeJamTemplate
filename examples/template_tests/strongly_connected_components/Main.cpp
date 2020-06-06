@@ -63,8 +63,8 @@ typedef std::stringstream sstr;
 //#endregion for-loops
 //#region constants: INF, EPS, PI, MOD
 #define INF std::numeric_limits<long long>::max()
-#define EPS 1e-15LL
-#define PI 3.14159265358979323846264338328LL
+#define EPS 1e-15L
+#define PI 3.14159265358979323846264338328L
 #define MOD 1000000007LL
 #define DIR_NAMES "ENWS"
 v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};

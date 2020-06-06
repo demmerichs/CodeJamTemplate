@@ -83,7 +83,6 @@ then
             fi
         else
             time color ./$exec < sample.txt
-            exit $?
         fi
     fi
 fi
@@ -123,7 +122,6 @@ then
             fi
         else
             time color ./$exec < sample.txt
-            exit $?
         fi
     fi
 fi
