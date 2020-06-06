@@ -7,3 +7,6 @@
 
 /examples/*/*/*/Solution
 /test_examples
+
+# Atom gcc-linter auto generated file
+Main.o
