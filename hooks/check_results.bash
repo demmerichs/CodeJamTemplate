@@ -40,6 +40,10 @@ output=""
 for exec_script in test_examples/**/execute.bash
 do
     [[ $exec_script =~ ^test_examples/(.*)/execute.bash$ ]]
+    if [[ ${BASH_REMATCH[1]} == "**" ]]
+    then
+        continue
+    fi
     d=test_examples/${BASH_REMATCH[1]}
     if [ ! -d $d ]
     then
