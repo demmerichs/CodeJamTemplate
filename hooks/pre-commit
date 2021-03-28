@@ -5,7 +5,7 @@ shopt -s globstar
 # exit when any pre-commit scripts fail
 set -e
 
-if [ "$(diff hooks .git/hooks --exclude *.sample)" ]
+if [ "$(diff hooks .git/hooks --exclude *.sample --exclude install_hooks.bash)" ]
 then
     echo "The hooks folders do not match!"
     diff hooks .git/hooks --exclude *.sample
