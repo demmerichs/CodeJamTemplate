@@ -67,7 +67,7 @@ then
     then
         for i in {0..9}
         do
-            color ./interactive_runner.py python local_testing_tool.py $i -- ./$exec
+            color ./interactive_runner.py python3 local_testing_tool.py $i -- ./$exec
         done
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
@@ -106,7 +106,7 @@ then
     then
         for i in {0..9}
         do
-            color ./interactive_runner.py python local_testing_tool.py $i -- ./$exec
+            color ./interactive_runner.py python3 local_testing_tool.py $i -- ./$exec
         done
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
