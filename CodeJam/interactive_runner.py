@@ -94,7 +94,7 @@ class SubprocessThread(threading.Thread):
 def test_judge_args(args):
     t_judge = SubprocessThread(judge_args, stderr_pipe=open(os.devnull, "w"))
     t_judge.start()
-    sleep(0.1)
+    sleep(0.2)
     if hasattr(t_judge, "return_code"):
         print(
             "Judge is not running on its own. Might indicate a wrong Test Case number!"
