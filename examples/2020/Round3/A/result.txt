@@ -1,0 +1,7 @@
+Case #1: ZZYZZY
+Case #2: Z
+Case #3: ZYYXXYZ
+Case #4: YZXZ
+Case #5: ABCJ
+Case #6: ABC
+Case #7: ACDEFFGHIJK
