@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Qualification/E/Main.cpp
-index 16602b7..3484db7 100644
+index d1fd39b..e3de1f5 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Qualification/E/Main.cpp
 @@ -1010,14 +1010,68 @@ using namespace std;

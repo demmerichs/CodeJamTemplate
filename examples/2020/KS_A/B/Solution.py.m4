@@ -8,7 +8,7 @@ DEFAULT_VAL = "IMPOSSIBLE"
 IA_ERROR_CODE = "ERROR"
 
 # The maintained and empty code template can be found at:
-# https://github.com/DavidS3141/CodeJamTemplate
+# https://github.com/demmerichs/CodeJamTemplate
 # #region template code
 import functools as ft  # noqa: E402,F401
 import itertools as it  # noqa: E402,F401

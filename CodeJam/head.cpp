@@ -7,6 +7,6 @@
 #define COMM_TYPE ll
 
 // The maintained and empty code template can be found at:
-// https://github.com/DavidS3141/CodeJamTemplate
+// https://github.com/demmerichs/CodeJamTemplate
 //#region template code
 #include <bits/stdc++.h>

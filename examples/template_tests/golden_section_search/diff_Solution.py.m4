@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/template_tests/golden_section_search/Solution.py.m4
-index c0a068a..ebaddd2 100644
+index d490864..018ef03 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/template_tests/golden_section_search/Solution.py.m4
 @@ -1,10 +1,10 @@

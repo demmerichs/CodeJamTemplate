@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2018/Round2/A/Main.cpp
-index 16602b7..2dc80a3 100644
+index d1fd39b..ea276ba 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2018/Round2/A/Main.cpp
 @@ -1,10 +1,10 @@
@@ -14,7 +14,7 @@ index 16602b7..2dc80a3 100644
 +#define COMM_TYPE str
  
  // The maintained and empty code template can be found at:
- // https://github.com/DavidS3141/CodeJamTemplate
+ // https://github.com/demmerichs/CodeJamTemplate
 @@ -1013,11 +1013,54 @@ namespace task {
  void init(){
  }

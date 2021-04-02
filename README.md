@@ -67,7 +67,7 @@ If you open `Main.cpp` or `Solution.py.m4` to work in, and you fold the whole `#
 #define COMM_TYPE ll
 
 // The maintained and empty code template can be found at:
-// https://github.com/DavidS3141/CodeJamTemplate
+// https://github.com/demmerichs/CodeJamTemplate
 //#region template code [...]
 
 namespace task {

@@ -8,7 +8,7 @@ FLAGS.add("IA_MODE")  # remove comm, to activate interactive problem mode
 IA_ERROR_CODE = -1
 
 # The maintained and empty code template can be found at:
-# https://github.com/DavidS3141/CodeJamTemplate
+# https://github.com/demmerichs/CodeJamTemplate
 # #region template code
 import functools as ft  # noqa: E402,F401
 import itertools as it  # noqa: E402,F401

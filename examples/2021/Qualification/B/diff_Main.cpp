@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Qualification/B/Main.cpp
-index 16602b7..dbeea71 100644
+index d1fd39b..d192006 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Qualification/B/Main.cpp
 @@ -1013,11 +1013,43 @@ namespace task {
