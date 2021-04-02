@@ -236,6 +236,7 @@ to get a feeling of how valuable in certain situations this template can be.
       * [diff_Main.cpp](./2020/Round3/A/diff_Main.cpp)
       * [diff_Solution.py.m4](./2020/Round3/A/diff_Solution.py.m4)
     * [B](./2020/Round3/B)
+      * [Main.cpp](./2020/Round3/B/Main.cpp)
 * [2021](./2021)
   * [Qualification](./2021/Qualification)
     * [A](./2021/Qualification/A)
