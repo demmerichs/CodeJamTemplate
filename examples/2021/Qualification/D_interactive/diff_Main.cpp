@@ -1,7 +1,7 @@
-diff --git a/CodeJam/Main.cpp b/examples/2021/Qualification/D/Main.cpp
+diff --git a/CodeJam/Main.cpp b/examples/2021/Qualification/D_interactive/Main.cpp
 index d1fd39b..8b0ce69 100644
 --- a/CodeJam/Main.cpp
-+++ b/examples/2021/Qualification/D/Main.cpp
++++ b/examples/2021/Qualification/D_interactive/Main.cpp
 @@ -1,8 +1,8 @@
  // #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
  #define DEFAULT_VAL_TRIGGER result.sz == 0
