@@ -12,11 +12,11 @@ then
     diff hooks .git/hooks --exclude *.sample
     exit 1
 fi
-./.git/hooks/create_examples_implementation_tree.bash
 ./.git/hooks/create_completes_from_diff.bash
 git add -u **/Main.cpp **/Solution.py.m4
 ./.git/hooks/create_diffs.bash -f
 git add **/diff_Main.cpp **/diff_Solution.py.m4
 ./.git/hooks/check_diffs.bash
 ./.git/hooks/check_results.bash TEST
+./.git/hooks/create_examples_implementation_tree.bash
 git stash pop
