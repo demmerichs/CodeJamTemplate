@@ -5,6 +5,7 @@ shopt -s globstar
 # exit when any pre-commit scripts fail
 set -e
 
+git stash push --include-untracked --keep-index
 if [ "$(diff hooks .git/hooks --exclude *.sample --exclude install_hooks.bash)" ]
 then
     echo "The hooks folders do not match!"
@@ -18,3 +19,4 @@ git add -u **/Main.cpp **/Solution.py.m4
 git add -u **/diff_Main.cpp **/diff_Solution.py.m4
 ./.git/hooks/check_diffs.bash
 ./.git/hooks/check_results.bash TEST
+git stash pop
