@@ -21,3 +21,6 @@ chmod +x .git/hooks/check_diffs.bash
 
 cp hooks/check_results.bash .git/hooks/.
 chmod +x .git/hooks/check_results.bash
+
+cp hooks/ensure_venv.bash .git/hooks/.
+chmod +x .git/hooks/ensure_venv.bash

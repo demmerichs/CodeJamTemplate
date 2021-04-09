@@ -12,6 +12,7 @@ then
     diff hooks .git/hooks --exclude *.sample
     exit 1
 fi
+./.git/hooks/ensure_venv.bash
 ./.git/hooks/create_completes_from_diff.bash
 git add -u **/Main.cpp **/Solution.py.m4
 ./.git/hooks/create_diffs.bash -f

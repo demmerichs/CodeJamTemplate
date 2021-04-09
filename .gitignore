@@ -10,3 +10,6 @@
 
 # Atom gcc-linter auto generated file
 Main.o
+
+# Python venv
+.venv
