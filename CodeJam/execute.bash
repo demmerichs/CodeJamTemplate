@@ -40,7 +40,7 @@ else
         color ./Solution.py < sample.txt
         exit 0
     else
-        color()(set -o pipefail;"$@" 2>/dev/null)
+        color()(set -o pipefail; "$@" 2>/dev/null)
         TEST="True"
     fi
 fi
@@ -65,9 +65,11 @@ then
 
     if [ -f local_testing_tool.py ]
     then
-        for i in {0..9}
+        i=-1
+        while [ $? != 314 ]
         do
-            color ./interactive_runner.py python3 local_testing_tool.py $i -- ./$exec
+            i=$[i+1]
+            time color ./interactive_runner.py python3 local_testing_tool.py $i -- ./$exec
         done
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
@@ -104,9 +106,11 @@ then
 
     if [ -f local_testing_tool.py ]
     then
-        for i in {0..9}
+        i=-1
+        while [ $? != 314 ]
         do
-            color ./interactive_runner.py python3 local_testing_tool.py $i -- ./$exec
+            i=$[i+1]
+            time color ./interactive_runner.py python3 local_testing_tool.py $i -- ./$exec
         done
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]

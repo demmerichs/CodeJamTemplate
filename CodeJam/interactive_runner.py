@@ -94,14 +94,14 @@ class SubprocessThread(threading.Thread):
 def test_judge_args(args):
     t_judge = SubprocessThread(judge_args, stderr_pipe=open(os.devnull, "w"))
     t_judge.start()
-    sleep(0.2)
+    sleep(1.0)
     if hasattr(t_judge, "return_code"):
         print(
             "Judge is not running on its own. Might indicate a wrong Test Case number!"
         )
         return False
     t_judge.p.kill()
-    sleep(0.1)
+    sleep(1.0)
     assert hasattr(t_judge, "return_code")
     return True
 
@@ -114,7 +114,7 @@ judge_args = sys.argv[1:sep_index]
 sol_args = sys.argv[sep_index + 1 :]
 
 if not test_judge_args(judge_args):
-    sys.exit(0)
+    sys.exit(314)
 t_sol = SubprocessThread(sol_args, stderr_pipe=sys.stderr.fileno())
 t_judge = SubprocessThread(
     judge_args,
