@@ -65,12 +65,20 @@ then
 
     if [ -f local_testing_tool.py ]
     then
-        i=-1
-        while [ $? != 314 ]
+        i=0
+        ia_status=0
+        while [ $ia_status == 0 ]
         do
-            i=$[i+1]
+            set +e
             time color ./interactive_runner.py python3 local_testing_tool.py $i -- ./$exec
+            ia_status=$?
+            set -e
+            i=$[i+1]
         done
+        if [ $ia_status != 126 ]
+        then
+            exit $ia_status
+        fi
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then
@@ -106,12 +114,20 @@ then
 
     if [ -f local_testing_tool.py ]
     then
-        i=-1
-        while [ $? != 314 ]
+        i=0
+        ia_status=0
+        while [ $ia_status == 0 ]
         do
-            i=$[i+1]
+            set +e
             time color ./interactive_runner.py python3 local_testing_tool.py $i -- ./$exec
+            ia_status=$?
+            set -e
+            i=$[i+1]
         done
+        if [ $ia_status != 126 ]
+        then
+            exit $ia_status
+        fi
     else
         if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
         then

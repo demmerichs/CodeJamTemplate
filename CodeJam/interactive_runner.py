@@ -114,7 +114,7 @@ judge_args = sys.argv[1:sep_index]
 sol_args = sys.argv[sep_index + 1 :]
 
 if not test_judge_args(judge_args):
-    sys.exit(314)
+    sys.exit(126)
 t_sol = SubprocessThread(sol_args, stderr_pipe=sys.stderr.fileno())
 t_judge = SubprocessThread(
     judge_args,

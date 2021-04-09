@@ -16,7 +16,7 @@ do
     unset recreate
     for k in $basedir/{Main.cpp,Solution.py.m4,result.txt,sample.txt,local_testing_tool.py}
     do
-        if [ "$(git status -uno -s $k)" ]
+        if [[ "$(git status -uno -s $k)" || -z $1 ]]
         then
             recreate=test_examples/${BASH_REMATCH[1]}
         fi

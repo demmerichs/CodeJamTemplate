@@ -54,7 +54,6 @@ to get a feeling of how valuable in certain situations this template can be.
 * [2018](./2018)
   * [2018-1C](./2018/2018-1C)
     * [B](./2018/2018-1C/B)
-  * [Round1A](./2018/Round1A)
   * [Round2](./2018/Round2)
     * [A](./2018/Round2/A)
       * [Main.cpp](./2018/Round2/A/Main.cpp)
