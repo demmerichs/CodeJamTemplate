@@ -9,7 +9,7 @@ git stash push --include-untracked --keep-index
 if [ "$(diff hooks .git/hooks --exclude *.sample --exclude install_hooks.bash)" ]
 then
     echo "The hooks folders do not match!"
-    diff hooks .git/hooks --exclude *.sample
+    diff hooks .git/hooks --exclude *.sample --exclude install_hooks.bash
     exit 1
 fi
 ./.git/hooks/ensure_venv.bash
