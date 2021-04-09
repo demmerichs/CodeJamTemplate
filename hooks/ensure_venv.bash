@@ -21,5 +21,3 @@ then
 fi
 
 pip3 install -U -r $SRC_DIR/requirements.txt
-
-exit 0
