@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round2/D/Main.cpp
-index d1fd39b..645f92a 100644
+index 27af2c8..abe186a 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round2/D/Main.cpp
 @@ -1,6 +1,6 @@
@@ -11,9 +11,9 @@ index d1fd39b..645f92a 100644
 +#define DEFAULT_VAL "UNBOUNDED"
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
  #define IA_ERROR_CODE "ERROR"
- // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
-@@ -1013,11 +1013,169 @@ namespace task {
- void init(){
+ #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
+@@ -1020,11 +1020,169 @@ void init(){
+     cin >> T;
  }
  
 +ll infmodplus(ll a, ll b){

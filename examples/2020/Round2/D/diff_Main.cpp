@@ -1,9 +1,9 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round2/D/Main.cpp
-index d1fd39b..00f0383 100644
+index 27af2c8..2e07ed9 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round2/D/Main.cpp
-@@ -1013,11 +1013,271 @@ namespace task {
- void init(){
+@@ -1020,11 +1020,271 @@ void init(){
+     cin >> T;
  }
  
 +v(ll) compute_Pj(const str& P){

@@ -1,10 +1,11 @@
 // #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
 #define DEFAULT_VAL_TRIGGER result.sz == 0
 #define DEFAULT_VAL "IMPOSSIBLE"
-#define IA_MODE        //remove comment on this line, to activate interactive problem mode
-#define IA_ERROR_CODE "-1"
+// #define IA_MODE        //remove comment on this line, to activate interactive problem mode
+#define IA_ERROR_CODE "ERROR"
+#define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
 // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
-#define COMM_TYPE str
+#define COMM_TYPE ll
 
 // The maintained and empty code template can be found at:
 // https://github.com/demmerichs/CodeJamTemplate
@@ -918,7 +919,9 @@ namespace interactiveTools{
 COMM_TYPE in(){
     COMM_TYPE in_value;
     std::cin >> in_value;
+    #ifdef IA_COMM_LOG
     llog("reading value:", in_value);
+    #endif /*IA_COMM_LOG*/
     if(in_value == IA_ERROR_CODE){
         exit(0);
     }
@@ -927,13 +930,17 @@ COMM_TYPE in(){
 
 template<typename T>
 void out(T t){
+    #ifdef IA_COMM_LOG
     llog("sending output:", t);
+    #endif /*IA_COMM_LOG*/
     std::cout << t << std::endl;
 }
 
 template<typename T, typename... Args>
 void out(T t, Args... args){
+    #ifdef IA_COMM_LOG
     llog("sending output:", t);
+    #endif /*IA_COMM_LOG*/
     std::cout << t << std::endl;
     out(args...);
 }
@@ -946,6 +953,7 @@ using namespace interactiveTools;
 
 //#region main
 namespace task{
+long long unsigned T;
 void init();
 void readInput();
 void calcFunction();
@@ -956,10 +964,8 @@ int main() {
     std::ios::sync_with_stdio(false);  // don't use scanf when sync turned off -> https://www.geeksforgeeks.org/cincout-vs-scanfprintf/
     std::cerr << std::setprecision(4);
     std::cout << std::setprecision(10);
-    long long unsigned tests = 0;
-    std::cin >> tests;
     task::init();
-    for(long long unsigned test=1; test<=tests; ++test){
+    for(long long unsigned test=1; test<=task::T; ++test){
         llog();
         llog();
         llog();
@@ -1010,93 +1016,15 @@ using namespace std;
 
 namespace task {
 
-str firstq = "";
-v(str) followups;
-
 void init(){
-    forn(i, 1024){
-        if((i/16) % 2 == 0)
-            firstq += "0";
-        else
-            firstq += "1";
-    }
-    forn(i, 4){
-        str q = "";
-        forn(j, 1024){
-            if((j/(1<<(3-i))) % 2 == 0)
-                q += "0";
-            else
-                q += "1";
-        }
-        followups.pb(q);
-    }
+    cin >> T;
 }
-
-ll N, B, F;
 
 void readInput(){
-    cin >> N >> B >> F;
-    llog("NBF:", N, B, F);
-}
-
-str ask(str question){
-    lassert(question.sz == 1024, "question.sz == 1024");
-    str end = question.substr(N);
-    question = question.substr(0, N);
-    lassert(question.sz == N, "question.sz == N");
-    out(question);
-    str answer = in();
-    lassert(answer.sz == N - B, "answer.sz == N - B");
-    answer += end;
-    lassert(end.sz == 1024 - N, "end.sz == 1024 - N");
-    lassert(answer.sz == 1024 - B, "answer.sz == 1024 - B");
-    return answer;
 }
 
 // write to COMM_TYPE result
 void calcFunction() {
-    str initial = ask(firstq);
-    lassert(initial.sz == 1024 - B, "initial.sz == 1024 - B");
-    v(v(str)) groups(1<<6);
-    v(ll) bads(1<<6, 16);
-    char last = '0';
-    ll counter = 0;
-    forn(i, 1024 - B){
-        if(initial[i] == last){
-            --bads[counter];
-        } else {
-            last = initial[i];
-            ++counter;
-            --bads[counter];
-        }
-    }
-    forn(i, 4){
-        str answer = ask(followups[i]);
-        forn(j, 1<<6){
-            groups[j].pb(answer.substr(0, 16-bads[j]));
-            answer = answer.substr(16-bads[j]);
-        }
-    }
-    v(ll) result;
-    forn(i, 1<<6){
-        ll counter = 0;
-        forn(j, 16 - bads[i]){
-            ll curidx = groups[i][0][j] * 8 + groups[i][1][j] * 4 + groups[i][2][j] * 2 + groups[i][3][j] - 15 * '0';
-            while(counter < curidx){
-                result.pb(counter + 16 * i);
-                ++counter;
-            }
-            ++counter;
-        }
-        while(counter < 16){
-            result.pb(counter + 16 * i);
-            ++counter;
-        }
-    }
-    lassert(result.sz == B, "result.sz == B");
-    cout << result << endl;
-    str answer = in();
-    lassert(answer == "1", "answer == 1");
 }
 
 } // namespace task

@@ -1,10 +1,11 @@
 // #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
 #define DEFAULT_VAL_TRIGGER result.sz == 0
 #define DEFAULT_VAL "IMPOSSIBLE"
-#define IA_MODE        //remove comment on this line, to activate interactive problem mode
-#define IA_ERROR_CODE "-1"
+// #define IA_MODE        //remove comment on this line, to activate interactive problem mode
+#define IA_ERROR_CODE "ERROR"
+#define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
 // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
-#define COMM_TYPE str
+#define COMM_TYPE ll
 
 // The maintained and empty code template can be found at:
 // https://github.com/demmerichs/CodeJamTemplate
@@ -918,7 +919,9 @@ namespace interactiveTools{
 COMM_TYPE in(){
     COMM_TYPE in_value;
     std::cin >> in_value;
+    #ifdef IA_COMM_LOG
     llog("reading value:", in_value);
+    #endif /*IA_COMM_LOG*/
     if(in_value == IA_ERROR_CODE){
         exit(0);
     }
@@ -927,13 +930,17 @@ COMM_TYPE in(){
 
 template<typename T>
 void out(T t){
+    #ifdef IA_COMM_LOG
     llog("sending output:", t);
+    #endif /*IA_COMM_LOG*/
     std::cout << t << std::endl;
 }
 
 template<typename T, typename... Args>
 void out(T t, Args... args){
+    #ifdef IA_COMM_LOG
     llog("sending output:", t);
+    #endif /*IA_COMM_LOG*/
     std::cout << t << std::endl;
     out(args...);
 }
@@ -946,6 +953,7 @@ using namespace interactiveTools;
 
 //#region main
 namespace task{
+long long unsigned T;
 void init();
 void readInput();
 void calcFunction();
@@ -956,10 +964,8 @@ int main() {
     std::ios::sync_with_stdio(false);  // don't use scanf when sync turned off -> https://www.geeksforgeeks.org/cincout-vs-scanfprintf/
     std::cerr << std::setprecision(4);
     std::cout << std::setprecision(10);
-    long long unsigned tests = 0;
-    std::cin >> tests;
     task::init();
-    for(long long unsigned test=1; test<=tests; ++test){
+    for(long long unsigned test=1; test<=task::T; ++test){
         llog();
         llog();
         llog();
@@ -1010,47 +1016,15 @@ using namespace std;
 
 namespace task {
 
-ll W;
-
 void init(){
-    W = stoll(in());
+    cin >> T;
 }
 
-ll large, small;
-
 void readInput(){
-    out("210");
-    large = stoll(in());
-    llog("large value saved:", large);
-    out("42");
-    small = stoll(in());
 }
 
 // write to COMM_TYPE result
 void calcFunction() {
-    lassert(large % (1L<<35) == 0, "large not divisible by expected");
-    large /= (1L<<35);
-    ll R6 = large % (1L<<7);
-    large /= (1L<<7);
-    ll R5 = large % (1L<<7);
-    large /= (1L<<10);
-    ll R4 = large;
-    lassert(small % (1L<<7) == 0, "small not divisible by expected");
-    small /= (1L<<7);
-    small -= R6;
-    small -= 2 * R5;
-    small -= 8 * R4;
-    lassert(small % (1L<<7) == 0, "small not divisible by expected");
-    small /= (1L<<7);
-    ll R3 = small % (1L<<7);
-    small /= (1L<<7);
-    ll R2 = small % (1L<<7);
-    small /= (1L<<21);
-    ll R1 = small;
-    sstr ss;
-    ss << R1 << " " << R2 << " " << R3 << " " << R4 << " " << R5 << " " << R6;
-    out(ss.str());
-    in();
 }
 
 } // namespace task

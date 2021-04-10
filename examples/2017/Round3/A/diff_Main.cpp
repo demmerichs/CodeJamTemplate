@@ -1,9 +1,9 @@
 diff --git a/CodeJam/Main.cpp b/examples/2017/Round3/A/Main.cpp
-index d1fd39b..d76c30a 100644
+index 27af2c8..1ee0f1f 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2017/Round3/A/Main.cpp
-@@ -1013,11 +1013,55 @@ namespace task {
- void init(){
+@@ -1020,11 +1020,55 @@ void init(){
+     cin >> T;
  }
  
 +str G;

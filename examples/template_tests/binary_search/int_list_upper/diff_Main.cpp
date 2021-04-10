@@ -1,9 +1,9 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/binary_search/int_list_upper/Main.cpp
-index d1fd39b..d30ef6b 100644
+index 27af2c8..dbb0829 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/binary_search/int_list_upper/Main.cpp
-@@ -1013,11 +1013,24 @@ namespace task {
- void init(){
+@@ -1020,11 +1020,24 @@ void init(){
+     cin >> T;
  }
  
 +ll threshold;

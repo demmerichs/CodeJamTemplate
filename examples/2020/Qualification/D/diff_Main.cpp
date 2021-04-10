@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Qualification/D/Main.cpp
-index d1fd39b..42eebcc 100644
+index 27af2c8..d58f692 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Qualification/D/Main.cpp
-@@ -1,10 +1,10 @@
+@@ -1,11 +1,11 @@
  // #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
  #define DEFAULT_VAL_TRIGGER result.sz == 0
  #define DEFAULT_VAL "IMPOSSIBLE"
@@ -10,19 +10,21 @@ index d1fd39b..42eebcc 100644
 -#define IA_ERROR_CODE "ERROR"
 +#define IA_MODE        //remove comment on this line, to activate interactive problem mode
 +#define IA_ERROR_CODE "N"
+ #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 -#define COMM_TYPE ll
 +#define COMM_TYPE str
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1010,14 +1010,91 @@ using namespace std;
+@@ -1016,15 +1016,91 @@ using namespace std;
  
  namespace task {
  
 +ll B;
  void init(){
-+    cin >> B;
+-    cin >> T;
++    cin >> T >> B;
  }
  
 +v(bool) start;

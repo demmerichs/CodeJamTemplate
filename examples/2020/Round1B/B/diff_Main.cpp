@@ -1,23 +1,24 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1B/B/Main.cpp
-index d1fd39b..3f4fef3 100644
+index 27af2c8..59c0193 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1B/B/Main.cpp
-@@ -1,10 +1,10 @@
+@@ -1,11 +1,11 @@
  // #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
  #define DEFAULT_VAL_TRIGGER result.sz == 0
  #define DEFAULT_VAL "IMPOSSIBLE"
 -// #define IA_MODE        //remove comment on this line, to activate interactive problem mode
 -#define IA_ERROR_CODE "ERROR"
--// #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
--#define COMM_TYPE ll
 +#define IA_MODE        //remove comment on this line, to activate interactive problem mode
 +#define IA_ERROR_CODE "WRONG"
+ #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
+-// #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
+-#define COMM_TYPE ll
 +#define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 +#define COMM_TYPE str
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1010,14 +1010,109 @@ using namespace std;
+@@ -1016,15 +1016,109 @@ using namespace std;
  
  namespace task {
  
@@ -25,7 +26,8 @@ index d1fd39b..3f4fef3 100644
 +bool found_center;
 +
  void init(){
-+    cin >> A >> B;
+-    cin >> T;
++    cin >> T >> A >> B;
 +}
 +
 +ll ask(cell p){

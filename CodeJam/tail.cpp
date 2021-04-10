@@ -1,5 +1,6 @@
 //#region main
 namespace task{
+long long unsigned T;
 void init();
 void readInput();
 void calcFunction();
@@ -10,10 +11,8 @@ int main() {
     std::ios::sync_with_stdio(false);  // don't use scanf when sync turned off -> https://www.geeksforgeeks.org/cincout-vs-scanfprintf/
     std::cerr << std::setprecision(4);
     std::cout << std::setprecision(10);
-    long long unsigned tests = 0;
-    std::cin >> tests;
     task::init();
-    for(long long unsigned test=1; test<=tests; ++test){
+    for(long long unsigned test=1; test<=task::T; ++test){
         llog();
         llog();
         llog();
@@ -65,6 +64,7 @@ using namespace std;
 namespace task {
 
 void init(){
+    cin >> T;
 }
 
 void readInput(){

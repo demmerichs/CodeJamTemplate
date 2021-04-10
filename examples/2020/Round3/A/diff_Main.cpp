@@ -1,18 +1,18 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round3/A/Main.cpp
-index d1fd39b..92af162 100644
+index 27af2c8..60af38d 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round3/A/Main.cpp
-@@ -4,7 +4,7 @@
- // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
+@@ -5,7 +5,7 @@
  #define IA_ERROR_CODE "ERROR"
+ #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 -#define COMM_TYPE ll
 +#define COMM_TYPE str
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1013,11 +1013,72 @@ namespace task {
- void init(){
+@@ -1020,11 +1020,72 @@ void init(){
+     cin >> T;
  }
  
 +str C, J;

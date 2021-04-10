@@ -3,6 +3,7 @@
 #define DEFAULT_VAL "IMPOSSIBLE"
 // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
 #define IA_ERROR_CODE "ERROR"
+#define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
 // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 #define COMM_TYPE ld
 
@@ -918,7 +919,9 @@ namespace interactiveTools{
 COMM_TYPE in(){
     COMM_TYPE in_value;
     std::cin >> in_value;
+    #ifdef IA_COMM_LOG
     llog("reading value:", in_value);
+    #endif /*IA_COMM_LOG*/
     if(in_value == IA_ERROR_CODE){
         exit(0);
     }
@@ -927,13 +930,17 @@ COMM_TYPE in(){
 
 template<typename T>
 void out(T t){
+    #ifdef IA_COMM_LOG
     llog("sending output:", t);
+    #endif /*IA_COMM_LOG*/
     std::cout << t << std::endl;
 }
 
 template<typename T, typename... Args>
 void out(T t, Args... args){
+    #ifdef IA_COMM_LOG
     llog("sending output:", t);
+    #endif /*IA_COMM_LOG*/
     std::cout << t << std::endl;
     out(args...);
 }
@@ -946,6 +953,7 @@ using namespace interactiveTools;
 
 //#region main
 namespace task{
+long long unsigned T;
 void init();
 void readInput();
 void calcFunction();
@@ -956,10 +964,8 @@ int main() {
     std::ios::sync_with_stdio(false);  // don't use scanf when sync turned off -> https://www.geeksforgeeks.org/cincout-vs-scanfprintf/
     std::cerr << std::setprecision(4);
     std::cout << std::setprecision(10);
-    long long unsigned tests = 0;
-    std::cin >> tests;
     task::init();
-    for(long long unsigned test=1; test<=tests; ++test){
+    for(long long unsigned test=1; test<=task::T; ++test){
         llog();
         llog();
         llog();
@@ -1011,6 +1017,7 @@ using namespace std;
 namespace task {
 
 void init(){
+    cin >> T;
 }
 
 ld thresh;

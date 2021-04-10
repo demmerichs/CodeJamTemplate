@@ -1,18 +1,18 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/binary_search/float/Main.cpp
-index d1fd39b..d2e4c55 100644
+index 27af2c8..8a58b44 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/binary_search/float/Main.cpp
-@@ -4,7 +4,7 @@
- // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
+@@ -5,7 +5,7 @@
  #define IA_ERROR_CODE "ERROR"
+ #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 -#define COMM_TYPE ll
 +#define COMM_TYPE ld
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1013,11 +1013,18 @@ namespace task {
- void init(){
+@@ -1020,11 +1020,18 @@ void init(){
+     cin >> T;
  }
  
 +ld thresh;

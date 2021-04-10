@@ -3,6 +3,7 @@
 #define DEFAULT_VAL "IMPOSSIBLE"
 // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
 #define IA_ERROR_CODE "ERROR"
+#define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
 // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 #define COMM_TYPE ll
 
@@ -918,7 +919,9 @@ namespace interactiveTools{
 COMM_TYPE in(){
     COMM_TYPE in_value;
     std::cin >> in_value;
+    #ifdef IA_COMM_LOG
     llog("reading value:", in_value);
+    #endif /*IA_COMM_LOG*/
     if(in_value == IA_ERROR_CODE){
         exit(0);
     }
@@ -927,13 +930,17 @@ COMM_TYPE in(){
 
 template<typename T>
 void out(T t){
+    #ifdef IA_COMM_LOG
     llog("sending output:", t);
+    #endif /*IA_COMM_LOG*/
     std::cout << t << std::endl;
 }
 
 template<typename T, typename... Args>
 void out(T t, Args... args){
+    #ifdef IA_COMM_LOG
     llog("sending output:", t);
+    #endif /*IA_COMM_LOG*/
     std::cout << t << std::endl;
     out(args...);
 }
@@ -946,6 +953,7 @@ using namespace interactiveTools;
 
 //#region main
 namespace task{
+long long unsigned T;
 void init();
 void readInput();
 void calcFunction();
@@ -956,10 +964,8 @@ int main() {
     std::ios::sync_with_stdio(false);  // don't use scanf when sync turned off -> https://www.geeksforgeeks.org/cincout-vs-scanfprintf/
     std::cerr << std::setprecision(4);
     std::cout << std::setprecision(10);
-    long long unsigned tests = 0;
-    std::cin >> tests;
     task::init();
-    for(long long unsigned test=1; test<=tests; ++test){
+    for(long long unsigned test=1; test<=task::T; ++test){
         llog();
         llog();
         llog();
@@ -1010,87 +1016,15 @@ using namespace std;
 
 namespace task {
 
-class emp{
-public:
-    v(ll) s;
-
-    emp(){}
-
-    emp(bool read_from_std){
-        lassert(read_from_std, "read from std");
-        ll C;
-        cin >> C;
-        forn(i, C){
-            ll t;
-            cin >> t;
-            s.pb(t);
-        }
-        sort(all(s));
-    }
-
-    emp(const emp& c){
-        s = c.s;
-    }
-
-    emp(v(ll) i){
-        s = i;
-    }
-
-    bool operator==(const emp& other) const{
-        return s == other.s;
-    }
-};
-
-ll N, S;
-
-size_t hash_emp(const emp& e){
-    size_t r = 0;
-    forn(i, e.s.sz){
-        // r ^= std::hash<ll>(e.s[i]);
-        // r ^= e.s[i];
-        r *= (S+1);
-        // r *= 1000;
-        r += e.s[i];
-    }
-    return r;
-}
-
 void init(){
+    cin >> T;
 }
-
-d(ll, ll) counts;
-d(ll, emp) emps;
 
 void readInput(){
-    cin >> N >> S;
-    counts.cl;
-    emps.cl;
-    forn(i, N){
-        emp t(true);
-        ll h = hash_emp(t);
-        counts[h]++;
-        emps[h] = t;
-    }
-    foreach(cur_emp, emps){
-        llog(cur_emp.st, cur_emp.nd.s, counts[cur_emp.st]);
-    }
 }
 
 // write to COMM_TYPE result
 void calcFunction() {
-    result = 0;
-    foreach(cur_emp, emps){
-        ll unteachable=0;
-        forn(i, 1<<cur_emp.nd.s.sz){
-            v(ll) cur = getSelection(cur_emp.nd.s, i);
-            emp t(cur);
-            ll h = hash_emp(t);
-            if(counts.count(h)==0)
-                continue;
-            unteachable += counts[h];
-        }
-        result += (N - unteachable) * counts[cur_emp.st];
-    }
 }
 
 } // namespace task
