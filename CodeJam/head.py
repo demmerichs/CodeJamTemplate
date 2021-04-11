@@ -15,6 +15,7 @@ import itertools as it  # noqa: E402,F401
 import math  # noqa: E402,F401
 import sys  # noqa: E402,F401
 import time  # noqa: E402,F401
+from fractions import Fraction  # noqa: E402,F401
 from math import factorial as fac  # noqa: E402,F401
 
 import numpy as np  # noqa: E402,F401
