@@ -1,16 +1,7 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/2021/Round1A/C/Solution.py.m4
-index e5aa38d..a3d8cd2 100644
+index 2766187..a3d8cd2 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/2021/Round1A/C/Solution.py.m4
-@@ -333,7 +333,7 @@ def crt(remainders, moduli):
- 
- 
- def gss(f, a, b, tol=1e-5, c=None, d=None, fc=None, fd=None):
--    """ Golden section search, recursive.
-+    """Golden section search, recursive.
- 
-     Given a function f with a single local minimum in
-     the interval [a,b], gss returns a subset interval
 @@ -444,12 +444,187 @@ def init():
  
  

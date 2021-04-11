@@ -333,7 +333,7 @@ def crt(remainders, moduli):
 
 
 def gss(f, a, b, tol=1e-5, c=None, d=None, fc=None, fd=None):
-    """ Golden section search, recursive.
+    """Golden section search, recursive.
 
     Given a function f with a single local minimum in
     the interval [a,b], gss returns a subset interval
