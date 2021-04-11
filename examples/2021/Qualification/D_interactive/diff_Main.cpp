@@ -1,18 +1,16 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Qualification/D_interactive/Main.cpp
-index 27af2c8..71bc0c6 100644
+index b62b2a6..71bc0c6 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Qualification/D_interactive/Main.cpp
-@@ -1,8 +1,8 @@
+@@ -1,7 +1,7 @@
  // #define DEFAULT_VAL_MODE    //remove comment on this line, to activate default value trigger
  #define DEFAULT_VAL_TRIGGER result.sz == 0
  #define DEFAULT_VAL "IMPOSSIBLE"
 -// #define IA_MODE        //remove comment on this line, to activate interactive problem mode
--#define IA_ERROR_CODE "ERROR"
 +#define IA_MODE        //remove comment on this line, to activate interactive problem mode
-+#define IA_ERROR_CODE -1
+ #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
- #define COMM_TYPE ll
 @@ -1016,8 +1016,61 @@ using namespace std;
  
  namespace task {

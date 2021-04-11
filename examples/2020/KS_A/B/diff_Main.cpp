@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/KS_A/B/Main.cpp
-index 27af2c8..4680d8c 100644
+index b62b2a6..3447567 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/KS_A/B/Main.cpp
 @@ -1020,11 +1020,41 @@ void init(){

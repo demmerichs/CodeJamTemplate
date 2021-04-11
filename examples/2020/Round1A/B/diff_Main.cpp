@@ -1,9 +1,9 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1A/B/Main.cpp
-index 27af2c8..a6cbc2e 100644
+index b62b2a6..6cc3d71 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1A/B/Main.cpp
 @@ -5,7 +5,7 @@
- #define IA_ERROR_CODE "ERROR"
+ #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 -#define COMM_TYPE ll

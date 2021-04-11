@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round2/D/Main.cpp
-index 27af2c8..abe186a 100644
+index b62b2a6..d3d08a4 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round2/D/Main.cpp
 @@ -1,6 +1,6 @@
@@ -10,7 +10,7 @@ index 27af2c8..abe186a 100644
 +#define DEFAULT_VAL_TRIGGER result == INF
 +#define DEFAULT_VAL "UNBOUNDED"
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
- #define IA_ERROR_CODE "ERROR"
+ #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
 @@ -1020,11 +1020,169 @@ void init(){
      cin >> T;

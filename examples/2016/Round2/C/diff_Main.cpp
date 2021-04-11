@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2016/Round2/C/Main.cpp
-index 27af2c8..6961343 100644
+index b62b2a6..8481153 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2016/Round2/C/Main.cpp
 @@ -1,11 +1,11 @@
@@ -9,7 +9,7 @@ index 27af2c8..6961343 100644
 -#define DEFAULT_VAL "IMPOSSIBLE"
 +#define DEFAULT_VAL "\nIMPOSSIBLE"
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
- #define IA_ERROR_CODE "ERROR"
+ #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
 -// #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
 -#define COMM_TYPE ll
