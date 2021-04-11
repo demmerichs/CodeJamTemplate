@@ -23,6 +23,9 @@ to get a feeling of how valuable in certain situations this template can be.
 - 2020
   - [Kick Start](https://codingcompetitions.withgoogle.com/kickstart/archive/2020)
   - [Code Jam](https://codingcompetitions.withgoogle.com/codejam/archive/2020)
+- 2021
+  - [Kick Start](https://codingcompetitions.withgoogle.com/kickstart/archive/2021)
+  - [Code Jam](https://codingcompetitions.withgoogle.com/codejam/archive/2021)
 
 ## Links to solutions using this template inside this repo
 
