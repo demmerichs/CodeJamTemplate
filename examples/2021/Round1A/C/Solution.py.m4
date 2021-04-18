@@ -552,18 +552,10 @@ def calcFunction():
                 continue
 
             cur_counts = (
-                fac(AB)
-                * fac(AC)
-                * fac(BC)
-                * fac(SAME)
-                // fac(curAB)
-                // fac(AB - curAB)
-                // fac(curAC)
-                // fac(AC - curAC)
-                // fac(curBC)
-                // fac(BC - curBC)
-                // fac(curS)
-                // fac(SAME - curS)
+                choosell(AB, curAB)
+                * choosell(AC, curAC)
+                * choosell(BC, curBC)
+                * choosell(SAME, curS)
             )
             lg(curS)
             lg(curAB)
@@ -619,8 +611,7 @@ def calcFunction():
         lg(exp_counts_AC)
         lg(exp_counts_BC)
         result[1] = Fraction(
-            exp_counts_SAME + exp_counts_AB + exp_counts_AC + exp_counts_BC,
-            counts,
+            exp_counts_SAME + exp_counts_AB + exp_counts_AC + exp_counts_BC, counts,
         )
         result[1] = "/".join(map(str, [result[1].numerator, result[1].denominator]))
 
