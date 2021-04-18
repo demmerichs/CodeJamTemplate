@@ -1,7 +1,7 @@
-diff --git a/CodeJam/Main.cpp b/examples/template_tests/strongly_connected_components/Main.cpp
+diff --git a/CodeJam/Main.cpp b/examples/template_tests/strongly_connected_components/small_graphs/Main.cpp
 index b62b2a6..c5dd71a 100644
 --- a/CodeJam/Main.cpp
-+++ b/examples/template_tests/strongly_connected_components/Main.cpp
++++ b/examples/template_tests/strongly_connected_components/small_graphs/Main.cpp
 @@ -5,7 +5,7 @@
  #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log

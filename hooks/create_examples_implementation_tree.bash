@@ -35,6 +35,11 @@ echo >> $examples_readme
 (cd examples; tree -P 'Main.cpp|Solution.py.m4|diff_Main.cpp|diff_Solution.py.m4' -vf --noreport -I '*~' --charset ascii . \
     | tail -n +2 \
     | sed -e's/| /  /g' -e 's/    /  /g' -e 's/[|`]-\+/*/g' -e 's:\(* \)\(\(.*/\)\([^/]\+\)\):\1[\4](\2):g') \
+    | tr '\n' '\r' \
+    | perl -ne 's/\r    \*[^\r]*(?=\r(| ){4}\*)//g; print;' \
+    | perl -ne 's/\r  \*[^\r]*(?=\r(| ){2}\*)//g; print;' \
+    | perl -ne 's/\r\*[^\r]*(?=\r\*)//g; print;' \
+    | tr '\r' '\n' \
     >> $examples_readme
 
 git add $examples_readme
