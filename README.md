@@ -8,6 +8,7 @@ Code Jam Template (but most of it I wrote by my own anyway).
 
 If you consider using this template for the next Code Jam or Kick Start competitions from Google, and wonder how to get started I recommend the following steps:
 
+- Check out a [YouTube video](https://bit.ly/32ET8z0) I made basically going through the steps listed below, in case you prefer watching over reading.
 - Look for some practice problem or round and follow the below instructions for [**Usage**](#usage) as much or as little as you like, to have a running template base to start experimenting with, understanding the template and getting a general idea of how the template works.
 - With the created templates you can skim through them, trying to remember the things you like and forget about the things you dislike. But to work with this template more efficient than without preparation, please make sure you at least make heavy use of the features described in [**Usage - During Contest - Template Layout**](#template-layout).
 - To help you focus on my most used features, I provided my solutions to recent competitions using this template in the [`examples`](examples) folder of this repository with an up-to-date [README](examples) showing the list and links of implemented solutions and the file endings showing the language used.
