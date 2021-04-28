@@ -9,6 +9,31 @@
  */
 namespace mathTools{
 
+template <typename T>
+T maxOp(T a, T b){
+    return a<b?b:a;
+}
+
+template <typename T>
+T minOp(T a, T b){
+    return a>b?b:a;
+}
+
+template <typename T>
+T mposOp(T a){
+    return (a%MOD + MOD) %MOD;
+}
+
+template <typename T>
+T mplusOp(T a, T b){
+    return (a+b)%MOD;
+}
+
+template <typename T>
+T mmulOp(T a, T b){
+    return ((__int128_t) a * (__int128_t) b)%MOD;
+}
+
 unsigned long long facll(unsigned long long n){
     if (n)
         return n * facll(n - 1);
@@ -16,8 +41,10 @@ unsigned long long facll(unsigned long long n){
 }
 
 unsigned long long facmod(unsigned long long n){
+    if (n>=MOD)
+        return 0;
     if (n)
-        return (n * facmod(n - 1)) % MOD;
+        return mmulOp(n, facmod(n - 1));
     return 1;
 }
 
@@ -90,10 +117,10 @@ long long powmod(long long base, long long exp)
     if (exp == 0)
         return 1;
     else if (exp & 1)
-        return powmod(base, exp - 1) * base % MOD;
+        return mmulOp(powmod(base, exp - 1), base);
     else{
         long long t = powmod(base, exp / 2);
-        return t * t % MOD;
+        return mmulOp(t, t);
     }
 }
 
@@ -113,28 +140,10 @@ v(T) vecOp(v(T) a, v(T) b, const std::function<T (T, T)> &op = std::plus<T>()){
     return out;
 }
 
-template <typename T>
-T maxOp(T a, T b){
-    return a<b?b:a;
-}
-
-template <typename T>
-T minOp(T a, T b){
-    return a>b?b:a;
-}
-
-template <typename T>
-T mplusOp(T a, T b){
-    return (a+b)%MOD;
-}
-
-template <typename T>
-T mmulOp(T a, T b){
-    return (a%MOD * b%MOD)%MOD;
-}
-
 // Implementation works in place by returning the values for a, b by reference
 // a_in * a_out + b_in * b_out = gcd(a, b) (> 0, trivial solution =0 excluded)
+// it is guaranteed that |a_out| <= |b_in/gcd| if b_in > 0
+// (and symmetric the other way round), so no modulo version is needed
 template <typename T>
 void euclideanAlgo(T &a, T &b){
     // only process, a,b >= 0, a<=b transform all other cases to this
@@ -213,12 +222,7 @@ T mdivOp(T num, T div){
     T b = div;
     euclideanAlgo(a, b);
     assert(a*m + b*div == 1); // gcd == 1 so that multiplicative inverse is unambigous
-    return (b%MOD * num%MOD) % MOD;
-}
-
-template <typename T>
-T mposOp(T a){
-    return (a%MOD + MOD) %MOD;
+    return mmulOp(mposOp(b), num);
 }
 
 long long ceill(long long p, long long q){
