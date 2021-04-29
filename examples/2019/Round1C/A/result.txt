@@ -1,0 +1,5 @@
+Case #1: P
+Case #2: IMPOSSIBLE
+Case #3: P
+Case #4: RPP
+Case #5: IMPOSSIBLE
