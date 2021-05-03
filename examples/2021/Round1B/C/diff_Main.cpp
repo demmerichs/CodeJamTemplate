@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Round1B/C/Main.cpp
-index 42da9e7..fe62f81 100644
+index fad3e96..180ea88 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Round1B/C/Main.cpp
 @@ -1,9 +1,9 @@
@@ -14,7 +14,7 @@ index 42da9e7..fe62f81 100644
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
  #define COMM_TYPE ll
  
-@@ -1020,8 +1020,86 @@ using namespace std;
+@@ -1021,8 +1021,86 @@ using namespace std;
  
  namespace task {
  
@@ -102,7 +102,7 @@ index 42da9e7..fe62f81 100644
  }
  
  void readInput(){
-@@ -1029,6 +1107,36 @@ void readInput(){
+@@ -1030,6 +1108,36 @@ void readInput(){
  
  // write to COMM_TYPE result
  void calcFunction() {

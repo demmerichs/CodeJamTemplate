@@ -27,6 +27,7 @@ typedef std::stringstream sstr;
 #define d(type1, type2) std::map<type1, type2 >
 #define uod(type1, type2) std::unordered_map<type1, type2 >
 #define v(type) std::vector<type >
+#define dq(type) std::deque<type >
 #define p(type1,type2) std::pair<type1, type2 >
 #define c(type) std::complex<type >
 //#endregion types

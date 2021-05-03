@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Round1B/A/Main.cpp
-index 42da9e7..7fc0a80 100644
+index fad3e96..2c69339 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Round1B/A/Main.cpp
 @@ -5,7 +5,7 @@
@@ -11,7 +11,7 @@ index 42da9e7..7fc0a80 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -66,7 +66,7 @@ typedef std::stringstream sstr;
+@@ -67,7 +67,7 @@ typedef std::stringstream sstr;
  #define INF std::numeric_limits<long long>::max()
  #define EPS 1e-15L
  #define PI 3.14159265358979323846264338328L
@@ -20,7 +20,7 @@ index 42da9e7..7fc0a80 100644
  #define DIR_NAMES "ENWS"
  v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};
  d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
-@@ -1024,11 +1024,42 @@ void init(){
+@@ -1025,11 +1025,42 @@ void init(){
      cin >> T;
  }
  

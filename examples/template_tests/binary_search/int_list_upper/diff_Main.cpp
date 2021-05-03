@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/binary_search/int_list_upper/Main.cpp
-index 42da9e7..d9eab52 100644
+index fad3e96..d65c1f0 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/binary_search/int_list_upper/Main.cpp
-@@ -1024,11 +1024,24 @@ void init(){
+@@ -1025,11 +1025,24 @@ void init(){
      cin >> T;
  }
  
