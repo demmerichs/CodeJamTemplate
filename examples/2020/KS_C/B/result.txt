@@ -1,0 +1,5 @@
+Case #1: ZOAM
+Case #2: -1
+Case #3: -1
+Case #4: EDCBA
+Case #5: -1
