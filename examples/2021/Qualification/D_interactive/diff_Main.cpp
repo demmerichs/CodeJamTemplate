@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Qualification/D_interactive/Main.cpp
-index fad3e96..16e85e1 100644
+index 883b228..23e8b9a 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Qualification/D_interactive/Main.cpp
 @@ -1,7 +1,7 @@
@@ -11,7 +11,7 @@ index fad3e96..16e85e1 100644
  #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
-@@ -1021,8 +1021,61 @@ using namespace std;
+@@ -1061,8 +1061,61 @@ using namespace std;
  
  namespace task {
  
@@ -74,7 +74,7 @@ index fad3e96..16e85e1 100644
  }
  
  void readInput(){
-@@ -1030,6 +1083,9 @@ void readInput(){
+@@ -1070,6 +1123,9 @@ void readInput(){
  
  // write to COMM_TYPE result
  void calcFunction() {

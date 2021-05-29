@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/KS_B/C/Main.cpp
-index fad3e96..6a80127 100644
+index 883b228..7eca265 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/KS_B/C/Main.cpp
 @@ -4,8 +4,8 @@
@@ -13,19 +13,21 @@ index fad3e96..6a80127 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -67,9 +67,9 @@ typedef std::stringstream sstr;
+@@ -67,10 +67,10 @@ typedef std::stringstream sstr;
  #define INF std::numeric_limits<long long>::max()
  #define EPS 1e-15L
  #define PI 3.14159265358979323846264338328L
 -#define MOD 1000000007LL
+-#define MOD_IS_PRIME    //add commment on this line, when MOD is changed to non-prime number
 +#define MOD 1000000000LL
++// #define MOD_IS_PRIME    //add commment on this line, when MOD is changed to non-prime number
  #define DIR_NAMES "ENWS"
 -v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};
 +v(cell) DIRECTIONS = {cell(1, 0), cell(0, -1), cell(-1, 0), cell(0, 1)};
  d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
  //#endregion constants
  //#region small conveniance functions
-@@ -1025,11 +1025,47 @@ void init(){
+@@ -1065,11 +1065,47 @@ void init(){
      cin >> T;
  }
  

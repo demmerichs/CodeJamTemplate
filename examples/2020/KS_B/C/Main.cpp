@@ -68,6 +68,7 @@ typedef std::stringstream sstr;
 #define EPS 1e-15L
 #define PI 3.14159265358979323846264338328L
 #define MOD 1000000000LL
+// #define MOD_IS_PRIME    //add commment on this line, when MOD is changed to non-prime number
 #define DIR_NAMES "ENWS"
 v(cell) DIRECTIONS = {cell(1, 0), cell(0, -1), cell(-1, 0), cell(0, 1)};
 d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
@@ -350,6 +351,20 @@ T mmulOp(T a, T b){
     return ((__int128_t) a * (__int128_t) b)%MOD;
 }
 
+unsigned long long log2ll(unsigned long long n){
+    assert(n > 0);
+    if (n == 1)
+        return 0;
+    return 1 + log2ll(n >> 1);
+}
+
+unsigned long long sqrtll(unsigned long long n){
+    unsigned long long result = (unsigned long long) std::sqrt((double) n);
+    while(result*result < n) ++result;
+    while(result*result > n) --result;
+    return result;
+}
+
 unsigned long long facll(unsigned long long n){
     if (n)
         return n * facll(n - 1);
@@ -357,11 +372,16 @@ unsigned long long facll(unsigned long long n){
 }
 
 unsigned long long facmod(unsigned long long n){
+    static std::vector<unsigned long long> memorize;
     if (n>=MOD)
         return 0;
-    if (n)
-        return mmulOp(n, facmod(n - 1));
-    return 1;
+    if(n < memorize.size()) return memorize[n];
+    if(n == 0) {
+        memorize.push_back(1);
+        return 1;
+    }
+    memorize.push_back(mmulOp(n, facmod(n - 1)));
+    return memorize[n];
 }
 
 long double facld(unsigned long long n){
@@ -370,7 +390,11 @@ long double facld(unsigned long long n){
     return 1.;
 }
 
+// use this only up to n^k < 2^64 (size of long)
+// usually k is often iterated through 1..n, and the largest binomial coefficient is for k=n/2
+// with choose(n, n/2) < 2^64 we get as upper bound n <= 61
 unsigned long long choosell(unsigned long long n, unsigned long long k){
+    lassert(n<=61 || log2ll(n) <= 64/k, "values too large for long long choose version");
     if (k > n)
         return 0;
     if ( n-k < k)
@@ -381,27 +405,6 @@ unsigned long long choosell(unsigned long long n, unsigned long long k){
         result /= i + 1;
     }
     return result;
-}
-
-unsigned long long choosemod(unsigned long long n, unsigned long long k){
-    static std::vector<std::vector<unsigned long long> > memorize;
-    if (k > n)
-        return 0;
-    if (memorize.size() > n){
-        if (memorize[n].size() > k){
-            return memorize[n][k];
-        } else{
-            choosemod(n, k-1);
-            memorize[n].push_back((choosemod(n-1,k-1) + choosemod(n-1,k)) % MOD);
-            return memorize[n][k];
-        }
-    } else{
-        while (memorize.size() <= n){
-            memorize.push_back(std::vector<unsigned long long>());
-            memorize.back().push_back(1LL);
-        }
-        return choosemod(n,k);
-    }
 }
 
 long double chooseld(unsigned long long n, unsigned long long k){
@@ -438,13 +441,6 @@ long long powmod(long long base, long long exp)
         long long t = powmod(base, exp / 2);
         return mmulOp(t, t);
     }
-}
-
-unsigned long long log2ll(unsigned long long n){
-    assert(n > 0);
-    if (n == 1)
-        return 0;
-    return 1 + log2ll(n >> 1);
 }
 
 template <typename T>
@@ -530,16 +526,60 @@ T crt(v(T) remainders, v(T) moduli){
     return r;
 }
 
+#ifdef MOD_IS_PRIME
 template <typename T>
-T mdivOp(T num, T div){
+T mInvOp(T n){
+    lassert(n>0, "cannot divide by 0");
+    return powmod(n, MOD-2);
+}
+#else
+template <typename T>
+T mInvOp(T div){
     div %= MOD;
     T m = MOD;
     T a = m;
     T b = div;
     euclideanAlgo(a, b);
     assert(a*m + b*div == 1); // gcd == 1 so that multiplicative inverse is unambigous
-    return mmulOp(mposOp(b), num);
+    return mposOp(b);
 }
+#endif /*MOD_IS_PRIME*/
+
+template <typename T>
+T mdivOp(T num, T div){
+    return mmulOp(mInvOp(div), num);
+}
+
+#ifdef MOD_IS_PRIME
+unsigned long long choosemod(unsigned long long n, unsigned long long k){
+    if(k==0 || k==n) return 1;
+    unsigned long long nfac = facmod(n);
+    unsigned long long invnkfac = mInvOp(facmod(n-k));
+    unsigned long long invkfac = mInvOp(facmod(k));
+    return mmulOp(nfac, mmulOp(invnkfac, invkfac));
+}
+#else
+unsigned long long choosemod(unsigned long long n, unsigned long long k){
+    static std::vector<std::vector<unsigned long long> > memorize;
+    if (k > n)
+        return 0;
+    if (memorize.size() > n){
+        if (memorize[n].size() > k){
+            return memorize[n][k];
+        } else{
+            choosemod(n, k-1);
+            memorize[n].push_back((choosemod(n-1,k-1) + choosemod(n-1,k)) % MOD);
+            return memorize[n][k];
+        }
+    } else{
+        while (memorize.size() <= n){
+            memorize.push_back(std::vector<unsigned long long>());
+            memorize.back().push_back(1LL);
+        }
+        return choosemod(n,k);
+    }
+}
+#endif /*MOD_IS_PRIME*/
 
 long long ceill(long long p, long long q){
     if (q<0)
