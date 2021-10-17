@@ -198,3 +198,4 @@ The template makes heavy use of `#region` and `#endregion` comments. Hopefully, 
 - [ ] flush buffer for Interactive Problem (usually not a problem, but good to have just to be safe)
 - [x] add hooks to pre-commit setup
 - [x] make LOCAL mode for python and C++ be resolved in the preprocessor step, so that expansive calls are not made when in evaluation mode
+- [ ] implement golden section search for c++
