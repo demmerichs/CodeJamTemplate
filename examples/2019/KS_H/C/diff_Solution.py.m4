@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/2019/KS_H/C/Solution.py.m4
-index afb0931..be8f95a 100644
+index ecd70df..030bced 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/2019/KS_H/C/Solution.py.m4
 @@ -1,10 +1,10 @@
@@ -15,7 +15,7 @@ index afb0931..be8f95a 100644
  IA_ERROR_CODE = "ERROR"
  
  # The maintained and empty code template can be found at:
-@@ -444,12 +444,49 @@ def init():
+@@ -460,12 +460,49 @@ def init():
  
  
  def readInput():

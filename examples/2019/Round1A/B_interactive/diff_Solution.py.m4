@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/2019/Round1A/B_interactive/Solution.py.m4
-index afb0931..7978768 100644
+index ecd70df..fa243d3 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/2019/Round1A/B_interactive/Solution.py.m4
 @@ -1,11 +1,11 @@
@@ -17,7 +17,7 @@ index afb0931..7978768 100644
  
  # The maintained and empty code template can be found at:
  # https://github.com/demmerichs/CodeJamTemplate
-@@ -440,16 +440,34 @@ def main():
+@@ -456,16 +456,34 @@ def main():
  
  
  def init():

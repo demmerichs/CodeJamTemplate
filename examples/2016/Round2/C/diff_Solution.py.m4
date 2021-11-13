@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/2016/Round2/C/Solution.py.m4
-index afb0931..3bd948b 100644
+index ecd70df..9391f6f 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/2016/Round2/C/Solution.py.m4
 @@ -1,9 +1,9 @@
@@ -14,7 +14,7 @@ index afb0931..3bd948b 100644
  # FLAGS.add("IA_MODE")  # remove comm, to activate interactive problem mode
  IA_ERROR_CODE = "ERROR"
  
-@@ -444,12 +444,59 @@ def init():
+@@ -460,12 +460,59 @@ def init():
  
  
  def readInput():

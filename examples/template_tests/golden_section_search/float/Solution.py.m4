@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 FLAGS = set()
-# FLAGS.add("DEFAULT_VAL_MODE")  #remove comm, to activate default value trigger
+# FLAGS.add("DEFAULT_VAL_MODE")  # remove comm, to activate default value trigger
 DEFAULT_VAL_TRIGGER = lambda result: result is None  # noqa: E731
 DEFAULT_VAL = "IMPOSSIBLE"
-# FLAGS.add("IA_MODE")      #remove comm, to activate interactive problem mode
+# FLAGS.add("IA_MODE")  # remove comm, to activate interactive problem mode
 IA_ERROR_CODE = "ERROR"
 
 # The maintained and empty code template can be found at:
@@ -332,43 +332,59 @@ def crt(remainders, moduli):
 # #region algoTools
 
 
-def gss(f, a, b, tol=1e-5, c=None, d=None, fc=None, fd=None):
+def gss(
+    f,
+    a,
+    b,
+    *,
+    upper=False,
+    tol=1e-5,
+    c=None,
+    d=None,
+    fa=None,
+    fb=None,
+    fc=None,
+    fd=None
+):
     """Golden section search, recursive.
 
-    Given a function f with a single local minimum in
-    the interval [a,b], gss returns a subset interval
-    [c,d] that contains the minimum with d-c <= tol.
-
-    Example:
-    >>> f = lambda x: (x-2)**2
-    >>> a = 1
-    >>> b = 5
-    >>> tol = 1e-5
-    >>> (c,d) = gss(f, a, b, tol)
-    >>> print (c, d)
-    1.9999959837979107 2.0000050911830893
+    Given a strictly unimodal function f with an interval local minimum [c,d] in
+    the interval [a,b], gss returns (depending on upper) a value pair x, y=f(x)
+    with x being within tolerance of either the upper interval bound d or the lower c.
     """
 
     (a, b) = (min(a, b), max(a, b))
+    fa = f(a) if fa is None else fa
+    fb = f(b) if fb is None else fb
     h = b - a
     t = type(h)
-    if c is None:
-        c = t(a + INV_PHI2 * h)
-    if d is None:
-        d = t(a + INV_PHI * h)
-    if fc is None:
-        fc = f(c)
-    if fd is None:
-        fd = f(d)
-    if h <= tol:
+    c = t(a + INV_PHI2 * h) if c is None else c
+    if c == a:
+        c += tol
+        fc = None
+    d = t(a + INV_PHI * h) if d is None else d
+    if d == b:
+        d -= tol
+        fd = None
+    fc = f(c) if fc is None else fc
+    fd = f(d) if fd is None else fd
+    if h < tol:
+        return [(a, fa), (b, fb)][upper]
+
+    if d < c:
         if fc < fd:
-            return (a, c, b)
-        else:
-            return (a, d, b)
-    if fc < fd:
-        return gss(f, a, d, tol, c=None, fc=None, d=c, fd=fc)
-    else:
-        return gss(f, c, b, tol, c=d, fc=fd, d=None, fd=None)
+            return c, fc
+        return d, fd
+
+    m = min(fa, fb, fc, fd)
+    if fa == m and fc > m and fd > m:
+        return a, fa
+    if fb == m and fc > m and fd > m:
+        return b, fb
+
+    if fc < fd or (not upper and fc == fd):
+        return gss(f, a, d, upper=upper, tol=tol, fa=fa, fb=fd, d=c, fd=fc)
+    return gss(f, c, b, upper=upper, tol=tol, fa=fc, fb=fb, c=d, fc=fd)
 
 
 # #endregion algoTools
@@ -444,19 +460,35 @@ def init():
 
 
 def readInput():
-    global result, a, b, c
-    a = cin()
-    b = cin()
-    c = cin()
+    global result, t, N, params
+    t = cin()
+    N = cin()
+    params = cin(N)
+
+
+def f(x):
+    if t == "polynom":
+        r = params[0]
+        for p in params[1:]:
+            r *= x
+            r += p
+        return r
+    if t == "linear":
+        assert N % 2 == 0
+        xs, ys = params[: N // 2], params[N // 2 :]
+        assert xs[0] <= x <= xs[-1]
+        for i in range(N // 2 - 1):
+            if xs[i] <= x <= xs[i + 1]:
+                pi = (xs[i + 1] - x) / (xs[i + 1] - xs[i])
+                return pi * ys[i] + (1 - pi) * ys[i + 1]
 
 
 #  write to result
 def calcFunction():
     global result
-    f = lambda x: a * x * x + b * x + c
-    interval = gss(f, -100, 100, tol=1)
-    llog("result interval:", interval)
-    result = "%d %.2f" % (interval[1], f(interval[1]))
+    a, fa = gss(f, -100.0, 100.0, tol=1e-2)
+    b, fb = gss(f, -100.0, 100.0, tol=1e-2, upper=True)
+    result = "%.4f %.4f %.4f %.4f" % (a, b, fa, fb)
 
 
 if __name__ == "__main__":

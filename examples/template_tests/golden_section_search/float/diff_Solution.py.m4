@@ -1,38 +1,41 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/template_tests/golden_section_search/float/Solution.py.m4
-index afb0931..a5865b7 100644
+index ecd70df..82f3152 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/template_tests/golden_section_search/float/Solution.py.m4
-@@ -1,10 +1,10 @@
- #!/usr/bin/env python3
- 
- FLAGS = set()
--# FLAGS.add("DEFAULT_VAL_MODE")  # remove comm, to activate default value trigger
-+# FLAGS.add("DEFAULT_VAL_MODE")  #remove comm, to activate default value trigger
- DEFAULT_VAL_TRIGGER = lambda result: result is None  # noqa: E731
- DEFAULT_VAL = "IMPOSSIBLE"
--# FLAGS.add("IA_MODE")  # remove comm, to activate interactive problem mode
-+# FLAGS.add("IA_MODE")      #remove comm, to activate interactive problem mode
- IA_ERROR_CODE = "ERROR"
- 
- # The maintained and empty code template can be found at:
-@@ -444,12 +444,19 @@ def init():
+@@ -460,12 +460,35 @@ def init():
  
  
  def readInput():
 -    global result
-+    global result, a, b, c
-+    a = cin()
-+    b = cin()
-+    c = cin()
++    global result, t, N, params
++    t = cin()
++    N = cin()
++    params = cin(N)
++
++
++def f(x):
++    if t == "polynom":
++        r = params[0]
++        for p in params[1:]:
++            r *= x
++            r += p
++        return r
++    if t == "linear":
++        assert N % 2 == 0
++        xs, ys = params[: N // 2], params[N // 2 :]
++        assert xs[0] <= x <= xs[-1]
++        for i in range(N // 2 - 1):
++            if xs[i] <= x <= xs[i + 1]:
++                pi = (xs[i + 1] - x) / (xs[i + 1] - xs[i])
++                return pi * ys[i] + (1 - pi) * ys[i + 1]
  
  
  #  write to result
  def calcFunction():
      global result
-+    f = lambda x: a * x * x + b * x + c
-+    interval = gss(f, -100, 100, tol=1)
-+    llog("result interval:", interval)
-+    result = "%d %.2f" % (interval[1], f(interval[1]))
++    a, fa = gss(f, -100.0, 100.0, tol=1e-2)
++    b, fb = gss(f, -100.0, 100.0, tol=1e-2, upper=True)
++    result = "%.4f %.4f %.4f %.4f" % (a, b, fa, fb)
  
  
  if __name__ == "__main__":
