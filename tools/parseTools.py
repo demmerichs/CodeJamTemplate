@@ -2,16 +2,16 @@
 # TODO add documentation
 
 
-def convert_input(vals):
+def convert_input(val):
     try:
-        return list(map(int, vals))
+        return int(val)
     except ValueError:
         pass
     try:
-        return list(map(float, vals))
+        return float(val)
     except ValueError:
         pass
-    return vals
+    return val
 
 
 def cin(n=None):
@@ -25,7 +25,7 @@ def cin(n=None):
     else:
         v = input()
         v = v.strip().split(" ")
-        cin.cached_vals += convert_input(v)
+        cin.cached_vals += list(map(convert_input, v))
         return cin(n)
 
 

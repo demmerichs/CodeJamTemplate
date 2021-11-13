@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Solution.py.m4 b/examples/2020/KS_A/B/Solution.py.m4
-index 2766187..842291d 100644
+index afb0931..e0fd4d0 100644
 --- a/CodeJam/Solution.py.m4
 +++ b/examples/2020/KS_A/B/Solution.py.m4
 @@ -1,10 +1,10 @@
