@@ -29,6 +29,9 @@ echo "  - [Code Jam](https://codingcompetitions.withgoogle.com/codejam/archive/2
 echo "- 2021" >> $examples_readme
 echo "  - [Kick Start](https://codingcompetitions.withgoogle.com/kickstart/archive/2021)" >> $examples_readme
 echo "  - [Code Jam](https://codingcompetitions.withgoogle.com/codejam/archive/2021)" >> $examples_readme
+echo "- 2022" >> $examples_readme
+echo "  - [Kick Start](https://codingcompetitions.withgoogle.com/kickstart/archive/2022)" >> $examples_readme
+echo "  - [Code Jam](https://codingcompetitions.withgoogle.com/codejam/archive/2022)" >> $examples_readme
 echo >> $examples_readme
 echo "## Links to solutions using this template inside this repo" >> $examples_readme
 echo >> $examples_readme
