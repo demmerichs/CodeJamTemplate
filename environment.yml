@@ -1,0 +1,7 @@
+name: gcj
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - scipy
+  - matplotlib

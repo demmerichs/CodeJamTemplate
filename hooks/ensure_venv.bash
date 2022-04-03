@@ -8,16 +8,18 @@ then
     exit 1
 fi
 
-if [ ! -d $SRC_DIR/.venv ]
+if { conda env list | grep "^gcj "; } >/dev/null 2>&1
 then
+    :
+else
     echo "create venv"
-    python3 -m venv $SRC_DIR/.venv --prompt gcj
+    conda env create -f environment.yml
 fi
 
-if [ -z $VIRTUAL_ENV ]
+if [ $CONDA_PREFIX != "gcj" ]
 then
     echo "activate venv"
-    source $SRC_DIR/.venv/bin/activate
+    conda env update -f environment.yml
+    source $(conda info --base)/etc/profile.d/conda.sh
+    conda activate gcj
 fi
-
-pip3 install -U -r $SRC_DIR/requirements.txt
