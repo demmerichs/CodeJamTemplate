@@ -1,4 +1,4 @@
-//#region debugTools
+#pragma region debugTools
 namespace debugTools{
 
 #ifdef LOCAL
@@ -51,4 +51,4 @@ void local_assert(T t, std::string message){
 
 } // namespace debugTools
 using namespace debugTools;
-//#endregion debugTools
+#pragma endregion debugTools

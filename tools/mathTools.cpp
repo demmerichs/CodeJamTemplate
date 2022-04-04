@@ -1,4 +1,4 @@
-//#region mathTools
+#pragma region mathTools
 /*  TODO add documentation for operators and euclideanAlgo
  *  faculty (facll, facmod and facld)  IMPORTANT: facll works only for n<=20
  *  choose (choosell, choosemod and chooseld)  IMPORTANT: choosell works only for n<=62
@@ -320,4 +320,4 @@ bool operator<(const std::complex<T> &lhs, const std::complex<T> &rhs){
 }
 
 } // namespace std
-//#endregion mathTools
+#pragma endregion mathTools

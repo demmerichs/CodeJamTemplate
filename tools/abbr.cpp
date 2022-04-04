@@ -1,6 +1,6 @@
-//#region abbr
+#pragma region abbr
 
-//#region types
+#pragma region types
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
@@ -16,8 +16,8 @@ typedef std::stringstream sstr;
 #define dq(type) std::deque<type >
 #define p(type1,type2) std::pair<type1, type2 >
 #define c(type) std::complex<type >
-//#endregion types
-//#region members and functions
+#pragma endregion types
+#pragma region members and functions
 #define mp make_pair
 #define mt make_tuple
 #define st first
@@ -34,8 +34,8 @@ typedef std::stringstream sstr;
 #define popf pop_front()
 #define sz size()
 #define cl clear()
-//#endregion members and functions
-//#region iterators
+#pragma endregion members and functions
+#pragma region iterators
 #define bn begin()
 #define ed end()
 #define all(x) (x).begin(), (x).end()
@@ -43,13 +43,13 @@ typedef std::stringstream sstr;
 #define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
 #define foreach(elem,container) for(auto &elem : container)
 #define foreachc(elem,container) for(const auto &elem : container)
-//#endregion iterators
-//#region for-loops
+#pragma endregion iterators
+#pragma region for-loops
 #define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
 #define fornn(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)
 #define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
-//#endregion for-loops
-//#region constants: INF, EPS, PI, MOD
+#pragma endregion for-loops
+#pragma region constants: INF, EPS, PI, MOD
 #define INF std::numeric_limits<long long>::max()
 #define EPS 1e-15L
 #define PI 3.14159265358979323846264338328L
@@ -58,8 +58,8 @@ typedef std::stringstream sstr;
 #define DIR_NAMES "ENWS"
 v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};
 d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
-//#endregion constants
-//#region small conveniance functions
+#pragma endregion constants
+#pragma region small conveniance functions
 #define lg(var_name) llog(#var_name, var_name)
 template <typename K, typename V>
 const V& dget(const std::map<K, V>& dict, const K& key, const V& def=0){
@@ -69,6 +69,6 @@ const V& dget(const std::map<K, V>& dict, const K& key, const V& def=0){
     }
     return found->second;
 }
-//#endregion small conveniance functions
+#pragma endregion small conveniance functions
 
-//#endregion abbr
+#pragma endregion abbr

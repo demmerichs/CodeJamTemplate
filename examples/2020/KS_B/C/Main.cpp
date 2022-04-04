@@ -9,12 +9,12 @@
 
 // The maintained and empty code template can be found at:
 // https://github.com/demmerichs/CodeJamTemplate
-//#region template code
+#pragma region template code
 #include <bits/stdc++.h>
 
-//#region abbr
+#pragma region abbr
 
-//#region types
+#pragma region types
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
@@ -30,8 +30,8 @@ typedef std::stringstream sstr;
 #define dq(type) std::deque<type >
 #define p(type1,type2) std::pair<type1, type2 >
 #define c(type) std::complex<type >
-//#endregion types
-//#region members and functions
+#pragma endregion types
+#pragma region members and functions
 #define mp make_pair
 #define mt make_tuple
 #define st first
@@ -48,8 +48,8 @@ typedef std::stringstream sstr;
 #define popf pop_front()
 #define sz size()
 #define cl clear()
-//#endregion members and functions
-//#region iterators
+#pragma endregion members and functions
+#pragma region iterators
 #define bn begin()
 #define ed end()
 #define all(x) (x).begin(), (x).end()
@@ -57,13 +57,13 @@ typedef std::stringstream sstr;
 #define msel(x,i,j) (x).begin()+(i), (x).begin()+(j)
 #define foreach(elem,container) for(auto &elem : container)
 #define foreachc(elem,container) for(const auto &elem : container)
-//#endregion iterators
-//#region for-loops
+#pragma endregion iterators
+#pragma region for-loops
 #define forn(i, n) for (ll i = 0; i < (ll)(n); ++i)
 #define fornn(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)
 #define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
-//#endregion for-loops
-//#region constants: INF, EPS, PI, MOD
+#pragma endregion for-loops
+#pragma region constants: INF, EPS, PI, MOD
 #define INF std::numeric_limits<long long>::max()
 #define EPS 1e-15L
 #define PI 3.14159265358979323846264338328L
@@ -72,8 +72,8 @@ typedef std::stringstream sstr;
 #define DIR_NAMES "ENWS"
 v(cell) DIRECTIONS = {cell(1, 0), cell(0, -1), cell(-1, 0), cell(0, 1)};
 d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
-//#endregion constants
-//#region small conveniance functions
+#pragma endregion constants
+#pragma region small conveniance functions
 #define lg(var_name) llog(#var_name, var_name)
 template <typename K, typename V>
 const V& dget(const std::map<K, V>& dict, const K& key, const V& def=0){
@@ -83,11 +83,11 @@ const V& dget(const std::map<K, V>& dict, const K& key, const V& def=0){
     }
     return found->second;
 }
-//#endregion small conveniance functions
+#pragma endregion small conveniance functions
 
-//#endregion abbr
+#pragma endregion abbr
 
-//#region printerTools
+#pragma region printerTools
 /*  <<-operator for deque and pair class
  */
 namespace printerTools{
@@ -170,9 +170,9 @@ std::ostream& operator<<(std::ostream& os, std::complex<T> c){
 
 } // namespace printerTools
 using namespace printerTools;
-//#endregion printerTools
+#pragma endregion printerTools
 
-//#region debugTools
+#pragma region debugTools
 namespace debugTools{
 
 #ifdef LOCAL
@@ -225,9 +225,9 @@ void local_assert(T t, std::string message){
 
 } // namespace debugTools
 using namespace debugTools;
-//#endregion debugTools
+#pragma endregion debugTools
 
-//#region selectionTools
+#pragma region selectionTools
 /*  SelectionIterator class (abbr. seliter)
  *          iterates over every possible selection of k elements out of the vector
  *      use as following:
@@ -313,9 +313,9 @@ v(T) getSelection(v(T) elements, unsigned long long binaryRepresentationOfSelect
 
 } // namespace selectionTools
 using namespace selectionTools;
-//#endregion selectionTools
+#pragma endregion selectionTools
 
-//#region mathTools
+#pragma region mathTools
 /*  TODO add documentation for operators and euclideanAlgo
  *  faculty (facll, facmod and facld)  IMPORTANT: facll works only for n<=20
  *  choose (choosell, choosemod and chooseld)  IMPORTANT: choosell works only for n<=62
@@ -637,9 +637,9 @@ bool operator<(const std::complex<T> &lhs, const std::complex<T> &rhs){
 }
 
 } // namespace std
-//#endregion mathTools
+#pragma endregion mathTools
 
-//#region algoTools
+#pragma region algoTools
 /* TODO write doc
  */
 namespace algoTools{
@@ -953,9 +953,9 @@ v(ll) strongly_connected_components_tarjan(v(s(ll)) adjacency_list){
 
 } // namespace algoTools
 using namespace algoTools;
-//#endregion algoTools
+#pragma endregion algoTools
 
-//#region interactiveTools
+#pragma region interactiveTools
 
 namespace interactiveTools{
 
@@ -994,9 +994,9 @@ void out(T t, Args... args){
 
 } // namespace interactiveTools
 using namespace interactiveTools;
-//#endregion interactiveTools
+#pragma endregion interactiveTools
 
-//#region main
+#pragma region main
 namespace task{
 long long unsigned T;
 void init();
@@ -1054,10 +1054,10 @@ int main() {
     }
     return 0;
 }
-//#endregion main
+#pragma endregion main
 
 using namespace std;
-//#endregion template code
+#pragma endregion template code
 
 namespace task {
 

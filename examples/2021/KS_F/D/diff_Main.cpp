@@ -1,7 +1,7 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/KS_F/D/Main.cpp
 old mode 100644
 new mode 100755
-index 883b228..3e62d7b
+index 6e1211d..96ab96a
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/KS_F/D/Main.cpp
 @@ -1065,11 +1065,67 @@ void init(){

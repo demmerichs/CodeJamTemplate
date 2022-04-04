@@ -1,4 +1,4 @@
-//#region algoTools
+#pragma region algoTools
 /* TODO write doc
  */
 namespace algoTools{
@@ -312,4 +312,4 @@ v(ll) strongly_connected_components_tarjan(v(s(ll)) adjacency_list){
 
 } // namespace algoTools
 using namespace algoTools;
-//#endregion algoTools
+#pragma endregion algoTools

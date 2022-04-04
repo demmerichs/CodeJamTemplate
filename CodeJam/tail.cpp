@@ -1,4 +1,4 @@
-//#region main
+#pragma region main
 namespace task{
 long long unsigned T;
 void init();
@@ -56,10 +56,10 @@ int main() {
     }
     return 0;
 }
-//#endregion main
+#pragma endregion main
 
 using namespace std;
-//#endregion template code
+#pragma endregion template code
 
 namespace task {
 

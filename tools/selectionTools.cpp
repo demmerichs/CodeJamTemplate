@@ -1,4 +1,4 @@
-//#region selectionTools
+#pragma region selectionTools
 /*  SelectionIterator class (abbr. seliter)
  *          iterates over every possible selection of k elements out of the vector
  *      use as following:
@@ -84,4 +84,4 @@ v(T) getSelection(v(T) elements, unsigned long long binaryRepresentationOfSelect
 
 } // namespace selectionTools
 using namespace selectionTools;
-//#endregion selectionTools
+#pragma endregion selectionTools

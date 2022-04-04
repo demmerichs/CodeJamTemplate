@@ -1,4 +1,4 @@
-//#region printerTools
+#pragma region printerTools
 /*  <<-operator for deque and pair class
  */
 namespace printerTools{
@@ -81,4 +81,4 @@ std::ostream& operator<<(std::ostream& os, std::complex<T> c){
 
 } // namespace printerTools
 using namespace printerTools;
-//#endregion printerTools
+#pragma endregion printerTools

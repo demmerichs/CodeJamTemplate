@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/KS_B/C/Main.cpp
-index 883b228..7eca265 100644
+index 6e1211d..4d34db4 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/KS_B/C/Main.cpp
 @@ -4,8 +4,8 @@
@@ -25,8 +25,8 @@ index 883b228..7eca265 100644
 -v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};
 +v(cell) DIRECTIONS = {cell(1, 0), cell(0, -1), cell(-1, 0), cell(0, 1)};
  d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
- //#endregion constants
- //#region small conveniance functions
+ #pragma endregion constants
+ #pragma region small conveniance functions
 @@ -1065,11 +1065,47 @@ void init(){
      cin >> T;
  }

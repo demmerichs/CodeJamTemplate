@@ -9,5 +9,5 @@
 
 // The maintained and empty code template can be found at:
 // https://github.com/demmerichs/CodeJamTemplate
-//#region template code
+#pragma region template code
 #include <bits/stdc++.h>

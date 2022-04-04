@@ -1,4 +1,4 @@
-//#region interactiveTools
+#pragma region interactiveTools
 
 namespace interactiveTools{
 
@@ -37,4 +37,4 @@ void out(T t, Args... args){
 
 } // namespace interactiveTools
 using namespace interactiveTools;
-//#endregion interactiveTools
+#pragma endregion interactiveTools
