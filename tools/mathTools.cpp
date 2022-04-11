@@ -34,6 +34,352 @@ T mmulOp(T a, T b){
     return ((__int128_t) a * (__int128_t) b)%MOD;
 }
 
+struct bint;
+bint abs(const bint& v);
+std::uint64_t log2(const bint& v);
+
+struct bint {
+    std::vector<std::uint64_t> z;
+    bool pos;
+
+    bint() : pos(true) {}
+    bint(const std::string& s) : pos(true) {
+        if(s[0]== '-'){
+            *this = -bint(s.substr(1, s.size() - 1));
+            return;
+        }
+        if(s=="0"){
+            return;
+        }
+        std::stringstream ss;
+        std::uint64_t start, end, cur_number;
+        for(std::uint64_t end = 1 + ((s.size() + 17) % 18); end <= s.size(); end+=18){
+            if(z.size()) *this *= 1'000'000'000'000'000'000;
+            start = std::max(UINT64_C(18), end) - 18;
+            ss.clear();
+            ss.str(s.substr(start, end-start));
+            ss >> cur_number;
+            *this += bint(cur_number);
+        }
+    }
+    bint(const char* const & ca) {
+        *this = bint(std::string(ca));
+    }
+    template <typename T>
+    bint(const T& v) {
+        *this = v;
+    }
+
+    void operator=(const bint& v){
+        pos = v.pos;
+        z = v.z;
+    }
+    template <typename T>
+    void operator=(const T& v){
+        pos = v >= 0;
+        z.clear();
+        if(v!=0)
+            z.push_back(pos?v:-v);
+    }
+    void trim() {
+        while(!z.empty() && z.back() == 0){
+            z.pop_back();
+        }
+        pos |= z.empty();
+    }
+
+    bint operator-() const{
+        bint ans;
+        ans.pos = !(pos && z.sz);
+        ans.z = z;
+        return ans;
+    }
+    bint operator>>(const std::uint64_t& s) const {
+        std::uint64_t bigshifts = s / 64;
+        std::uint8_t small_shifts = s % 64;
+        std::uint8_t inverse_small_shifts = 64 - small_shifts;
+        bint ans;
+        ans.pos = pos;
+        for(std::uint64_t i = bigshifts; i < z.size(); ++i){
+            std::uint64_t next = i + 1 < z.size() ? z[i+1] : 0;
+            ans.z.push_back(z[i]>>small_shifts);
+            if(small_shifts)
+                ans.z.back() += next<<inverse_small_shifts;
+        }
+        ans.trim();
+        return ans;
+    }
+    bint& operator>>=(const std::uint64_t& s) {
+        *this = (*this) >> s;
+        return *this;
+    }
+    bint operator<<(const std::uint64_t& s) const {
+        std::uint64_t bigshifts = s / 64;
+        std::uint8_t small_shifts = s % 64;
+        bint ans;
+        if(z.size() == 0) return ans;
+        ans.pos = pos;
+        if(small_shifts){
+            for(std::uint64_t i = 0; i < bigshifts + 1; ++i)
+                ans.z.push_back(0);
+            for(std::uint64_t i = 0; i < z.size(); ++i)
+                ans.z.push_back(z[i]);
+            return ans >> (UINT64_C(64) - small_shifts);
+        }
+        for(std::uint64_t i = 0; i < bigshifts; ++i)
+            ans.z.push_back(0);
+        for(std::uint64_t i = 0; i < z.size(); ++i)
+            ans.z.push_back(z[i]);
+        return ans;
+    }
+    bint& operator<<=(const std::uint64_t& s) {
+        *this = (*this) << s;
+        return *this;
+    }
+    bint trailing_bits(const std::uint64_t& s) const {
+        std::uint64_t big_chunks = (s+63) / 64;
+        bint ans;
+        ans.pos = pos;
+        for(std::uint64_t i = 0; i < big_chunks && i < z.size(); ++i)
+            ans.z.push_back(z[i]);
+        std::uint8_t last_chunk_bits = s % 64;
+        if(last_chunk_bits && big_chunks <= z.size()){
+            ans.z.back() &= (UINT64_C(1)<<last_chunk_bits) - 1;
+        }
+        ans.trim();
+        return ans;
+    }
+    bint& operator&=(const bint& o) {
+        pos &= o.pos;
+        if(o.z.size() < z.size()) z.resize(o.z.size());
+        for(std::uint64_t i = 0; i < z.size(); ++i)
+            z[i] &= o.z[i];
+        trim();
+        return *this;
+    }
+    bint operator&(const bint& o) const {
+        bint ans = o;
+        return (ans &= *this);
+    }
+    bint operator+(const bint& o) const{
+        if(!pos)
+            return o - (-*this);
+        if(!o.pos)
+            return *this - (-o);
+        bint ans = *this;
+        bool carry = false;
+        std::uint64_t oi;
+        for(std::uint64_t i = 0; i < o.z.size() || carry; ++i){
+            if(i==ans.z.size())
+                ans.z.push_back(0);
+            oi = i < o.z.size() ? o.z[i] : 0;
+            ans.z[i] += oi + carry;
+            carry = ans.z[i] < oi + carry || (carry && oi + carry == 0);
+        }
+        return ans;
+    }
+    bint& operator+=(const bint& o){
+        *this = (*this) + o;
+        return *this;
+    }
+    bint operator-(const bint& o) const{
+        if(!pos)
+            return -(-(*this)+o);
+        if(!o.pos)
+            return *this + (-o);
+        if(*this < o)
+            return -(o - *this);
+        bint res = *this;
+        bool carry = false;
+        bool next_carry;
+        std::uint64_t oi;
+        for(std::uint64_t i = 0; i < o.z.size() || carry; ++i){
+            oi = i < o.z.size() ? o.z[i] : 0;
+            next_carry = (res.z[i] == 0 && carry) || (res.z[i] - carry < oi);
+            res.z[i] -= carry + oi;
+            carry = next_carry;
+        }
+        res.trim();
+        return res;
+    }
+    bint& operator-=(const bint& o){
+        *this = (*this) - o;
+        return *this;
+    }
+    bint operator*(const bint& o) const{
+        if(z.size() == 0 || o.z.size() == 0)
+            return bint();
+        if(!pos){
+            return (-*this)*(-o);
+        }
+        if(!o.pos){
+            return -(*this * (-o));
+        }
+        std::uint64_t maxsize = std::max(z.size(), o.z.size());
+        // for the following lines, look up Karatsuba algorithm:
+        // https://en.wikipedia.org/wiki/Karatsuba_algorithm
+        if(maxsize<=1){
+            // o = o1*2^32 + o2, o1,o2 < 2^32
+            std::uint64_t t1 = z[0]>>32;
+            std::uint64_t t2 = z[0] & ((UINT64_C(1)<<32)-1);
+            std::uint64_t o1 = o.z[0]>>32;
+            std::uint64_t o2 = o.z[0] & ((UINT64_C(1)<<32)-1);
+            std::uint64_t z0 = t1 * o1; // <= (2^32 - 1)^2 = 2^64 - 2^33 + 1
+            std::uint64_t z11 = t1 * o2;
+            std::uint64_t z12 = t2 * o1;
+            std::uint64_t z1 = z11 + z12; // could be >= 2^64, so handle carry
+            if(z1<z11) z0+=(UINT64_C(1)<<32); // handling carry
+            std::uint64_t z2 = t2 * o2;
+            bint result = (bint(z0) << UINT64_C(64)) + (bint(z1) << UINT64_C(32)) + bint(z2);
+            return result;
+        }
+
+        // total bits = maxsize * 64, splitting numbers in half
+        bint t1 = (*this) >> (maxsize * 32);
+        bint t2 = trailing_bits(maxsize * 32);
+        bint o1 = o >> (maxsize * 32);
+        bint o2 = o.trailing_bits(maxsize * 32);
+
+        bint z0 = t1 * o1;
+        bint z2 = t2 * o2;
+        // bint z1 = t1 * o2 + t2 * o1; <- trick of Karatsuba, using only one multiplication
+        bint z1 = (t1 + t2) * (o1 + o2) - z2 - z0;
+        bint result = (z0 << (maxsize * 64)) + (z1 << (maxsize * 32)) + z2;
+        return result;
+    }
+    bint& operator*=(const bint& o){
+        *this = (*this) * o;
+        return *this;
+    }
+    std::pair<bint, bint> divmod(const bint& o) const{
+        if(!pos || !o.pos){
+            bool divpos = pos == o.pos;
+            bool modpos = pos;
+            std::pair<bint, bint> posresult = (abs(*this)).divmod(abs(o));
+            return std::make_pair(
+                divpos?posresult.first:-posresult.first,
+                modpos?posresult.second:-posresult.second
+            );
+        }
+        if((*this)<o)
+            return std::make_pair(0, *this);
+        if(z.size() == 1){
+            return std::make_pair(bint(z.back()/o.z.back()), bint(z.back() % o.z.back()));
+        }
+
+        std::uint64_t obits = log2(o) + 1;
+        std::uint64_t oshift = std::max(obits, UINT64_C(32)) - 32;
+        std::uint64_t osignificant_upper = (o>>oshift).z[0] + (oshift >= 1);
+        std::uint64_t tbits = log2(*this) + 1;
+        std::uint64_t tshift = tbits - 64;
+        std::uint64_t tsignificant_lower = ((*this)>>tshift).z[0];
+        // div_lower = tsignificant_lower * 2^tshift / osignificant_upper / 2^oshift
+        bint div_lower = tsignificant_lower / osignificant_upper;
+        if(tshift > oshift) div_lower <<= tshift-oshift;
+        else div_lower >>= oshift-tshift;
+        if(div_lower.z.size()==0) div_lower.z.pb(1);
+        std::pair<bint, bint> result = ((*this)-div_lower*o).divmod(o);
+        return std::make_pair(result.first + div_lower, result.second);
+    }
+    bint operator/(const bint& o) const {
+        return divmod(o).first;
+    }
+    bint& operator/=(const bint& o){
+        *this = (*this) / o;
+        return *this;
+    }
+    bint operator%(const bint& o) const {
+        return divmod(o).second;
+    }
+    bint& operator%=(const bint& o){
+        *this = (*this) % o;
+        return *this;
+    }
+    operator bool() const {
+        return (bool) z.size();
+    }
+    bool operator==(const bint& o) const {
+        if(pos != o.pos) return false;
+        if(z.size() != o.z.size()) return false;
+        for(std::uint64_t i = 0; i < z.size(); ++i){
+            if(z[i] != o.z[i]) return false;
+        }
+        return true;
+    }
+    bool operator<(const bint& o) const {
+        if(pos){
+            if(!o.pos) return false;
+            if(z.size() > o.z.size()) return false;
+            if(z.size() < o.z.size()) return true;
+            for(std::uint64_t i = z.size(); i>0; --i){
+                if(z[i-1]<o.z[i-1]) return true;
+                if(z[i-1]>o.z[i-1]) return false;
+            }
+            return false;
+        }
+        if(o.pos) return true;
+        return (-o) < (-(*this));
+    }
+    bool operator>(const bint& o) const {
+        return o < (*this);
+    }
+    bool operator<=(const bint& o) const {
+        return !(o<(*this));
+    }
+    bool operator>=(const bint& o) const {
+        return !((*this)<o);
+    }
+};
+
+std::ostream& operator<<(std::ostream& os, const bint& v) {
+    if(!v.pos){
+        os << "-" << (-v);
+        return os;
+    }
+    if(v.z.size() == 0){
+        os << "0";
+        return os;
+    }
+    std::vector<std::string> digits;
+    bint t = v;
+    while(t.z.size()){
+        std::pair<bint, bint> temp = t.divmod(UINT64_C(1'000'000'000'000'000'000));
+        digits.push_back(std::to_string(temp.second.z[0]));
+        t = temp.first;
+    }
+    os << digits.back();
+    digits.pop_back();
+    while(!digits.empty()) {
+        os << std::setw(18) << std::setfill('0') << digits.back();
+        digits.pop_back();
+    }
+    return os;
+}
+std::istream& operator>>(std::istream& is, bint& v) {
+    std::string s;
+    is >> s;
+    v = bint(s);
+    return is;
+}
+bint abs(const bint& v){
+    if(v.z.size())
+        return v.pos ? v : -v;
+    return v;
+}
+std::uint64_t log2(const bint& v){
+    assert(v.z.size());
+    std::uint8_t lower=0, upper=64;
+    while(upper - lower >= 2){
+        std::uint8_t mid = (lower + upper) / 2;
+        if(v.z.back()>>mid)
+            lower = mid;
+        else
+            upper = mid;
+    }
+    std::uint64_t ans = 64 * (v.z.size() - 1) + lower;
+    return ans;
+}
+
 unsigned long long log2ll(unsigned long long n){
     assert(n > 0);
     if (n == 1)
