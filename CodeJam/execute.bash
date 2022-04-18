@@ -80,20 +80,29 @@ then
             exit $ia_status
         fi
     else
-        if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
-        then
-            diffresult="$(echo "$(diff -Z <(time color ./$exec < sample.txt) result.txt)")"
-            if [ -z "$diffresult" ]
+        for sfile in sample*.txt
+        do
+            echo
+            echo
+            echo
+            echo
+            echo $sfile
+            rfile=$(sed 's/sample/result/' <(echo $sfile))
+            if [ -f $rfile ] && [ -n "$(cat $rfile)" ]
             then
-                :
+                diffresult="$(echo "$(diff -Z <(time color ./$exec < $sfile) $rfile)")"
+                if [ -z "$diffresult" ]
+                then
+                    :
+                else
+                    echo "Did not produce the expected result! See diff for details:"
+                    echo "$diffresult"
+                    exit 1
+                fi
             else
-                echo "Did not produce the expected result! See diff for details:"
-                echo "$diffresult"
-                exit 1
+                time color ./$exec < $sfile
             fi
-        else
-            time color ./$exec < sample.txt
-        fi
+        done
     fi
 fi
 
@@ -129,20 +138,29 @@ then
             exit $ia_status
         fi
     else
-        if [ -f result.txt ] && [ -n "$(cat result.txt)" ]
-        then
-            diffresult="$(echo "$(diff -Z <(time color ./$exec < sample.txt) result.txt)")"
-            if [ -z "$diffresult" ]
+        for sfile in sample*.txt
+        do
+            echo
+            echo
+            echo
+            echo
+            echo $sfile
+            rfile=$(sed 's/sample/result/' <(echo $sfile))
+            if [ -f $rfile ] && [ -n "$(cat $rfile)" ]
             then
-                :
+                diffresult="$(echo "$(diff -Z <(time color ./$exec < $sfile) $rfile)")"
+                if [ -z "$diffresult" ]
+                then
+                    :
+                else
+                    echo "Did not produce the expected result! See diff for details:"
+                    echo "$diffresult"
+                    exit 1
+                fi
             else
-                echo "Did not produce the expected result! See diff for details:"
-                echo "$diffresult"
-                exit 1
+                time color ./$exec < $sfile
             fi
-        else
-            time color ./$exec < sample.txt
-        fi
+        done
     fi
 fi
 
