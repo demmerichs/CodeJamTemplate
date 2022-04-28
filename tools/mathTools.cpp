@@ -34,6 +34,7 @@ T mmulOp(T a, T b){
     return ((__int128_t) a * (__int128_t) b)%MOD;
 }
 
+#pragma region bigint
 struct bint;
 bint abs(const bint& v);
 std::uint64_t log2(const bint& v);
@@ -367,7 +368,8 @@ bint abs(const bint& v){
     return v;
 }
 std::uint64_t log2(const bint& v){
-    assert(v.z.size());
+    lassert(v.z.size(), "bigint: log2 can only be computed for non-zero numbers");
+    lassert(v.pos, "bigint: log2 can only be computed for positive numbers");
     std::uint8_t lower=0, upper=64;
     while(upper - lower >= 2){
         std::uint8_t mid = (lower + upper) / 2;
@@ -379,6 +381,7 @@ std::uint64_t log2(const bint& v){
     std::uint64_t ans = 64 * (v.z.size() - 1) + lower;
     return ans;
 }
+#pragma endregion bigint
 
 unsigned long long log2ll(unsigned long long n){
     assert(n > 0);
@@ -423,11 +426,11 @@ long double facld(unsigned long long n){
 // usually k is often iterated through 1..n, and the largest binomial coefficient is for k=n/2
 // with choose(n, n/2) < 2^64 we get as upper bound n <= 61
 unsigned long long choosell(unsigned long long n, unsigned long long k){
-    lassert(n<=61 || log2ll(n) <= 64/k, "values too large for long long choose version");
     if (k > n)
         return 0;
     if ( n-k < k)
         return choosell(n, n-k);
+    lassert(n<=61 || log2ll(n) <= 64/k, "values too large for long long choose version");
     unsigned long long result = 1;
     for(unsigned long long i = 0; i < k; ++i){
         result *= n - i;
