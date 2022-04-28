@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1B/B_interactive/Main.cpp
-index fa1026d..dd6d611 100644
+index a7f0d62..5889076 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1B/B_interactive/Main.cpp
 @@ -1,11 +1,11 @@
@@ -18,7 +18,7 @@ index fa1026d..dd6d611 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1410,15 +1410,109 @@ using namespace std;
+@@ -1497,15 +1497,109 @@ using namespace std;
  
  namespace task {
  
@@ -118,7 +118,7 @@ index fa1026d..dd6d611 100644
 +        llog("checking delta", delta, "########################");
 +        fore(r, center.x-delta, center.x+delta){
 +            fore(c, center.y-delta, center.y+delta){
-+                if(delta>max<ll>(abs<ll>(r-center.x),abs<ll>(c-center.y))) continue;
++                if(delta>max<ll>(abs(r-center.x),abs(c-center.y))) continue;
 +                ask(cell(r,c));
 +                if(found_center) break;
 +            }

@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2018/Round3/C/Main.cpp
-index fa1026d..0602091 100644
+index a7f0d62..a9a805c 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2018/Round3/C/Main.cpp
 @@ -5,7 +5,7 @@
@@ -11,7 +11,7 @@ index fa1026d..0602091 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1414,11 +1414,121 @@ void init(){
+@@ -1501,11 +1501,121 @@ void init(){
      cin >> T;
  }
  
@@ -63,7 +63,7 @@ index fa1026d..0602091 100644
 +    lg(sp);
 +    lg(n1_sqr);
 +    lg(n2_sqr);
-+    return sp * abs<ld>(sp) / (n1_sqr * n2_sqr);
++    return sp * abs(sp) / (n1_sqr * n2_sqr);
  }
  
  // write to COMM_TYPE result

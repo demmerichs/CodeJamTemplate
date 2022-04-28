@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2022/Round1A/B/Main.cpp
-index fa1026d..94eec6a 100644
+index a7f0d62..34bc416 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2022/Round1A/B/Main.cpp
 @@ -1,7 +1,7 @@
@@ -11,7 +11,7 @@ index fa1026d..94eec6a 100644
  #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
-@@ -1410,15 +1410,59 @@ using namespace std;
+@@ -1497,15 +1497,59 @@ using namespace std;
  
  namespace task {
  

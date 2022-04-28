@@ -975,6 +975,93 @@ cell frac_div(const cell& lhs, const cell& rhs){
     return res;
 }
 
+#pragma region frac
+template <typename T>
+struct frac {
+    T num, den;
+
+    frac(): num(0), den(1) {}
+
+    frac(const T& n): num(n), den(1) {}
+
+    frac(const T& p, const T& q): num(p), den(q) {
+        normalize_sign();
+        reduce();
+    }
+
+    void normalize_sign() {
+        if(den<0){
+            num *= -1;
+            den *= -1;
+        }
+    }
+
+    void reduce() {
+        T g = gcd<T>(num, den);
+        lassert(g>0, "frac: gcd should be positive");
+        num /= g;
+        den /= g;
+    }
+
+    frac operator+(const frac& o) const {
+        frac ans;
+        ans.num = num * o.den + den * o.num;
+        ans.den = den * o.den;
+        ans.reduce();
+        return ans;
+    }
+    frac operator-(const frac& o) const {
+        frac ans;
+        ans.num = num * o.den - den * o.num;
+        ans.den = den * o.den;
+        ans.reduce();
+        return ans;
+    }
+    frac operator-() const {
+        frac ans;
+        ans.num = -num;
+        ans.den = den;
+        return ans;
+    }
+    frac operator*(const frac& o) const {
+        frac ans;
+        ans.num = num * o.num;
+        ans.den = den * o.den;
+        ans.reduce();
+        return ans;
+    }
+    frac operator/(const frac& o) const {
+        lassert(o.num != 0, "frac: cannot divide by zero");
+        return frac(num * o.den, den * o.num);
+    }
+
+    bool operator==(const frac& o) const {
+        return num == o.num && den == o.den;
+    }
+    bool operator<(const frac& o) const {
+        return num * o.den < o.num * den;
+    }
+    bool operator>(const frac& o) const {
+        return num * o.den > o.num * den;
+    }
+};
+
+template <typename T>
+frac<T> abs(const frac<T>& f){
+    return f.num < 0 ? -f : f;
+}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const frac<T>& f) {
+    os << f.num << "/" << f.den;
+    return os;
+}
+
+typedef frac<ll> fracll;
+typedef frac<bint> bfrac;
+
+#pragma endregion frac
+
 } // namespace mathTools
 using namespace mathTools;
 
@@ -1462,7 +1549,7 @@ ld plane_sp(cell p1i, cell p2i){
     lg(sp);
     lg(n1_sqr);
     lg(n2_sqr);
-    return sp * abs<ld>(sp) / (n1_sqr * n2_sqr);
+    return sp * abs(sp) / (n1_sqr * n2_sqr);
 }
 
 // write to COMM_TYPE result

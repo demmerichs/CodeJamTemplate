@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/bigint/add/Main.cpp
-index fa1026d..287df32 100644
+index a7f0d62..1341f2a 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/bigint/add/Main.cpp
 @@ -5,7 +5,7 @@
@@ -11,7 +11,7 @@ index fa1026d..287df32 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1414,11 +1414,15 @@ void init(){
+@@ -1501,11 +1501,15 @@ void init(){
      cin >> T;
  }
  

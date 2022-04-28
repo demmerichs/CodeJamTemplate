@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/KS_G/D/Main.cpp
-index fa1026d..6271200 100644
+index a7f0d62..720dd9f 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/KS_G/D/Main.cpp
 @@ -1,11 +1,11 @@
@@ -25,7 +25,7 @@ index fa1026d..6271200 100644
      return os;
  }
  
-@@ -1396,7 +1396,7 @@ int main() {
+@@ -1483,7 +1483,7 @@ int main() {
          }
          else{
              llog("default val NOT triggered");
@@ -34,7 +34,7 @@ index fa1026d..6271200 100644
          }
  #endif /*DEFAULT_VAL_MODE*/
  #endif /*IA_MODE*/
-@@ -1414,11 +1414,63 @@ void init(){
+@@ -1501,11 +1501,63 @@ void init(){
      cin >> T;
  }
  
