@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2022/KS_A/A/Main.cpp
-index a7f0d62..c22ef1d 100644
+index 0f47b9d..843350b 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2022/KS_A/A/Main.cpp
 @@ -1,5 +1,5 @@
@@ -10,7 +10,7 @@ index a7f0d62..c22ef1d 100644
  #define DEFAULT_VAL "IMPOSSIBLE"
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
  #define IA_ERROR_CODE -1
-@@ -1501,11 +1501,32 @@ void init(){
+@@ -1569,11 +1569,32 @@ void init(){
      cin >> T;
  }
  

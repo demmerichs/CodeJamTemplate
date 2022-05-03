@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Round1B/A/Main.cpp
-index a7f0d62..95633b7 100644
+index 0f47b9d..5a1b938 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Round1B/A/Main.cpp
 @@ -5,7 +5,7 @@
@@ -22,7 +22,7 @@ index a7f0d62..95633b7 100644
  #define DIR_NAMES "ENWS"
  v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};
  d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
-@@ -1501,11 +1501,42 @@ void init(){
+@@ -1569,11 +1569,42 @@ void init(){
      cin >> T;
  }
  

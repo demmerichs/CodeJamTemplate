@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/KS_G/C/Main.cpp
-index a7f0d62..275301b 100644
+index 0f47b9d..d86fe41 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/KS_G/C/Main.cpp
-@@ -1501,11 +1501,47 @@ void init(){
+@@ -1569,11 +1569,47 @@ void init(){
      cin >> T;
  }
  

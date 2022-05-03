@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/strongly_connected_components/small_graphs/Main.cpp
-index a7f0d62..7ce3c7d 100644
+index 0f47b9d..b611f21 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/strongly_connected_components/small_graphs/Main.cpp
 @@ -5,7 +5,7 @@
@@ -11,7 +11,7 @@ index a7f0d62..7ce3c7d 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1501,11 +1501,25 @@ void init(){
+@@ -1569,11 +1569,25 @@ void init(){
      cin >> T;
  }
  

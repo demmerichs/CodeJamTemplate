@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2022/Round1B/C/Main.cpp
-index a7f0d62..3b9d907 100644
+index 0f47b9d..5f38855 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2022/Round1B/C/Main.cpp
 @@ -1,7 +1,7 @@
@@ -11,7 +11,7 @@ index a7f0d62..3b9d907 100644
  #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
-@@ -1504,8 +1504,33 @@ void init(){
+@@ -1572,8 +1572,33 @@ void init(){
  void readInput(){
  }
  

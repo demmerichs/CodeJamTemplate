@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2018/Round3/B_interactive/Main.cpp
-index a7f0d62..5c7cac1 100644
+index 0f47b9d..557ad23 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2018/Round3/B_interactive/Main.cpp
 @@ -1,7 +1,7 @@
@@ -11,7 +11,7 @@ index a7f0d62..5c7cac1 100644
  #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
-@@ -1501,11 +1501,155 @@ void init(){
+@@ -1569,11 +1569,155 @@ void init(){
      cin >> T;
  }
  

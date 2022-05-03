@@ -660,84 +660,152 @@ cell frac_div(const cell& lhs, const cell& rhs){
 
 #pragma region frac
 template <typename T>
-struct frac {
+struct nnfrac {
     T num, den;
 
-    frac(): num(0), den(1) {}
+    nnfrac(): num(0), den(1) {}
+    nnfrac(const nnfrac<T>& o): num(o.num), den(o.den) {}
+    nnfrac(const T& n): num(n), den(1) {}
+    nnfrac(const T& p, const T& q): num(p), den(q) {}
 
-    frac(const T& n): num(n), den(1) {}
+    nnfrac operator-() const {
+        nnfrac ans;
+        ans.num = -num;
+        ans.den = den;
+        return ans;
+    }
+    nnfrac& operator+=(const nnfrac& o) {
+        num *= o.den;
+        num += den * o.num;
+        den *= o.den;
+        return *this;
+    }
+    nnfrac operator+(const nnfrac& o) const {
+        nnfrac ans = *this;
+        ans += o;
+        return ans;
+    }
+    nnfrac& operator-=(const nnfrac& o) {
+        num *= o.den;
+        num -= den * o.num;
+        den *= o.den;
+        return *this;
+    }
+    nnfrac operator-(const nnfrac& o) const {
+        nnfrac ans = *this;
+        ans -= o;
+        return ans;
+    }
+    nnfrac& operator*=(const nnfrac& o) {
+        num *= o.num;
+        den *= o.den;
+        return *this;
+    }
+    nnfrac operator*(const nnfrac& o) const {
+        nnfrac ans = *this;
+        ans *= o;
+        return ans;
+    }
+    nnfrac& operator/=(const nnfrac& o) {
+        lassert(o.num != 0, "nnfrac: cannot divide by zero");
+        num *= o.den;
+        den *= o.num;
+        return *this;
+    }
+    nnfrac operator/(const nnfrac& o) const {
+        nnfrac ans = *this;
+        ans /= o;
+        return ans;
+    }
+};
 
-    frac(const T& p, const T& q): num(p), den(q) {
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const nnfrac<T>& f) {
+    os << f.num << "/" << f.den;
+    return os;
+}
+
+template <typename T>
+struct frac : nnfrac<T> {
+
+    frac(): nnfrac<T>() {}
+    frac(const frac<T>& o): nnfrac<T>(o) {}
+    frac(const T& n): nnfrac<T>(n) {}
+    frac(const T& p, const T& q): nnfrac<T>(p, q) {
         normalize_sign();
         reduce();
     }
 
     void normalize_sign() {
-        if(den<0){
-            num *= -1;
-            den *= -1;
+        if(this->den<0){
+            this->num *= -1;
+            this->den *= -1;
         }
     }
 
     void reduce() {
-        T g = gcd<T>(num, den);
+        T g = gcd<T>(this->num, this->den);
         lassert(g>0, "frac: gcd should be positive");
-        num /= g;
-        den /= g;
+        this->num /= g;
+        this->den /= g;
     }
 
+    frac& operator+=(const frac& o) {
+        this->nnfrac<T>::operator+=(o);
+        this->reduce();
+        return *this;
+    }
     frac operator+(const frac& o) const {
-        frac ans;
-        ans.num = num * o.den + den * o.num;
-        ans.den = den * o.den;
-        ans.reduce();
+        frac ans = *this;
+        ans += o;
         return ans;
+    }
+    frac& operator-=(const frac& o) {
+        this->nnfrac<T>::operator-=(o);
+        this->reduce();
+        return *this;
     }
     frac operator-(const frac& o) const {
-        frac ans;
-        ans.num = num * o.den - den * o.num;
-        ans.den = den * o.den;
-        ans.reduce();
+        frac ans = *this;
+        ans -= o;
         return ans;
     }
-    frac operator-() const {
-        frac ans;
-        ans.num = -num;
-        ans.den = den;
-        return ans;
+    frac& operator*=(const frac& o) {
+        this->nnfrac<T>::operator*=(o);
+        this->reduce();
+        return *this;
     }
     frac operator*(const frac& o) const {
-        frac ans;
-        ans.num = num * o.num;
-        ans.den = den * o.den;
-        ans.reduce();
+        frac ans = *this;
+        ans *= o;
         return ans;
     }
+    frac& operator/=(const frac& o) {
+        this->nnfrac<T>::operator/=(o);
+        this->normalize_sign();
+        this->reduce();
+        return *this;
+    }
     frac operator/(const frac& o) const {
-        lassert(o.num != 0, "frac: cannot divide by zero");
-        return frac(num * o.den, den * o.num);
+        frac ans = *this;
+        ans /= o;
+        return ans;
     }
 
     bool operator==(const frac& o) const {
-        return num == o.num && den == o.den;
+        return this->num == o.num && this->den == o.den;
     }
     bool operator<(const frac& o) const {
-        return num * o.den < o.num * den;
+        return this->num * o.den < o.num * this->den;
     }
     bool operator>(const frac& o) const {
-        return num * o.den > o.num * den;
+        return this->num * o.den > o.num * this->den;
     }
 };
 
 template <typename T>
 frac<T> abs(const frac<T>& f){
     return f.num < 0 ? -f : f;
-}
-
-template <typename T>
-std::ostream& operator<<(std::ostream& os, const frac<T>& f) {
-    os << f.num << "/" << f.den;
-    return os;
 }
 
 typedef frac<ll> fracll;
