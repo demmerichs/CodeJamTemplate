@@ -10,6 +10,20 @@
 namespace mathTools{
 
 template <typename T>
+unsigned short log2i(const T& value){
+    unsigned short l=0, u=64;
+    unsigned short mid;
+    while(u-l>1){
+        mid = (l+u)/2;
+        if(value>>mid)
+            l = mid;
+        else
+            u = mid;
+    }
+    return l;
+}
+
+template <typename T>
 T maxOp(T a, T b){
     return a<b?b:a;
 }
@@ -37,7 +51,7 @@ T mmulOp(T a, T b){
 #pragma region bigint
 struct bint;
 bint abs(const bint& v);
-std::uint64_t log2(const bint& v);
+std::uint64_t log2i(const bint& v);
 
 struct bint {
     std::vector<std::uint64_t> z;
@@ -268,10 +282,10 @@ struct bint {
             return std::make_pair(bint(z.back()/o.z.back()), bint(z.back() % o.z.back()));
         }
 
-        std::uint64_t obits = log2(o) + 1;
+        std::uint64_t obits = log2i(o) + 1;
         std::uint64_t oshift = std::max(obits, UINT64_C(32)) - 32;
         std::uint64_t osignificant_upper = (o>>oshift).z[0] + (oshift >= 1);
-        std::uint64_t tbits = log2(*this) + 1;
+        std::uint64_t tbits = log2i(*this) + 1;
         std::uint64_t tshift = tbits - 64;
         std::uint64_t tsignificant_lower = ((*this)>>tshift).z[0];
         // div_lower = tsignificant_lower * 2^tshift / osignificant_upper / 2^oshift
@@ -367,28 +381,21 @@ bint abs(const bint& v){
         return v.pos ? v : -v;
     return v;
 }
-std::uint64_t log2(const bint& v){
-    lassert(v.z.size(), "bigint: log2 can only be computed for non-zero numbers");
-    lassert(v.pos, "bigint: log2 can only be computed for positive numbers");
-    std::uint8_t lower=0, upper=64;
-    while(upper - lower >= 2){
-        std::uint8_t mid = (lower + upper) / 2;
-        if(v.z.back()>>mid)
-            lower = mid;
-        else
-            upper = mid;
-    }
-    std::uint64_t ans = 64 * (v.z.size() - 1) + lower;
+std::uint64_t log2i(const bint& v){
+    lassert(v.z.size(), "bigint: log2i can only be computed for non-zero numbers");
+    lassert(v.pos, "bigint: log2i can only be computed for positive numbers");
+    // std::uint8_t lower=0, upper=64;
+    // while(upper - lower >= 2){
+    //     std::uint8_t mid = (lower + upper) / 2;
+    //     if(v.z.back()>>mid)
+    //         lower = mid;
+    //     else
+    //         upper = mid;
+    // }
+    std::uint64_t ans = 64 * (v.z.size() - 1) + log2i(v.z.back());
     return ans;
 }
 #pragma endregion bigint
-
-unsigned long long log2ll(unsigned long long n){
-    assert(n > 0);
-    if (n == 1)
-        return 0;
-    return 1 + log2ll(n >> 1);
-}
 
 unsigned long long sqrtll(unsigned long long n){
     unsigned long long result = (unsigned long long) std::sqrt((double) n);
@@ -430,7 +437,7 @@ unsigned long long choosell(unsigned long long n, unsigned long long k){
         return 0;
     if ( n-k < k)
         return choosell(n, n-k);
-    lassert(n<=61 || log2ll(n) <= 64/k, "values too large for long long choose version");
+    lassert(n<=61 || log2i(n) <= 64/k, "values too large for long long choose version");
     unsigned long long result = 1;
     for(unsigned long long i = 0; i < k; ++i){
         result *= n - i;

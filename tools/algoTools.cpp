@@ -107,7 +107,7 @@ private:
     }
 
     void create_subtrees(){
-        max_depth = argsorted.size() >= 4 ? 2 + log2ll(argsorted.size() -1) : argsorted.size();
+        max_depth = argsorted.size() >= 4 ? 2 + log2i(argsorted.size() -1) : argsorted.size();
 
         if(values.size()-1 > dimension){
             forn(d, max_depth){
@@ -225,7 +225,7 @@ private:
 
     void create_lookup_table(){
         ll n = values.size();
-        ll logn = log2ll(n);
+        ll logn = log2i(n);
         lookup_idxs.clear();
         lookup_idxs.resize(n);
         forn(i, n){
@@ -249,7 +249,7 @@ public:
     ll query(ll lower, ll upper){
         ll n = upper - lower;
         lassert(n>0, "invalid range max query");
-        ll logn = log2ll(n);
+        ll logn = log2i(n);
         ll first = lookup_idxs[lower][logn];
         ll second = lookup_idxs[upper - (1<<logn)][logn];
         if(comp(values[first], values[second]))

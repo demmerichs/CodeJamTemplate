@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Round1A/B/Main.cpp
-index 00aa56c..9a1cbb7 100644
+index 6f10f99..38c7b16 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Round1A/B/Main.cpp
-@@ -1544,11 +1544,49 @@ void init(){
+@@ -1551,11 +1551,49 @@ void init(){
      cin >> T;
  }
  
@@ -23,7 +23,7 @@ index 00aa56c..9a1cbb7 100644
  
  // write to COMM_TYPE result
  void calcFunction() {
-+    ll maxprodcards = log2ll(S);
++    ll maxprodcards = log2i(S);
 +    lg(maxprodcards);
 +    result = 0;
 +    ll start_sum = S-1;

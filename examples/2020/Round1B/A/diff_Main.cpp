@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1B/A/Main.cpp
-index 00aa56c..4563d5d 100644
+index 6f10f99..549b8c6 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1B/A/Main.cpp
 @@ -1,11 +1,11 @@
@@ -16,7 +16,7 @@ index 00aa56c..4563d5d 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1544,11 +1544,65 @@ void init(){
+@@ -1551,11 +1551,65 @@ void init(){
      cin >> T;
  }
  

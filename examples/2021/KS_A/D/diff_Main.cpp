@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/KS_A/D/Main.cpp
-index 00aa56c..4a2f0cf 100644
+index 6f10f99..0811c78 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/KS_A/D/Main.cpp
 @@ -4,7 +4,7 @@
@@ -11,7 +11,7 @@ index 00aa56c..4a2f0cf 100644
  #define COMM_TYPE ll
  
  // The maintained and empty code template can be found at:
-@@ -1544,11 +1544,46 @@ void init(){
+@@ -1551,11 +1551,46 @@ void init(){
      cin >> T;
  }
  

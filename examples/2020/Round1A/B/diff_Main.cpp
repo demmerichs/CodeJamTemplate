@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1A/B/Main.cpp
-index 00aa56c..d1811aa 100644
+index 6f10f99..a33d5b0 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1A/B/Main.cpp
 @@ -5,7 +5,7 @@
@@ -11,7 +11,7 @@ index 00aa56c..d1811aa 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1544,11 +1544,53 @@ void init(){
+@@ -1551,11 +1551,53 @@ void init(){
      cin >> T;
  }
  
@@ -23,7 +23,7 @@ index 00aa56c..d1811aa 100644
  
  // write to COMM_TYPE result
  void calcFunction() {
-+    ll r = log2ll(N)+1;
++    ll r = log2i(N)+1;
 +    ll k = N-r;
 +    lassert(k>=0, "ohnooo");
 +    ll counter = 0;

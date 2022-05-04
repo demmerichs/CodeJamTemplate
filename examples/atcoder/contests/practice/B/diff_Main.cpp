@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/atcoder/contests/practice/B/Main.cpp
-index 00aa56c..edcf44f 100644
+index 6f10f99..e9281ae 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/atcoder/contests/practice/B/Main.cpp
 @@ -1,11 +1,11 @@
@@ -17,7 +17,7 @@ index 00aa56c..edcf44f 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1457,7 +1457,7 @@ void out(T t){
+@@ -1464,7 +1464,7 @@ void out(T t){
      #ifdef IA_COMM_LOG
      llog("sending output:", t);
      #endif /*IA_COMM_LOG*/
@@ -26,7 +26,7 @@ index 00aa56c..edcf44f 100644
  }
  
  template<typename T, typename... Args>
-@@ -1465,7 +1465,7 @@ void out(T t, Args... args){
+@@ -1472,7 +1472,7 @@ void out(T t, Args... args){
      #ifdef IA_COMM_LOG
      llog("sending output:", t);
      #endif /*IA_COMM_LOG*/
@@ -35,7 +35,7 @@ index 00aa56c..edcf44f 100644
      out(args...);
  }
  
-@@ -1541,14 +1541,97 @@ using namespace std;
+@@ -1548,14 +1548,97 @@ using namespace std;
  namespace task {
  
  void init(){
@@ -104,12 +104,12 @@ index 00aa56c..edcf44f 100644
 +                count = curcount;
 +                break;
 +            }
-+            if(log2ll(curcount)<log2ll(count)){
++            if(log2i(curcount)<log2i(count)){
 +                next2place = c;
 +                count = curcount;
 +                continue;
 +            }
-+            if(log2ll(curcount) == log2ll(count) && curcount > count){
++            if(log2i(curcount) == log2i(count) && curcount > count){
 +                next2place = c;
 +                count = curcount;
 +                continue;
