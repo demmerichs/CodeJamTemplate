@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round1C/B_interactive/Main.cpp
-index 05e1aa9..020c23b 100644
+index 00aa56c..07de8ee 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round1C/B_interactive/Main.cpp
 @@ -1,11 +1,11 @@
@@ -18,7 +18,7 @@ index 05e1aa9..020c23b 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1536,8 +1536,10 @@ using namespace std;
+@@ -1540,8 +1540,10 @@ using namespace std;
  
  namespace task {
  
@@ -30,7 +30,7 @@ index 05e1aa9..020c23b 100644
  }
  
  void readInput(){
-@@ -1545,6 +1547,43 @@ void readInput(){
+@@ -1549,6 +1551,43 @@ void readInput(){
  
  // write to COMM_TYPE result
  void calcFunction() {

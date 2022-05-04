@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/KS_B/C/Main.cpp
-index 05e1aa9..9393b77 100644
+index 00aa56c..a01350b 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/KS_B/C/Main.cpp
 @@ -4,8 +4,8 @@
@@ -27,7 +27,7 @@ index 05e1aa9..9393b77 100644
  d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
  #pragma endregion constants
  #pragma region small conveniance functions
-@@ -1540,11 +1540,47 @@ void init(){
+@@ -1544,11 +1544,47 @@ void init(){
      cin >> T;
  }
  

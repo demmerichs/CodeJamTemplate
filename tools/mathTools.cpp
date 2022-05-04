@@ -485,12 +485,20 @@ v(T) vecOp(v(T) a, v(T) b, const std::function<T (T, T)> &op = std::plus<T>()){
 }
 
 // Implementation works in place by returning the values for a, b by reference
-// a_in * a_out + b_in * b_out = gcd(a, b) (> 0, trivial solution =0 excluded)
+// a_in * a_out + b_in * b_out = gcd(a_in, b_in) (> 0, trivial solution =0 excluded)
 // it is guaranteed that |a_out| <= |b_in/gcd| if b_in > 0
 // (and symmetric the other way round), so no modulo version is needed
 template <typename T>
 void euclideanAlgo(T &a, T &b){
     // only process, a,b >= 0, a<=b transform all other cases to this
+    if(0 < a && a <= b){
+        T s = b/a;
+        T r = b - s*a;
+        euclideanAlgo(r, a);
+        a = a - s*r;
+        b = r;
+        return;
+    }
     if(a<0){
         a = -a;
         euclideanAlgo(a,b);
@@ -512,11 +520,7 @@ void euclideanAlgo(T &a, T &b){
         b = 1;
         return;
     }
-    T s = b/a;
-    T r = b - s*a;
-    euclideanAlgo(r, a);
-    a = a - s*r;
-    b = r;
+    lassert(false, "euclideanAlog: invalid case, internal logic error");
 }
 
 template <typename T>
