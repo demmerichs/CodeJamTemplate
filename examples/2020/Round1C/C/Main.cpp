@@ -946,35 +946,6 @@ long long floorll(long long p, long long q){
     return p/q;
 }
 
-void frac_reduce(cell& frac){
-    ll g = gcd(frac.real(), frac.imag());
-    frac /= g;
-}
-
-cell frac_add(const cell& lhs, const cell& rhs){
-    cell res(lhs.real()*rhs.imag()+lhs.imag()*rhs.real(), lhs.imag()*rhs.imag());
-    frac_reduce(res);
-    return res;
-}
-
-cell frac_sub(const cell& lhs, const cell& rhs){
-    cell res(lhs.real()*rhs.imag()-lhs.imag()*rhs.real(), lhs.imag()*rhs.imag());
-    frac_reduce(res);
-    return res;
-}
-
-cell frac_mul(const cell& lhs, const cell& rhs){
-    cell res(lhs.real()*rhs.real(), lhs.imag()*rhs.imag());
-    frac_reduce(res);
-    return res;
-}
-
-cell frac_div(const cell& lhs, const cell& rhs){
-    cell res(lhs.real()*rhs.imag(), lhs.imag()*rhs.real());
-    frac_reduce(res);
-    return res;
-}
-
 #pragma region frac
 template <typename T>
 struct nnfrac {
@@ -1571,7 +1542,7 @@ void init(){
 
 ll N, D;
 d(ll,ll) Ai;
-d(cell, cell) num_saves_per_fraction;
+d(fracll, cell) num_saves_per_fraction;
 
 void readInput(){
     cin >> N >> D;
@@ -1589,21 +1560,20 @@ void calcFunction() {
     ll max_cut_saves = 1;
     foreach(ai, Ai){
         fore(d, 1, D){
-            cell frac(ai.st, d);
-            frac_reduce(frac);
-            llog("cur slice", frac);
+            fracll slice_size(ai.st, d);
+            llog("cur slice", slice_size);
             llog("can produce ", ai.nd,"*", d,"=", ai.nd*d, "slices");
             llog("and save", ai.nd, "cuts");
-            cell cur_num_saves = dget(num_saves_per_fraction, frac, cell(0, 0));
+            cell cur_num_saves = dget(num_saves_per_fraction, slice_size, cell(0, 0));
             llog("cur num saves before", cur_num_saves);
             forn(i, ai.nd){
                 cur_num_saves += cell(d, 1);
                 if(cur_num_saves.x <= D){
                     if(cur_num_saves.y > max_cut_saves){
-                        llog("poss candidate slice size", frac);
+                        llog("poss candidate slice size", slice_size);
                         ll nbr_counts_possible=0;
                         foreach(cai, Ai){
-                            nbr_counts_possible += floorll(cai.st * frac.y,frac.x) * cai.nd;
+                            nbr_counts_possible += (cai.st * slice_size.den / slice_size.num) * cai.nd;
                             llog(cai);
                             llog(nbr_counts_possible);
                             if(nbr_counts_possible>=D) break;
@@ -1617,7 +1587,7 @@ void calcFunction() {
                 }
             }
             llog("cur num saves after", cur_num_saves);
-            num_saves_per_fraction[frac] = cur_num_saves;
+            num_saves_per_fraction[slice_size] = cur_num_saves;
         }
     }
     result = D - max_cut_saves;

@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/atcoder/contests/practice/B/Main.cpp
-index 0f47b9d..c65dda6 100644
+index 05e1aa9..1d1cdc5 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/atcoder/contests/practice/B/Main.cpp
 @@ -1,11 +1,11 @@
@@ -17,7 +17,7 @@ index 0f47b9d..c65dda6 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1482,7 +1482,7 @@ void out(T t){
+@@ -1453,7 +1453,7 @@ void out(T t){
      #ifdef IA_COMM_LOG
      llog("sending output:", t);
      #endif /*IA_COMM_LOG*/
@@ -26,7 +26,7 @@ index 0f47b9d..c65dda6 100644
  }
  
  template<typename T, typename... Args>
-@@ -1490,7 +1490,7 @@ void out(T t, Args... args){
+@@ -1461,7 +1461,7 @@ void out(T t, Args... args){
      #ifdef IA_COMM_LOG
      llog("sending output:", t);
      #endif /*IA_COMM_LOG*/
@@ -35,7 +35,7 @@ index 0f47b9d..c65dda6 100644
      out(args...);
  }
  
-@@ -1566,14 +1566,97 @@ using namespace std;
+@@ -1537,14 +1537,97 @@ using namespace std;
  namespace task {
  
  void init(){

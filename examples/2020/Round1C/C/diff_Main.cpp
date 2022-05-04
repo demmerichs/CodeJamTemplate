@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2020/Round1C/C/Main.cpp
-index 0f47b9d..d91d437 100644
+index 05e1aa9..f86f44d 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2020/Round1C/C/Main.cpp
 @@ -4,7 +4,7 @@
@@ -11,13 +11,13 @@ index 0f47b9d..d91d437 100644
  #define COMM_TYPE ll
  
  // The maintained and empty code template can be found at:
-@@ -1569,11 +1569,58 @@ void init(){
+@@ -1540,11 +1540,57 @@ void init(){
      cin >> T;
  }
  
 +ll N, D;
 +d(ll,ll) Ai;
-+d(cell, cell) num_saves_per_fraction;
++d(fracll, cell) num_saves_per_fraction;
 +
  void readInput(){
 +    cin >> N >> D;
@@ -35,21 +35,20 @@ index 0f47b9d..d91d437 100644
 +    ll max_cut_saves = 1;
 +    foreach(ai, Ai){
 +        fore(d, 1, D){
-+            cell frac(ai.st, d);
-+            frac_reduce(frac);
-+            llog("cur slice", frac);
++            fracll slice_size(ai.st, d);
++            llog("cur slice", slice_size);
 +            llog("can produce ", ai.nd,"*", d,"=", ai.nd*d, "slices");
 +            llog("and save", ai.nd, "cuts");
-+            cell cur_num_saves = dget(num_saves_per_fraction, frac, cell(0, 0));
++            cell cur_num_saves = dget(num_saves_per_fraction, slice_size, cell(0, 0));
 +            llog("cur num saves before", cur_num_saves);
 +            forn(i, ai.nd){
 +                cur_num_saves += cell(d, 1);
 +                if(cur_num_saves.x <= D){
 +                    if(cur_num_saves.y > max_cut_saves){
-+                        llog("poss candidate slice size", frac);
++                        llog("poss candidate slice size", slice_size);
 +                        ll nbr_counts_possible=0;
 +                        foreach(cai, Ai){
-+                            nbr_counts_possible += floorll(cai.st * frac.y,frac.x) * cai.nd;
++                            nbr_counts_possible += (cai.st * slice_size.den / slice_size.num) * cai.nd;
 +                            llog(cai);
 +                            llog(nbr_counts_possible);
 +                            if(nbr_counts_possible>=D) break;
@@ -63,7 +62,7 @@ index 0f47b9d..d91d437 100644
 +                }
 +            }
 +            llog("cur num saves after", cur_num_saves);
-+            num_saves_per_fraction[frac] = cur_num_saves;
++            num_saves_per_fraction[slice_size] = cur_num_saves;
 +        }
 +    }
 +    result = D - max_cut_saves;

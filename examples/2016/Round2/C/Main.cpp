@@ -946,35 +946,6 @@ long long floorll(long long p, long long q){
     return p/q;
 }
 
-void frac_reduce(cell& frac){
-    ll g = gcd(frac.real(), frac.imag());
-    frac /= g;
-}
-
-cell frac_add(const cell& lhs, const cell& rhs){
-    cell res(lhs.real()*rhs.imag()+lhs.imag()*rhs.real(), lhs.imag()*rhs.imag());
-    frac_reduce(res);
-    return res;
-}
-
-cell frac_sub(const cell& lhs, const cell& rhs){
-    cell res(lhs.real()*rhs.imag()-lhs.imag()*rhs.real(), lhs.imag()*rhs.imag());
-    frac_reduce(res);
-    return res;
-}
-
-cell frac_mul(const cell& lhs, const cell& rhs){
-    cell res(lhs.real()*rhs.real(), lhs.imag()*rhs.imag());
-    frac_reduce(res);
-    return res;
-}
-
-cell frac_div(const cell& lhs, const cell& rhs){
-    cell res(lhs.real()*rhs.imag(), lhs.imag()*rhs.real());
-    frac_reduce(res);
-    return res;
-}
-
 #pragma region frac
 template <typename T>
 struct nnfrac {

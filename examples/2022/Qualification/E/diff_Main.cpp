@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2022/Qualification/E/Main.cpp
-index 0f47b9d..82abb0b 100644
+index 05e1aa9..058b932 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2022/Qualification/E/Main.cpp
 @@ -1,9 +1,9 @@
@@ -14,7 +14,7 @@ index 0f47b9d..82abb0b 100644
  // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
  #define COMM_TYPE ll
  
-@@ -1569,11 +1569,49 @@ void init(){
+@@ -1540,11 +1540,49 @@ void init(){
      cin >> T;
  }
  
