@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2022/KS_A/D/Main.cpp
-index 6f10f99..ec8020a 100644
+index e05e235..9d20955 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2022/KS_A/D/Main.cpp
-@@ -1551,11 +1551,120 @@ void init(){
+@@ -1555,11 +1555,120 @@ void init(){
      cin >> T;
  }
  
@@ -37,7 +37,7 @@ index 6f10f99..ec8020a 100644
 +        if(as[as.sz-1-counter] != '0'){
 +            break;
 +        }
-+        ll news = a+powll(10, counter+1)-1;
++        ll news = a+powi<ll>(10, counter+1)-1;
 +        if(news<=b){
 +            counter++;
 +            s = news;

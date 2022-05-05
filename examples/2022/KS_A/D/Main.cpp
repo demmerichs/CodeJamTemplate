@@ -341,6 +341,21 @@ unsigned short log2i(const T& value){
 }
 
 template <typename T>
+T powi(const T& base, const unsigned long long& exp){
+    T ans = 1;
+    unsigned short bitpos = log2i(exp);
+    while(true){
+        ans *= ans;
+        if((exp>>bitpos)&1)
+            ans *= base;
+        if(bitpos == 0)
+            break;
+        --bitpos;
+    }
+    return ans;
+}
+
+template <typename T>
 T maxOp(T a, T b){
     return a<b?b:a;
 }
@@ -774,17 +789,6 @@ long double chooseld(unsigned long long n, unsigned long long k){
         result /= i + 1;
     }
     return result;
-}
-
-long long powll(long long base, unsigned long long exp){
-    if (exp == 0)
-        return 1;
-    else if (exp & 1)
-        return powll(base, exp - 1) * base;
-    else{
-        long long t = powll(base, exp / 2);
-        return t * t;
-    }
 }
 
 long long powmod(long long base, long long exp)
@@ -1582,7 +1586,7 @@ ll compute_split(ll a, ll b){
         if(as[as.sz-1-counter] != '0'){
             break;
         }
-        ll news = a+powll(10, counter+1)-1;
+        ll news = a+powi<ll>(10, counter+1)-1;
         if(news<=b){
             counter++;
             s = news;

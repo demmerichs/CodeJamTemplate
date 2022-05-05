@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/template_tests/frac/div/Main.cpp
-index 6f10f99..8e89009 100644
+index e05e235..e051d3a 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/template_tests/frac/div/Main.cpp
 @@ -5,7 +5,7 @@
@@ -11,7 +11,7 @@ index 6f10f99..8e89009 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1551,11 +1551,17 @@ void init(){
+@@ -1555,11 +1555,17 @@ void init(){
      cin >> T;
  }
  

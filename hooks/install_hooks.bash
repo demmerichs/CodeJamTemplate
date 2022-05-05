@@ -7,6 +7,9 @@ cd $SRC_DIR
 cp hooks/pre-commit .git/hooks/.
 chmod +x .git/hooks/pre-commit
 
+cp hooks/post-commit .git/hooks/.
+chmod +x .git/hooks/post-commit
+
 cp hooks/create_examples_implementation_tree.bash .git/hooks/.
 chmod +x .git/hooks/create_examples_implementation_tree.bash
 
