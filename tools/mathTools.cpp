@@ -603,7 +603,8 @@ T fac(const unsigned long long &n){
     return memorize[n];
 }
 
-mint fac(const unsigned long long &n){
+template <>
+mint fac<mint>(const unsigned long long &n){
     static std::vector<mint> memorize;
     if(n >= MOD) return 0;
     if(n < memorize.size()) return memorize[n];
@@ -631,7 +632,8 @@ T choose(const unsigned long long &n, const unsigned long long &k){
 }
 
 #ifdef MOD_IS_PRIME
-mint choose(const unsigned long long &n, const unsigned long long &k){
+template <>
+mint choose<mint>(const unsigned long long &n, const unsigned long long &k){
     if(k==0 || k==n) return 1;
     mint nfac = fac<mint>(n);
     mint nkfac = fac<mint>(n-k);

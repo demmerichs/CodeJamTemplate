@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round2/D/Main.cpp
-index f8bdafd..8e7faac 100644
+index 2150379..d5dd950 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round2/D/Main.cpp
 @@ -1,6 +1,6 @@
@@ -12,7 +12,7 @@ index f8bdafd..8e7faac 100644
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
  #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
-@@ -1568,11 +1568,169 @@ void init(){
+@@ -1570,11 +1570,169 @@ void init(){
      cin >> T;
  }
  

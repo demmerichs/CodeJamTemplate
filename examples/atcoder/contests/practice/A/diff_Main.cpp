@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/atcoder/contests/practice/A/Main.cpp
-index f8bdafd..f957762 100644
+index 2150379..587670d 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/atcoder/contests/practice/A/Main.cpp
 @@ -5,7 +5,7 @@
@@ -11,7 +11,7 @@ index f8bdafd..f957762 100644
  
  // The maintained and empty code template can be found at:
  // https://github.com/demmerichs/CodeJamTemplate
-@@ -1540,7 +1540,8 @@ int main() {
+@@ -1542,7 +1542,8 @@ int main() {
          llog();
  #ifndef IA_MODE
          //write output
@@ -21,7 +21,7 @@ index f8bdafd..f957762 100644
  #ifndef DEFAULT_VAL_MODE
          std::cout << result << std::endl;
  #else
-@@ -1565,14 +1566,20 @@ using namespace std;
+@@ -1567,14 +1568,20 @@ using namespace std;
  namespace task {
  
  void init(){
