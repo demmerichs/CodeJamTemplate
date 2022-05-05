@@ -1,8 +1,17 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Round2/C/Main.cpp
-index e05e235..d071b99 100644
+index f8bdafd..c8846a4 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Round2/C/Main.cpp
-@@ -1555,11 +1555,69 @@ void init(){
+@@ -5,7 +5,7 @@
+ #define IA_ERROR_CODE -1
+ #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
+ // #define XY_NOTATION    //remove commment on this line, to activate xy notation on complex numbers
+-#define COMM_TYPE ll
++#define COMM_TYPE mint
+ 
+ // The maintained and empty code template can be found at:
+ // https://github.com/demmerichs/CodeJamTemplate
+@@ -1568,11 +1568,69 @@ void init(){
      cin >> T;
  }
  
@@ -43,7 +52,7 @@ index e05e235..d071b99 100644
 +    ll rcount = r - pos;
 +    lg(lcount+rcount);
 +    lg(rcount);
-+    result = mmulOp(result, (ll) choosemod(lcount+rcount, rcount));
++    result = result * choose<mint>(lcount+rcount, rcount);
 +    recur(l, pos-1, mi);
 +    recur(pos+1, r, mi+1);
  }

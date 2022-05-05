@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2021/Round1B/A/Main.cpp
-index e05e235..9cf05a6 100644
+index f8bdafd..4fdbefb 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2021/Round1B/A/Main.cpp
 @@ -5,7 +5,7 @@
@@ -22,7 +22,7 @@ index e05e235..9cf05a6 100644
  #define DIR_NAMES "ENWS"
  v(cell) DIRECTIONS = {cell(1, 0), cell(0, 1), cell(-1, 0), cell(0, -1)};
  d(char, ll) DIR_IDX = {{'E', 0}, {'N', 1}, {'W', 2}, {'S', 3}};
-@@ -1555,11 +1555,42 @@ void init(){
+@@ -1568,11 +1568,43 @@ void init(){
      cin >> T;
  }
  
@@ -38,18 +38,19 @@ index e05e235..9cf05a6 100644
 +    v(ll) HMS = {A, B, C};
 +    sort(all(HMS));
 +    do{
-+        ll H=HMS[0], M=HMS[1], S=HMS[2];
++        ll H=HMS[0];
++        mint M=HMS[1], S=HMS[2];
 +        lg(H);
 +        lg(M);
 +        lg(S);
-+        ll mminushmodT = mposOp(M-H);
-+        ll t = mdivOp(mminushmodT, 11LL);
++        mint mminushmodT = M-H;
++        ll t = (mminushmodT / 11LL).value;
 +        ll delta = H-t;
-+        if(M != mposOp(12*t+delta)){
++        if(M != mint(12*t+delta)){
 +            llog("minutes did not match");
 +            continue;
 +        }
-+        if(S != mposOp(720*t+delta)){
++        if(S != mint(720*t+delta)){
 +            llog("seconds did not match");
 +            continue;
 +        }

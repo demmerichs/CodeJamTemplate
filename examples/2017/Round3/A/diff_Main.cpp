@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2017/Round3/A/Main.cpp
-index e05e235..fd3159a 100644
+index f8bdafd..874b594 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2017/Round3/A/Main.cpp
-@@ -1555,11 +1555,55 @@ void init(){
+@@ -1568,11 +1568,55 @@ void init(){
      cin >> T;
  }
  
@@ -23,7 +23,7 @@ index e05e235..fd3159a 100644
 +        ll ans=1;
 +        ll rd=N;
 +        forn(i, N){
-+            ans *= choosell(rd, g[i]-'0');
++            ans *= choose<ll>(rd, g[i]-'0');
 +            rd -=g[i]-'0';
 +        }
 +        llog("early break");

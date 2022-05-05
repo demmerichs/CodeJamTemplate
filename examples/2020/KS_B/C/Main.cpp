@@ -365,21 +365,6 @@ T minOp(T a, T b){
     return a>b?b:a;
 }
 
-template <typename T>
-T mposOp(T a){
-    return (a%MOD + MOD) %MOD;
-}
-
-template <typename T>
-T mplusOp(T a, T b){
-    return (a+b)%MOD;
-}
-
-template <typename T>
-T mmulOp(T a, T b){
-    return ((__int128_t) a * (__int128_t) b)%MOD;
-}
-
 #pragma region bigint
 struct bint;
 bint abs(const bint& v);
@@ -736,73 +721,6 @@ unsigned long long sqrtll(unsigned long long n){
     return result;
 }
 
-unsigned long long facll(unsigned long long n){
-    if (n)
-        return n * facll(n - 1);
-    return 1;
-}
-
-unsigned long long facmod(unsigned long long n){
-    static std::vector<unsigned long long> memorize;
-    if (n>=MOD)
-        return 0;
-    if(n < memorize.size()) return memorize[n];
-    if(n == 0) {
-        memorize.push_back(1);
-        return 1;
-    }
-    memorize.push_back(mmulOp(n, facmod(n - 1)));
-    return memorize[n];
-}
-
-long double facld(unsigned long long n){
-    if(n)
-        return (long double)n * facld(n-1);
-    return 1.;
-}
-
-// use this only up to n^k < 2^64 (size of long)
-// usually k is often iterated through 1..n, and the largest binomial coefficient is for k=n/2
-// with choose(n, n/2) < 2^64 we get as upper bound n <= 61
-unsigned long long choosell(unsigned long long n, unsigned long long k){
-    if (k > n)
-        return 0;
-    if ( n-k < k)
-        return choosell(n, n-k);
-    lassert(n<=61 || log2i(n) <= 64/k, "values too large for long long choose version");
-    unsigned long long result = 1;
-    for(unsigned long long i = 0; i < k; ++i){
-        result *= n - i;
-        result /= i + 1;
-    }
-    return result;
-}
-
-long double chooseld(unsigned long long n, unsigned long long k){
-    if (k > n)
-        return 0;
-    if ( n-k < k)
-        return chooseld(n, n-k);
-    long double result = 1;
-    for(unsigned long long i = 0; i < k; ++i){
-        result *= n - i;
-        result /= i + 1;
-    }
-    return result;
-}
-
-long long powmod(long long base, long long exp)
-{
-    if (exp == 0)
-        return 1;
-    else if (exp & 1)
-        return mmulOp(powmod(base, exp - 1), base);
-    else{
-        long long t = powmod(base, exp / 2);
-        return mmulOp(t, t);
-    }
-}
-
 template <typename T>
 v(T) vecOp(v(T) a, v(T) b, const std::function<T (T, T)> &op = std::plus<T>()){
     assert(a.size() == b.size());
@@ -890,58 +808,152 @@ T crt(v(T) remainders, v(T) moduli){
     return r;
 }
 
-#ifdef MOD_IS_PRIME
-template <typename T>
-T mInvOp(T n){
-    lassert(n>0, "cannot divide by 0");
-    return powmod(n, MOD-2);
-}
-#else
-template <typename T>
-T mInvOp(T div){
-    div %= MOD;
-    T m = MOD;
-    T a = m;
-    T b = div;
-    euclideanAlgo(a, b);
-    assert(a*m + b*div == 1); // gcd == 1 so that multiplicative inverse is unambigous
-    return mposOp(b);
-}
-#endif /*MOD_IS_PRIME*/
+#pragma region mint
+struct mint{
+    unsigned long long value;
 
-template <typename T>
-T mdivOp(T num, T div){
-    return mmulOp(mInvOp(div), num);
-}
+    mint(): value(0){}
+    mint(const mint& a): value(a.value){}
+    mint(const unsigned int& a): value(a % MOD){}
+    mint(const unsigned long& a): value(a % MOD){}
+    mint(const unsigned long long& a): value(a % MOD){}
+    mint(const int& a): value(a<0?(a%MOD)+MOD:a%MOD){}
+    mint(const long& a): value(a<0?(a%MOD)+MOD:a%MOD){}
+    mint(const long long& a): value(a<0?(a%MOD)+MOD:a%MOD){}
 
-#ifdef MOD_IS_PRIME
-unsigned long long choosemod(unsigned long long n, unsigned long long k){
-    if(k==0 || k==n) return 1;
-    unsigned long long nfac = facmod(n);
-    unsigned long long invnkfac = mInvOp(facmod(n-k));
-    unsigned long long invkfac = mInvOp(facmod(k));
-    return mmulOp(nfac, mmulOp(invnkfac, invkfac));
-}
-#else
-unsigned long long choosemod(unsigned long long n, unsigned long long k){
-    static std::vector<std::vector<unsigned long long> > memorize;
-    if (k > n)
-        return 0;
-    if (memorize.size() > n){
-        if (memorize[n].size() > k){
-            return memorize[n][k];
-        } else{
-            choosemod(n, k-1);
-            memorize[n].push_back((choosemod(n-1,k-1) + choosemod(n-1,k)) % MOD);
-            return memorize[n][k];
-        }
-    } else{
-        while (memorize.size() <= n){
-            memorize.push_back(std::vector<unsigned long long>());
-            memorize.back().push_back(1LL);
-        }
-        return choosemod(n,k);
+    #ifdef MOD_IS_PRIME
+    mint inverse() const {
+        lassert(value>0, "cannot divide by 0");
+        return powi(*this, MOD-2);
     }
+    #else
+    mint inverse() const{
+        long long m = MOD;
+        long long a = m;
+        long long b = value;
+        euclideanAlgo(a, b);
+        assert(a*m + b*value == 1); // gcd == 1 so that multiplicative inverse is unambigous
+        return mint(b);
+    }
+    #endif /*MOD_IS_PRIME*/
+
+    mint& operator+=(const mint& o){
+        value += o.value;
+        value %= MOD;
+        return *this;
+    }
+    mint operator+(const mint& o) const{
+        mint ans = *this;
+        ans += o;
+        return ans;
+    }
+    mint& operator-=(const mint& o){
+        *this += MOD - o.value;
+        return *this;
+    }
+    mint operator-(const mint& o) const{
+        mint ans = *this;
+        ans -= o;
+        return ans;
+    }
+    mint& operator*=(const mint& o){
+        if(o.value == 0){
+            value = 0;
+            return *this;
+        }
+        if((value>>32) || (o.value>>32)){
+            unsigned long long base = value;
+            unsigned short bitpos = log2i(o.value)-1;
+            while(bitpos != (unsigned short) -1){
+                value <<= 1;
+                value %= MOD;
+                if((o.value>>bitpos)&1){
+                    value += base;
+                    value %= MOD;
+                }
+                --bitpos;
+            }
+            return *this;
+        }
+        value *= o.value;
+        value %= MOD;
+        return *this;
+    }
+    mint operator*(const mint& o) const{
+        mint ans = *this;
+        ans *= o;
+        return ans;
+    }
+    mint& operator/=(const mint& o) {
+        *this *= o.inverse();
+        return *this;
+    }
+    mint operator/(const mint& o) const{
+        mint ans = *this;
+        ans /= o;
+        return ans;
+    }
+
+    bool operator!=(const mint& o) const{
+        return value != o.value;
+    }
+    bool operator==(const mint& o) const{
+        return value == o.value;
+    }
+};
+
+std::ostream& operator<<(std::ostream& os, const mint& v){
+    os << v.value;
+    return os;
+}
+#pragma endregion mint
+
+template <typename T>
+T fac(const unsigned long long &n){
+    static std::vector<T> memorize;
+    if(n < memorize.size()) return memorize[n];
+    if(n == 0) {
+        memorize.push_back(1);
+        return 1;
+    }
+    memorize.push_back(fac<T>(n-1) * n);
+    return memorize[n];
+}
+
+mint fac(const unsigned long long &n){
+    static std::vector<mint> memorize;
+    if(n >= MOD) return 0;
+    if(n < memorize.size()) return memorize[n];
+    if(n == 0) {
+        memorize.push_back(1);
+        return 1;
+    }
+    memorize.push_back(fac<mint>(n-1) * n);
+    return memorize[n];
+}
+
+template <typename T>
+T choose(const unsigned long long &n, const unsigned long long &k){
+    static std::map<unsigned long long, std::vector<T> > memorize;
+    if(k > n) return 0;
+    if( n-k < k) return choose<T>(n, n-k);
+    // memorize[n];
+    if(k < memorize[n].size()) return memorize[n][k];
+    if(k == 0){
+        memorize[n].push_back(1);
+        return 1;
+    }
+    memorize[n].push_back(choose<T>(n, k-1) * (n-k+1) / k);
+    return memorize[n][k];
+}
+
+#ifdef MOD_IS_PRIME
+mint choose(const unsigned long long &n, const unsigned long long &k){
+    if(k==0 || k==n) return 1;
+    mint nfac = fac<mint>(n);
+    mint nkfac = fac<mint>(n-k);
+    mint kfac = fac<mint>(k);
+    return nfac / (nkfac * kfac);
 }
 #endif /*MOD_IS_PRIME*/
 
@@ -1113,6 +1125,7 @@ frac<T> abs(const frac<T>& f){
 
 typedef frac<ll> fracll;
 typedef frac<bint> bfrac;
+typedef nnfrac<mint> mfrac;
 
 #pragma endregion frac
 
@@ -1581,8 +1594,8 @@ cell recur(ll &prog_idx){
         }
         prog_idx++;
         lg(answer);
-        answer.real(mposOp(answer.x));
-        answer.imag(mposOp(answer.y));
+        answer.real(mint(answer.x).value);
+        answer.imag(mint(answer.y).value);
         lg(prog_idx);
         lg(answer);
     }

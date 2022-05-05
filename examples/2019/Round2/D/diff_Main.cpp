@@ -1,5 +1,5 @@
 diff --git a/CodeJam/Main.cpp b/examples/2019/Round2/D/Main.cpp
-index e05e235..c4301f6 100644
+index f8bdafd..8e7faac 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2019/Round2/D/Main.cpp
 @@ -1,6 +1,6 @@
@@ -12,7 +12,7 @@ index e05e235..c4301f6 100644
  // #define IA_MODE        //remove comment on this line, to activate interactive problem mode
  #define IA_ERROR_CODE -1
  #define IA_COMM_LOG    //add comment on this line, to deactivate the interactive communication error log
-@@ -1555,11 +1555,169 @@ void init(){
+@@ -1568,11 +1568,169 @@ void init(){
      cin >> T;
  }
  
@@ -20,13 +20,13 @@ index e05e235..c4301f6 100644
 +    if(a==-1 && b == -1) return -1;
 +    if(a==INF || b == INF) return INF;
 +    if(a==-1 || b==-1) return max(a,b);
-+    return mplusOp(a, b);
++    return (mint(a) + b).value;
 +}
 +
 +ll infmodmul(ll a, ll b){
 +    if(a==-1 || b == -1) return -1;
 +    if(a==INF || b == INF) return INF;
-+    return mmulOp(a,b);
++    return (mint(a) * b).value;
 +}
 +
 +

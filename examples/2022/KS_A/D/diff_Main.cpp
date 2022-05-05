@@ -1,8 +1,8 @@
 diff --git a/CodeJam/Main.cpp b/examples/2022/KS_A/D/Main.cpp
-index e05e235..9d20955 100644
+index f8bdafd..ae929e8 100644
 --- a/CodeJam/Main.cpp
 +++ b/examples/2022/KS_A/D/Main.cpp
-@@ -1555,11 +1555,120 @@ void init(){
+@@ -1568,11 +1568,120 @@ void init(){
      cin >> T;
  }
  
@@ -98,7 +98,7 @@ index e05e235..9d20955 100644
 +            if(i == separators.sz || separators[i]){
 +                forn(j, count)
 +                    post += '0' + digit;
-+                permutations *= choosell(cur_free_digits, count);
++                permutations *= choose<ll>(cur_free_digits, count);
 +                cur_free_digits -= count;
 +                digit++;
 +                count = 0;
