@@ -36,13 +36,13 @@ def main():
         start_timer()
         readInput()
         stop_timer()
-        llog("-----------", get_time(), "secs -----------")
+        llog("-----------", "{:.5e}".format(get_time()), "secs -----------")
         llog()
         llog("============    doing computation   ============")
         start_timer()
         calcFunction()
         stop_timer()
-        llog("-----------", get_time(), "secs -----------")
+        llog("-----------", "{:.5e}".format(get_time()), "secs -----------")
         llog()
 
         if "IA_MODE" not in FLAGS:
